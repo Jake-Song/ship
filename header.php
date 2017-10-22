@@ -63,4 +63,6 @@
 
               </nav>
             <div class="bg"></div>
+            <?php  ?>
+            qt_custom_breadcrumbs();  
           </header>
