@@ -1,0 +1,414 @@
+<?php
+// 스타일 시트, 스크립트 로드
+function cosmetic_enqueue_scripts(){
+    wp_enqueue_style( 'style', get_stylesheet_uri() );
+    wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
+    wp_enqueue_style( 'fontello', get_template_directory_uri() . '/fontello/css/fontello.css' );
+    wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), true );
+    wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array('jquery') );
+    wp_enqueue_script( 'social', get_template_directory_uri() . '/js/jsSocials/jssocials.min.js', array('jquery') );
+    wp_enqueue_style( 'social-css', get_template_directory_uri() . '/js/jsSocials/jssocials-theme-plain.css' );
+    wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css' );
+
+    wp_localize_script( 'custom', 'ajaxHandler', array(
+      'adminAjax' => admin_url( 'admin-ajax.php' ),
+      'securityFavorite' => wp_create_nonce( 'user-favorite' ),
+      'securityLoadmore' => wp_create_nonce( 'loadmore' ),
+      'securityLogin' => wp_create_nonce( 'login' ),
+    ) );
+}
+add_action('wp_enqueue_scripts', 'cosmetic_enqueue_scripts');
+
+// 사용자 정의하기
+function themeslug_customize_register( $wp_customize ) {
+
+  // 사이트 로고
+  $wp_customize->add_setting(
+     'logo_settings', //give it an ID
+     array(
+       'type' => 'theme_mod',
+       'default' => '', // Give it a default
+
+     )
+   );
+   $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'logo', array(
+     'section'     => 'title_tagline',
+     'settings'    => 'logo_settings',
+     'label'       => __( '로고', 'cosmetic' ),
+     'description' => __( '화면 상단의 로고 이미지로 사용됩니다. 권장크기는 270 x 45 입니다.' ),
+     'flex_width'  => true, // Allow any width, making the specified value recommended. False by default.
+     'flex_height' => false, // Require the resulting image to be exactly as tall as the height attribute (default).
+     'width'       => 270,
+     'height'      => 45,
+   ) ) );
+
+  // 푸터 소셜 편집
+  $wp_customize->add_section( 'footer', array(
+    'title' => __( '푸터 소셜아이콘', 'cosmetic' ),
+    'description' => __( '푸터 소셜아이콘 편집', 'cosmetic' ),
+    'priority' => 160,
+    'capability' => 'edit_theme_options',
+  ) );
+  $wp_customize->add_setting(
+     'cosmetic_footer_social_url_1', //give it an ID
+     array(
+       'type' => 'theme_mod',
+       'default' => '', // Give it a default
+
+     )
+   );
+   $wp_customize->add_setting(
+      'cosmetic_footer_social_url_2', //give it an ID
+      array(
+        'type' => 'theme_mod',
+        'default' => '', // Give it a default
+
+      )
+    );
+  $wp_customize->add_setting(
+     'cosmetic_footer_social_url_3', //give it an ID
+     array(
+       'type' => 'theme_mod',
+       'default' => '', // Give it a default
+
+     )
+   );
+   $wp_customize->add_setting(
+      'cosmetic_footer_social_icon_1', //give it an ID
+      array(
+        'type' => 'theme_mod',
+        'default' => '', // Give it a default
+
+      )
+    );
+    $wp_customize->add_setting(
+       'cosmetic_footer_social_icon_2', //give it an ID
+       array(
+         'type' => 'theme_mod',
+         'default' => '', // Give it a default
+
+       )
+     );
+     $wp_customize->add_setting(
+        'cosmetic_footer_social_icon_3', //give it an ID
+        array(
+          'type' => 'theme_mod',
+          'default' => '', // Give it a default
+
+        )
+      );
+
+    $wp_customize->get_setting( 'cosmetic_footer_social_icon_1' )->transport = 'postMessage';
+    $wp_customize->get_setting( 'cosmetic_footer_social_icon_2' )->transport = 'postMessage';
+    $wp_customize->get_setting( 'cosmetic_footer_social_icon_3' )->transport = 'postMessage';
+    $wp_customize->get_setting( 'cosmetic_footer_social_url_1' )->transport = 'postMessage';
+    $wp_customize->get_setting( 'cosmetic_footer_social_url_2' )->transport = 'postMessage';
+    $wp_customize->get_setting( 'cosmetic_footer_social_url_3' )->transport = 'postMessage';
+
+
+    $wp_customize->add_control( 'footer_social_icon_1',
+        array(
+          'label' => __( '푸터 소셜 아이콘 #1', 'cosmetic' ), //set the label to appear in the Customizer
+          'section' => 'footer', //select the section for it to appear under
+          'settings' => 'cosmetic_footer_social_icon_1', //pick the setting it applies to
+          'type' => 'text',
+          'priority' => 31,
+        )
+     );
+   $wp_customize->add_control( 'footer_social_url_1',
+       array(
+         'label' => __( '푸터 소셜 URL #1', 'cosmetic' ), //set the label to appear in the Customizer
+         'section' => 'footer', //select the section for it to appear under
+         'settings' => 'cosmetic_footer_social_url_1', //pick the setting it applies to
+         'type' => 'text',
+         'priority' => 32,
+       )
+    );
+    $wp_customize->add_control( 'footer_social_icon_2',
+        array(
+          'label' => __( '푸터 소셜 아이콘 #2', 'cosmetic' ), //set the label to appear in the Customizer
+          'section' => 'footer', //select the section for it to appear under
+          'settings' => 'cosmetic_footer_social_icon_2', //pick the setting it applies to
+          'type' => 'text',
+          'priority' => 33,
+        )
+     );
+    $wp_customize->add_control( 'footer_social_url_2',
+        array(
+          'label' => __( '푸터 소셜 URL #2', 'cosmetic' ), //set the label to appear in the Customizer
+          'section' => 'footer', //select the section for it to appear under
+          'settings' => 'cosmetic_footer_social_url_2', //pick the setting it applies to
+          'type' => 'text',
+          'priority' => 34,
+        )
+     );
+     $wp_customize->add_control( 'footer_social_icon_3',
+         array(
+           'label' => __( '푸터 소셜 아이콘 #3', 'cosmetic' ), //set the label to appear in the Customizer
+           'section' => 'footer', //select the section for it to appear under
+           'settings' => 'cosmetic_footer_social_icon_3', //pick the setting it applies to
+           'type' => 'text',
+           'priority' => 35,
+         )
+      );
+     $wp_customize->add_control( 'footer_social_url_3',
+         array(
+           'label' => __( '푸터 소셜 URL #3', 'cosmetic' ), //set the label to appear in the Customizer
+           'section' => 'footer', //select the section for it to appear under
+           'settings' => 'cosmetic_footer_social_url_3', //pick the setting it applies to
+           'type' => 'text',
+           'priority' => 36,
+         )
+      );
+}
+add_action( 'customize_register', 'themeslug_customize_register' );
+
+// 사용자 정의하기 프리뷰 자바스크립트 파일 로드
+function cosmetic_customizer_live_preview()
+{
+	wp_enqueue_script(
+		  'cosmetic-themecustomizer',			//Give the script an ID
+		  get_template_directory_uri().'/js/theme-customizer.js',//Point to file
+		  array( 'jquery','customize-preview' ),	//Define dependencies
+		  '',						//Define a version (optional)
+		  true						//Put script in footer?
+	);
+}
+add_action( 'customize_preview_init', 'cosmetic_customizer_live_preview' );
+
+// 어드민 페이지 스타일 시트 적용
+add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
+
+function load_admin_styles() {
+ wp_enqueue_style( 'admin_css', get_template_directory_uri() . '/admin.css', false, '1.0.0' );
+
+}
+
+// 부트스트랩 메뉴 적용
+require_once('inc/wp_bootstrap_navwalker.php');
+
+// 테마 셋업
+function my_theme_setup(){
+
+    // 포스트 썸네일 등록하기
+    add_theme_support( 'post-thumbnails' );
+    add_image_size( 'custom', 300, 250, true );
+    add_image_size( 'single', 880, 400, true );
+
+    // 메뉴 등록하기
+    register_nav_menus(array(
+      //'top' => __( 'Top Menu' ),
+      'primary' => __( 'Primary Menu' ),
+      //'footer' => __( 'Footer Menu' ),
+    ));
+
+    add_theme_support( 'html5', array( 'search-form' ) );
+
+}
+add_action( 'after_setup_theme', 'my_theme_setup' );
+
+// 메뉴 아이템 클래스 픽스
+function custom_special_nav_class( $classes, $item ) {
+  $test = 0;
+    global $taxonomy, $post;
+    $test = 0;
+    $front_page_id  = (int) get_option( 'page_on_front' );
+
+    if( isset( $taxonomy ) && $taxonomy === "cosmetic_category" ){
+
+        if ( $front_page_id === (int) $item->object_id ){
+
+             $classes[] = "custom_for_taxonomy";
+
+         } elseif( ( $key = array_search('current_page_parent', $classes )) !== false ) {
+
+             unset($classes[$key]);
+
+         }
+
+    } elseif( isset( $post->post_type ) && $post->post_type === 'cosmetic' ){
+
+        if( $front_page_id === (int) $item->object_id ){
+
+              $classes[] = "custom_for_taxonomy";
+
+        } elseif( ( $key = array_search('current_page_parent', $classes )) !== false ) {
+
+            unset($classes[$key]);
+
+        }
+
+    }
+
+    return $classes;
+
+}
+add_filter( 'nav_menu_css_class' , 'custom_special_nav_class' , 10, 2 );
+
+// 일반 사용자 어드민 바 기능 끄기
+add_action('after_setup_theme', 'remove_admin_bar');
+
+function remove_admin_bar() {
+  if (!current_user_can('administrator') && !is_admin()) {
+    show_admin_bar(false);
+  }
+}
+// 로그아웃 메뉴 추가하기
+add_filter( 'wp_nav_menu_items', 'wti_loginout_menu_link', 10, 2 );
+
+function wti_loginout_menu_link( $items, $args ) {
+   if ($args->theme_location == 'top') {
+      if (is_user_logged_in()) {
+         $items .= '<li class="right"><a href="'. wp_logout_url() .'">'. "Log Out" .'</a></li>';
+      }
+   }
+   if ($args->theme_location == 'primary') {
+      if (is_user_logged_in()) {
+         $items .= '<li class="right responsive"><a href="'. wp_logout_url() .'">'. "Log Out" .'</a></li>';
+      }
+   }
+   return $items;
+}
+
+// 선박매물 포스트 타입 등록
+function ship_register_post_type(){
+
+  $name = '선박매물';
+  $slug = 'ship';
+
+  $labels = array(
+    'name' 			          => $name,
+		'name_name' 	    => $name,
+		'add_new' 		        => '새로 추가하기',
+		'add_new_item'  	    => $name . ' 추가하기',
+		'edit'		            => '편집하기',
+  	'edit_item'	          => $name . ' 편집하기',
+  	'new_item'	          => '새 ' . $name,
+		'view' 			          => $name . ' 목록보기',
+		'view_item' 		      => $name . ' 목록보기',
+		'search_term'   	    => $name . ' 검색하기',
+	  'parent' 		          => $name . ' 부모 페이지',
+		'not_found' 		      => $name . ' 이 없습니다.',
+		'not_found_in_trash' 	=> $name . ' 이 휴지통에 없습니다.'
+  );
+
+  $args = array(
+    'labels'              => $labels,
+    'public'              => true,
+    'publicly_queryable'  => true,
+    'exclude_from_search' => false,
+    'show_in_nav_menus'   => true,
+    'show_ui'             => true,
+    'show_in_menu'        => true,
+    'show_in_admin_bar'   => true,
+    'show_in_rest'        => true,
+    'menu_position'       => 10,
+    'menu_icon'           => 'dashicons-businessman',
+    'can_export'          => true,
+    'delete_with_user'    => false,
+    'hierarchical'        => false,
+    'has_archive'         => true,
+    'query_var'           => true,
+    'capability_type'     => 'post',
+    'map_meta_cap'        => true,
+    // 'capabilities' => array(),
+    'rewrite'             => array(
+    	'slug' => $slug,
+    	'with_front' => true,
+    	'pages' => true,
+    	'feeds' => true,
+    ),
+    'supports'            => array(
+    	'title',
+    	'editor',
+    	'thumbnail'
+    )
+  );
+  register_post_type( 'ship', $args );
+}
+add_action( 'init', 'ship_register_post_type' );
+
+// 선박매물 카테고리 등록하기
+function ship_register_taxonomy(){
+  $names = [
+    '매물 카테고리' => 'ship category',
+    '제조사' => 'ship maker',
+    '모델' => 'ship model',
+    '판매지역' => 'ship location',
+  ];
+
+  foreach ($names as $name=>$slug_name) :
+
+      $slug = str_replace( ' ', '_', strtolower( $slug_name ) );
+      $labels = array(
+        'name' => $name,
+        'name_name' => $name,
+        'search_items' => 'Search ' . $name,
+        'popular_items' => 'Popular ' . $name,
+        'all_items' => 'All ' . $name,
+        'parent_item' => null,
+        'parent_item_colon' => null,
+        'edit_item' => 'Edit ' . $name,
+        'update_item' => 'Update ' . $name,
+        'add_new_item' => 'Add New ' . $name,
+        'new_item_name' => 'New ' . $name . ' Name',
+        'separate_items_with_commas' => 'Separate ' . $name . ' with commas',
+        'add_or_remove_items' => 'Add or remove ' . $name,
+        'choose_from_most_used' => 'Choose from the most used ' . $name,
+        'not_found' => 'No ' . $name . ' found.',
+        'menu_name' => $name,
+      );
+      $args = array(
+        'hierarchical' => true,
+        'labels' => $labels,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'update_count_callback' => '_update_post_term_count',
+        'query_var' => true,
+        'rewrite' => array( 'slug' => $slug, 'hierarchical' => true ),
+      );
+      register_taxonomy( $slug, 'ship', $args );
+
+  endforeach;
+}
+add_action( 'init', 'ship_register_taxonomy' );
+
+// 상위 텀 아이디 가져오기
+function get_term_parent_id(){
+    global $term, $taxonomy;
+    $get_term = get_term_by( 'slug', $term, $taxonomy );
+    if( $get_term->parent !== 0 ){
+        return $get_term->parent;
+    }
+    return $get_term->term_id;
+}
+
+// filter for cosmetic post type edit list
+add_action('restrict_manage_posts','restrict_cosmetic_by_cosmetic_category');
+function restrict_cosmetic_by_cosmetic_category() {
+    $test = 0;
+    global $typenow;
+    global $wp_query;
+    $cosmetic_taxonomies = get_object_taxonomies( 'cosmetic', 'objects' );
+
+    if ($typenow=='cosmetic') {
+        foreach ($cosmetic_taxonomies as $key => $cosmetic_taxonomy) {
+
+          $cosmetic_term_slug = !empty($wp_query->query[$cosmetic_taxonomy->name]) ?
+            $wp_query->query[$cosmetic_taxonomy->name] : false;
+
+          wp_dropdown_categories(array(
+              'show_option_all' =>  __("Show All {$cosmetic_taxonomy->label}"),
+              'taxonomy'        =>  $cosmetic_taxonomy->name,
+              'name'            =>  $cosmetic_taxonomy->name,
+              'orderby'         =>  'name',
+              'selected'        =>  $cosmetic_term_slug,
+              'hierarchical'    =>  true,
+              'depth'           =>  3,
+              'show_count'      =>  true, // Show # items in parenthesis
+              'hide_empty'      =>  true, // Don't show cosmetic_category w/o listings
+              'value_field'     => 'slug',
+          ));
+        }
+    }
+}
