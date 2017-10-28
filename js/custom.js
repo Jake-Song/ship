@@ -1,138 +1,108 @@
 jQuery( document ).ready( function($){
 
-  // Get all the slides
-  var slides = $('.slide');
-  var currentIndex = 0;
-  var selector = $('.selector');
-  var isPlaying = false;
+    $('.slider').bxSlider({
+      auto: true,
+      autoControls: true,
+      stopAutoOnClick: true,
+      pager: true,
+      wrapperClass: 'bx-wrapper main'
+    });
 
-  // Move the last slide before the first so the user is able to immediately go backwards
-  slides.first().before(slides.last());
-  play();
+      $('.notice-slider').bxSlider({
+        mode: 'vertical',
+        controls: false,
+        auto: true,
+        autoControls: true,
+        pager: false,
+        autoHover: true,
+        speed: 1500,
+        wrapperClass: 'bx-wrapper notice'
+      });
 
-  function play(){
-    if(!isPlaying){
-      autoPlay = setInterval(function(){
-        slides = $('.slide');
-        slides.last().after(slides.first());
+      // Load Contents with ajax
 
-        if(currentIndex >= slides.length ){
-          currentIndex = 0;
+      var newLocation = '',
+      firstLoad = false,
+      isLoading = false;
+
+      $('.ship-category-navigator').on('click', 'ul li a', function(e){
+        e.preventDefault();
+        var newPage = $(this).attr('href');
+        var test = 0;
+        if(!isLoading) changePage( newPage, true );
+        firstLoad = true;
+      });
+
+      $(window).on('popstate', function() {
+        if( firstLoad ) {
+          /*
+          Safari emits a popstate event on page load - check if firstLoad is true before animating
+          if it's false - the page has just been loaded
+          */
+          var newPage = location.href;
+
+          if( !isLoading  &&  newLocation != newPage ) changePage(newPage, false);
+
         }
+        firstLoad = true;
+      });
 
-        var activeSlide = $('.active');
-        activeSlide.removeClass('active').next('.slide').addClass('active');
-
-        if( currentIndex === slides.length - 1 ){
-          selector.removeClass('current');
-          $(selector[0]).addClass('current');
-        } else {
-          selector.removeClass('current');
-          $(selector[currentIndex+1]).addClass('current');
-        }
-
-        isPlaying = true;
-        currentIndex++;
-        console.log(currentIndex);
-      }, 3000);
-    }
-  }
-
-  function pause(){
-    clearInterval(autoPlay);
-    isPlaying = false;
-  }
-
-  $('button').on('click', function() {
-    // Get all the slides again
-    slides = $('.slide');
-    // Register button
-    var button = $(this);
-    // Register active slide
-    var activeSlide = $('.active');
-
-    // Next function
-    if (button.attr('id') == 'next') {
-      if( currentIndex >= slides.length ){
-        currentIndex = 0;
+      function changePage( url, bool ) {
+        isLoading = true;
+        loadContent( url, bool);
+        newLocation = url;
       }
 
-      if(isPlaying){
-        pause();
-        // Move first slide to the end so the user can keep going forward
-        slides.last().after(slides.first());
-        // Move active class to the right
-        activeSlide.removeClass('active').next('.slide').addClass('active');
-        selector.removeClass('current');
-        if(currentIndex === slides.length -1){
-          $(selector[0]).addClass('current');
-        }
-        $(selector[currentIndex+1]).addClass('current');
-        play();
-      } else {
-        // Move first slide to the end so the user can keep going forward
-        slides.last().after(slides.first());
-        // Move active class to the right
-        activeSlide.removeClass('active').next('.slide').addClass('active');
-        selector.removeClass('current');
-        if(currentIndex === slides.length -1){
-          $(selector[0]).addClass('current');
-        }
-        $(selector[currentIndex+1]).addClass('current');
-      }
-      console.log(currentIndex);
-      currentIndex++;
-    }
+      function loadContent( url, bool ){
 
-    // Previous function
-    if (button.attr('id') == 'previous') {
+        $.ajax({
+          url: url,
+          beforeSend: function(){
+            $('article').hide();
+            $('.ajax-preloader').show();
+          },
+          success: function( response ){
 
-      if( currentIndex <= 0 ){
-        currentIndex = slides.length - 1;
+            var content = $(response).find('.wrapper-for-ajax > *');
+            var section = $('<div class="wrapper-for-ajax"></div>');
+
+            section.html(content);
+            $('.ajax-container').html(section);
+            isLoading = false;
+
+            if(url!=window.location && bool){
+              //add the new page to the window.history
+              //if the new page was triggered by a 'popstate' event, don't add it
+              window.history.pushState({path: url},'',url);
+            }
+          },
+          error: function(error){
+            console.log(error);
+          }
+        });
+
       }
 
-      if(isPlaying){
-        pause();
-        // Move the last slide before the first so the user can keep going backwards
-        slides.first().before(slides.last());
-        // Move active class to the left
-        activeSlide.removeClass('active').prev('.slide').addClass('active');
-        play();
-      } else {
-        // Move the last slide before the first so the user can keep going backwards
-        slides.first().before(slides.last());
-        // Move active class to the left
-        activeSlide.removeClass('active').prev('.slide').addClass('active');
-        if(currentIndex === slides.length - 1){
-          selector.removeClass('current');
-          $(selector[currentIndex]).addClass('current');
-        } else {
-          selector.removeClass('current');
-          $(selector[currentIndex-1]).addClass('current');
-        }
-      }
-      console.log(currentIndex);
-      currentIndex--;
-    }
+  $('ul#filter a').click(function() {
+     $(this).css('outline','none');
+     $('ul#filter .current').removeClass('current');
+     $(this).parent().addClass('current');
 
-    if (button.attr('id') == 'play') { play(); }
+     var filterVal = $(this).text().toLowerCase().replace(' ','-');
 
-    if (button.attr('id') == 'pause') { pause(); }
+     if(filterVal == 'all') {
+       $('ul#portfolio li.hidden').fadeIn('slow').removeClass('hidden');
+     } else {
+       $('ul#portfolio li').each(function() {
+         if(!$(this).hasClass(filterVal)) {
+           $(this).fadeOut('normal').addClass('hidden');
+         } else {
+           $(this).fadeIn('slow').removeClass('hidden');
+         }
+       });
+     }
 
-  });
-
-  function navigate(counter){
-    var selector = $('.selector');
-    selector.removeClass('current');
-    slides.removeClass('active');
-    $(slides[counter]).addClass('active');
-    $(selector[counter]).addClass('current');
-
-  }
-
-  $('.selector').on('click', function(){
-    var count = $(this).data('index');
-    navigate(count);
-  });
+     return false;
+   });
 
 });

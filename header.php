@@ -11,10 +11,9 @@
         <div class="container">
             <header class="site-header">
 
-                <div class="title">
+                <div class="site-title">
                   <?php
-                    $test = 0;
-                    if( get_theme_mod('logo_settings', '') !== '' ){
+                      if( get_theme_mod('logo_settings', '') !== '' ){
                       $logo_id = get_theme_mod('logo_settings');
                   ?>
                       <a href="<?php echo home_url(); ?>">
@@ -63,6 +62,5 @@
 
               </nav>
             <div class="bg"></div>
-            <?php  ?>
-            qt_custom_breadcrumbs();  
+
           </header>

@@ -6,7 +6,8 @@
 ?>
 
      <div class="slider">
-        <div class="slide active">
+
+        <div class="slide">
           <img src="./wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
           <div class="slide-text">
             <h3>Slide One</h3>
@@ -41,33 +42,169 @@
             <p>Mollitia explicabo obcaecati, voluptate quod, quae debitis delectus! Hic tempore assumenda autem laboriosam aperiam, error deserunt voluptates quos veritatis totam. Excepturi nemo voluptas fugiat incidunt placeat similique aut recusandae asperiores!</p>
           </div>
         </div>
-        <div class="selector-wrapper">
-            <button id="play"><i class="fa fa-play-circle" aria-hidden="true"></i></button>
-            <button id="pause"><i class="fa fa-pause-circle" aria-hidden="true"></i></button>
-            <div class="selector current" data-index=0></div>
-            <div class="selector" data-index=1></div>
-            <div class="selector" data-index=2></div>
-            <div class="selector" data-index=3></div>
-            <div class="selector" data-index=4></div>
-        </div>
-        <button id="previous"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></button>
-        <button id="next"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button>
 
       </div>
+
+    <div class="notice-wrapper">
+      <?php
+        $args = array(
+          'post_type' => 'notice',
+          'post_status' => 'publish',
+          'order' => 'ASC'
+        );
+        $query = new WP_Query( $args );
+       ?>
+       <div class="notice-slider">
+         <?php
+           if( $query->have_posts() ) :
+             while( $query->have_posts() ) : $query->the_post();
+         ?>
+               <div class="notice-slide">
+                 <a href="<?php the_permalink(); ?>"><?php the_excerpt(); ?></a>
+               </div>
+          <?php
+             endwhile;
+
+             wp_reset_postdata();
+
+           else :
+          ?>
+
+             <p><?php esc_html_e( '공지사항이 없습니다.' ); ?></p>
+
+          <?php
+           endif;
+          ?>
+
+       </div>
+    </div>
 
     <div class="content-box">
-      <h2>매물 현황</h2>
-      <div id="icon-menu">
-        <ul>
-          <li>어선</li>
-          <li>기타선</li>
-          <li>요트</li>
-          <li>보트</li>
-          <li></li>
-        </ul>
+
+      <?php include( locate_template( '/module/ship-category-menu.php', false, false ) ); ?>
+
+      <div class="ship-category">
+
+        <?php
+
+          $args = array(
+            'post_type' => 'ship',
+            'post_status' => 'publish',
+            'tax_query' => array(
+                array(
+                  'taxonomy' => 'ship_category',
+                  'field' => 'slug',
+                  'terms' => 'fishing-ship',
+                ),
+            ),
+
+          );
+          $query = new WP_Query( $args );
+        ?>
+
+        <?php include( locate_template( '/module/select-box.php', false, false ) ); ?>
+
+        <div class="ajax-container">
+
+            <div class="wrapper-for-ajax">
+
+              <?php
+                if( $query->have_posts() ) :
+                  while( $query->have_posts() ) : $query->the_post();
+
+                  $ship_maker_terms = get_the_terms( $post->ID, 'ship_maker' );
+                  $ship_model_terms = get_the_terms( $post->ID, 'ship_model' );
+                  $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
+
+                ?>
+                <div class="col-sm-6 col-md-3">
+
+                  <div class='recent thumbnail'
+                    data-maker="<?php echo esc_attr( ($ship_maker_terms) ? $ship_maker_terms[0]->name : ''); ?>"
+                    data-model="<?php echo esc_attr( ($ship_model_terms) ? $ship_model_terms[0]->name : ''); ?>"
+                    data-location="<?php echo esc_attr( ($ship_location_terms) ? $ship_location_terms[0]->name : ''); ?>">
+
+                    <?php the_post_thumbnail( 'custom' ); ?>
+                    <div class="caption">
+                      <h3><?php the_title(); ?></h3>
+                      <p><a href="<?php the_permalink(); ?>" class="btn btn-transparent" role="button">Button</a></p>
+                    </div>
+                  </div>
+
+                </div>
+              <?php
+                  endwhile;
+
+                  wp_reset_postdata();
+
+                endif;
+              ?>
+            </div>
+
+        </div>
+
       </div>
 
+      <div class="recent-ship">
+        <h3>최근 등록 매물</h3>
+
+        <?php
+          $args = array(
+            'post_type' => 'ship',
+            'posts_per_page' => 6,
+          );
+          $query = new WP_Query( $args );
+         ?>
+
+        <div class="recent-ship row">
+          <?php
+            if( $query->have_posts() ) :
+              while( $query->have_posts() ) : $query->the_post();
+          ?>
+                <div class="col-sm-6 col-md-4">
+                  <div class="recent thumbnail">
+                    <?php the_post_thumbnail( 'custom' ); ?>
+                    <div class="caption">
+                      <h3><?php the_title(); ?></h3>
+                      <p><a href="<?php the_permalink(); ?>" class="btn btn-transparent" role="button">Button</a></p>
+                    </div>
+                  </div>
+                </div>
+           <?php
+              endwhile;
+
+              wp_reset_postdata();
+
+            else :
+           ?>
+
+              <p><?php esc_html_e( '매물이 없습니다.' ); ?></p>
+
+           <?php
+            endif;
+           ?>
+
+        </div>
 
     </div>
+
+    <div class="info-box">
+      <div class="main-box">
+        <div class="main-box-text">
+          <h4>구입 및 대여 서비스</h4>
+          <h2>선박 장비를 대여 받거나 구입하실 분 문의 부탁드립니다.</h2>
+          <h2>1588-1588</h2>
+        </div>
+      </div>
+      <div class="sub-box-wrapper">
+        <div class="sub-box">sub</div>
+        <div class="sub-box">sub</div>
+        <div class="sub-box">sub</div>
+        <div class="sub-box">sub</div>
+      </div>
+
+    </div>
+
+  </div>
 
 <?php get_footer(); ?>

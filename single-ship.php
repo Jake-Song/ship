@@ -2,107 +2,213 @@
 
   <div class="banner">
     <img src="../../wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
+    <div class="title-box">
+      <h2><?php echo the_title(); ?></h2>
+    </div>
   </div>
 
   <div class="content-box">
 
-    <div class="title-box">
-      <h2><?php echo ucfirst($pagename); ?></h2>
+    <div class="navigation">
+      <a href="#"><i class="fa fa-external-link" aria-hidden="true"></i>목록보기</a>
+      <?php qt_custom_breadcrumbs(); ?>
     </div>
 
-    <?php
-      if(have_posts()) :
-          while(have_posts()) : the_post(); ?>
-          <?php
+      <?php
+        if(have_posts()) :
+            while(have_posts()) : the_post(); ?>
 
-          $ship_information = array(
-            'seller' => '판매자',
-            'ship_category' => '선박유형',
-            'tons' => '톤수',
-            'made_date' => '진수년월일',
-            'measure' => '주요치수',
-            'certificate' => '허가사항',
-            'sale_location' => '판매정박지',
-            'forward_parts' => '추진기관',
-            'made_location' => '조선지',
-            'commit_name' => '담당자이름',
-            'commit_contact' => '연락처',
-          );
+                <article class="post single clearfix">
 
-          $ship_option_basic = array(
-            'gps' => 'GPS',
-            'detecter' => '어군탐지기',
-            'rader' => '레이더',
-            'ssb' => 'SSB무전기',
-            'generator' => '발전기',
-            'kitchen' => '주방',
-            'toilet' => '화장실'
-          );
+                  <div class="image-wrapper">
 
-          foreach ($ship_information as $key => $value) {
-              $$key = get_post_meta( get_the_ID(), $key, true );
-              echo $$key;
-          }
-
-          $content = '';
-
-          foreach ($ship_option_basic as $key => $value) {
-              $test = 0;
-              $$key = get_post_meta( get_the_ID(), $key, true );
-              $key_attr = !empty($$key) ? ' checked' : "";
-              $content .= $value . "<input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' />";
-
-          }
-
-          echo $content;
-
-          ?>
-              <article class="post tips clearfix">
-
-                  <div class="post-image">
-
-                      <?php if( has_post_thumbnail() ) : ?>
-                          <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail( 'custom' ); ?>
-                          </a>
-                      <?php endif; ?>
-
-                  </div>
-                  <div class="post-content">
-
-                    <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-
-                    <?php the_excerpt(); ?>
-                  </div>
-                  <div class="post-meta-box">
-                    <p class="post-info">By
-                      <a href="<?php echo get_author_posts_url( get_the_author_meta('ID') ); ?>"><?php the_author(); ?></a> | <?php the_time('F jS, Y'); ?> | 카테고리
+                    <div class="single-post-images">
 
                       <?php
-                          $categories = get_the_category();
-                          $separator = ", ";
-                          $output = '';
+                        if( has_post_thumbnail() ){
+                            the_post_thumbnail( 'full', array( 'class' => 'single-image current' ) );
+                        }
 
-                          if( $categories ) :
-                              foreach( $categories as $category ) :
-                                  $output .= '<a href="' . get_category_link( $category->term_id ) . '">' . $category->cat_name . '</a>' . $separator;
-                              endforeach;
-                              echo trim( $output, $separator );
-                          endif;
+                        $single_post_images = get_post_meta( get_the_ID(), 'custom_image_data', true );
+
+                        if( !empty($single_post_images) ) :
+
+                            foreach ($single_post_images as $key => $image) {
                        ?>
-                    </p>
-                    <a href="<?php echo esc_url( the_permalink() ); ?>">
-                      <span class="read-more">Read More &gt;</span>
-                    </a>
+                              <img class="single-image" src="<?php echo esc_url($image['url']); ?>" alt="">
+                       <?php
+                            }
+                        endif;
+                       ?>
+
+                    </div>
+
+                    <div class="additional-image-wrapper">
+                        <?php
+
+                          $single_post_images = get_post_meta( get_the_ID(), 'custom_image_data', true );
+                          if( !empty($single_post_images) ) :
+
+                              if( has_post_thumbnail() ){
+                                the_post_thumbnail( 'full', array( 'class' => 'additional-image order-0' ) );
+                              }
+
+                              foreach ($single_post_images as $key => $image) {
+                            ?>
+
+                              <div class="additional-image order-<?php echo (int)$key + 1 ?>">
+                                <img src="<?php echo esc_url($image['url']); ?>" alt="">
+                              </div>
+
+                            <?php
+                              }
+                          endif;
+                         ?>
+                     </div>
+
                   </div>
 
-              </article>
-    <?php endwhile;
-      else :
-          echo 'There is no post here.';
-      endif;
-   ?>
+                    <?php
 
-   </div>
+                    $ship_information = array(
+                      'seller' => '판매자',
+                      'ship_category' => '선박유형',
+                      'tons' => '톤수',
+                      'made_date' => '진수년월일',
+                      'measure' => '주요치수',
+                      'certificate' => '허가사항',
+                      'sale_location' => '판매정박지',
+                      'forward_parts' => '추진기관',
+                      'made_location' => '조선지',
+                      'commit_name' => '담당자이름',
+                      'commit_contact' => '연락처',
+                    );
+
+                    $ship_option_basic = array(
+                      'gps' => 'GPS',
+                      'detecter' => '어군탐지기',
+                      'rader' => '레이더',
+                      'ssb' => 'SSB무전기',
+                      'generator' => '발전기',
+                      'kitchen' => '주방',
+                      'toilet' => '화장실'
+                    );
+
+                    $ship_option_addtional = array(
+                      'aircon' => '에어컨',
+                      'hitting' => '난방시설',
+                      'elect_real' => '전동릴공급장치',
+                      'cctv' => '감시카메라',
+                      'satelite_phone' => '위성전화기',
+                      'refridge' => '냉장고',
+                      'roller' => '해수롤러'
+                    );
+                    ?>
+
+                    <div class="ship-information">
+
+                      <?php
+                        $current_index = 0;
+                        $content = '<ul>';
+
+                        foreach ($ship_information as $key => $value) :
+                          $$key = get_post_meta( get_the_ID(), $key, true );
+
+                          if( $current_index <= count($ship_information) / 2){
+                            $content .=
+                              "<li class='left'>
+                                $value: {$$key}
+                              </li>";
+                          } else {
+                            $content .=
+                              "<li class='right'>
+                                $value: {$$key}
+                              </li>";
+                          }
+
+                          $current_index++;
+
+                        endforeach;
+
+                        $content .= '</ul>';
+
+                        echo $content;
+
+                      ?>
+                      <div class="button-wrapper">
+                        <button type="button" name="button">전화 문의하기</button>
+                        <button type="button" name="button">메일 문의하기</button>
+                      </div>
+                    </div>
+
+                    <div class="ship-option-wrapper">
+
+                      <div class="title">
+                        <h3>선박 상세정보</h3>
+                      </div>
+
+                      <div class="ship-option-basic">
+                        <?php
+
+                        $content = '<ul>';
+
+                        foreach ($ship_option_basic as $key => $value) {
+
+                            $$key = get_post_meta( get_the_ID(), $key, true );
+                            $key_attr = !empty($$key) ? ' checked' : "";
+                            $content .= "<li>{$value}<input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></li>";
+
+                        }
+
+                        $content .= '</ul>';
+
+                        echo $content;
+
+                        ?>
+                      </div>
+
+                      <div class="ship-option-additional">
+                        <?php
+
+                        $content = '<ul>';
+
+                        foreach ($ship_option_addtional as $key => $value) {
+
+                            $$key = get_post_meta( get_the_ID(), $key, true );
+                            $key_attr = !empty($$key) ? ' checked' : "";
+                            $content .= "<li>{$value}<input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></li>";
+
+                        }
+
+                        $content .= '</ul>';
+
+                        echo $content;
+
+                        ?>
+
+                      </div>
+
+                    </div>
+
+                    <div class="ship-desc-wrapper">
+                      <div class="title">
+                        <h3>상세 설명</h3>
+                      </div>
+                      <div class="ship-desc">
+                        <?php the_content(); ?>
+                      </div>
+                    </div>
+                    <div class="go-list-button">
+                      <a href="#">목록보기</a>
+                    </div>
+
+                </article>
+      <?php endwhile;
+        else :
+            echo 'There is no post here.';
+        endif;
+     ?>
+
+     </div>
 
 <?php get_footer(); ?>
