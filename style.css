@@ -217,6 +217,7 @@ ul#filter {
   float: left;
   font-size: 16px;
   list-style: none;
+  margin-top: 3em;
   margin-left: 0;
   width: 100%;
 }
@@ -233,7 +234,6 @@ ul#portfolio {
   float: left;
   list-style: none;
   margin-left: 0;
-  width: 672px;
   margin-bottom: 15em;
 }
 ul#portfolio li {
@@ -242,6 +242,17 @@ ul#portfolio li {
   margin: 0 10px 10px 0;
   padding: 5px;
   width: 202px;
+  transform: scale(1);
+  transform-origin: center;
+  transition: visibility 0s, opacity 2s, transform 2s ease;
+}
+ul#portfolio li.showing{
+  opacity: 1;
+  visibility: visible;
+}
+ul#portfolio li.not-showing{
+  transform: scale(0.01);
+  opacity: 0;
 }
 ul#portfolio a { display: block; width: 100%; }
 ul#portfolio a:hover { text-decoration: none; }

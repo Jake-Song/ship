@@ -91,13 +91,13 @@ jQuery( document ).ready( function($){
      var filterVal = $(this).text().toLowerCase().replace(' ','-');
 
      if(filterVal == 'all') {
-       $('ul#portfolio li.hidden').fadeIn('slow').removeClass('hidden');
+       $('ul#portfolio li.not-showing').addClass('showing').removeClass('not-showing').show(1000);
      } else {
        $('ul#portfolio li').each(function() {
          if(!$(this).hasClass(filterVal)) {
-           $(this).fadeOut('normal').addClass('hidden');
+           $(this).addClass('not-showing').removeClass('showing').hide(1000);
          } else {
-           $(this).fadeIn('slow').removeClass('hidden');
+           $(this).addClass('showing').removeClass('not-showing').show(1000);
          }
        });
      }
