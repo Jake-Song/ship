@@ -3,7 +3,7 @@
   <div class="banner">
     <img src="../../wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
     <div class="title-box">
-      <h2><?php echo the_title(); ?></h2>
+      <h2>매물 상세 정보</h2>
     </div>
   </div>
 
@@ -48,10 +48,17 @@
 
                           $single_post_images = get_post_meta( get_the_ID(), 'custom_image_data', true );
                           if( !empty($single_post_images) ) :
+                        ?>
 
-                              if( has_post_thumbnail() ){
-                                the_post_thumbnail( 'full', array( 'class' => 'additional-image order-0' ) );
-                              }
+                            <div class="additional-image order-0">
+                              <?php
+                                if( has_post_thumbnail() ){
+                                  the_post_thumbnail( 'full' );
+                                }
+                              ?>
+                            </div>
+
+                        <?php
 
                               foreach ($single_post_images as $key => $image) {
                             ?>
@@ -115,16 +122,21 @@
                         $current_index = 0;
                         $content = '
                           <table class="ship-custom table table-bordered">
-                            <tr colspan="4"><th>선박기본정보</th><th></th><th></th><th></th></tr>
+                          <caption>선박 기본정보</caption>
                         ';
 
                         foreach ($ship_information as $key => $value) :
                           $$key = get_post_meta( get_the_ID(), $key, true );
 
                           if( $current_index % 2 === 0 ){
-                            $content .=
-                              "<tr><td class='value'>$value</td><td>{$$key}</td>";
-                          } else {
+                            if( $current_index === count($ship_information) - 1 ){
+                              $content .=
+                                "<tr><td class='value'>$value</td><td>{$$key}</td><td></td><td></td></tr>";
+                            } else {
+                              $content .=
+                                "<tr><td class='value'>$value</td><td>{$$key}</td>";
+                            }
+                          } elseif( $current_index % 2 === 1 ) {
                             $content .=
                               "<td class='value'>$value</td><td>{$$key}</td></tr>";
                           }
@@ -139,8 +151,8 @@
 
                       ?>
                       <div class="button-wrapper">
-                        <button type="button" name="button">전화 문의하기</button>
-                        <button type="button" name="button">메일 문의하기</button>
+                        <button type="button" name="button" id="phone" class="btn btn-common-1">전화 문의하기</button>
+                        <button type="button" name="button" id="mail" class="btn btn-common-2">메일 문의하기</button>
                       </div>
                     </div>
 
@@ -153,17 +165,33 @@
                       <div class="ship-option-basic">
                         <?php
 
-                        $content = '<ul>';
+                        $content = '<table class="ship-custom table table-bordered"><caption>기본 사양</caption>';
+
+                        $current_index = 0;
 
                         foreach ($ship_option_basic as $key => $value) {
 
                             $$key = get_post_meta( get_the_ID(), $key, true );
-                            $key_attr = !empty($$key) ? ' checked' : "";
-                            $content .= "<li>{$value}<input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></li>";
+                            $key_attr = !empty($$key) ? 'checked' : "";
+
+                            if( $current_index % 2 === 0 ){
+                              if( $current_index === count($ship_option_basic) - 1 ){
+                                $content .=
+                                  "<tr><td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td><td></td><td></td></tr>";
+                              } else {
+                                $content .=
+                                  "<tr><td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td>";
+                              }
+                            } elseif( $current_index % 2 === 1 ) {
+                              $content .=
+                                "<td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td></tr>";
+                            }
+
+                            $current_index++;
 
                         }
 
-                        $content .= '</ul>';
+                        $content .= '</table>';
 
                         echo $content;
 
@@ -171,19 +199,36 @@
                       </div>
 
                       <div class="ship-option-additional">
+
                         <?php
 
-                        $content = '<ul>';
+                        $content = '<table class="ship-custom table table-bordered"><caption>편의 사양</caption>';
+
+                        $current_index = 0;
 
                         foreach ($ship_option_addtional as $key => $value) {
 
                             $$key = get_post_meta( get_the_ID(), $key, true );
                             $key_attr = !empty($$key) ? ' checked' : "";
-                            $content .= "<li>{$value}<input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></li>";
+
+                            if( $current_index % 2 === 0 ){
+                              if( $current_index === count($ship_option_addtional) - 1 ){
+                                $content .=
+                                  "<tr><td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td><td></td><td></td></tr>";
+                              } else {
+                                $content .=
+                                  "<tr><td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td>";
+                              }
+                            } elseif( $current_index % 2 === 1 ) {
+                              $content .=
+                                "<td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td></tr>";
+                            }
+
+                            $current_index++;
 
                         }
 
-                        $content .= '</ul>';
+                        $content .= '</table>';
 
                         echo $content;
 

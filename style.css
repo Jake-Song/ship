@@ -608,6 +608,8 @@ article.post.single .text-wrapper{
   width: 24.15%;
   float: left;
   cursor: pointer;
+  max-height: 127.767px;
+  overflow-y: hidden;
 }
 .ship-information{
   flex-basis: 40%;
@@ -616,7 +618,7 @@ article.post.single .text-wrapper{
 }
 .ship-option-wrapper{
   display: flex;
-  flex: 1;
+  flex: 1 1 auto;
   flex-wrap: wrap;
 }
 .title{
@@ -640,6 +642,33 @@ article.post.single .text-wrapper{
   text-align: center;
   flex: 1;
   margin-bottom: 5em;
+}
+.ship-custom.table{
+  margin-bottom: 30px;
+}
+.ship-custom.table > caption{
+  text-align: center;
+  background: #DD570E;
+  color: white;
+  border-bottom: 3px solid #999;
+}
+.ship-custom.table tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+.button-wrapper{
+  display: flex;
+}
+.btn.btn-common-1, .btn.btn-common-2{
+  color: white;
+  border-radius: 0;
+  width: 50%;
+  flex: 1 1 auto;
+}
+.btn.btn-common-1{
+  background: #DD570E;
+}
+.btn.btn-common-2{
+  background: #8B7969;
 }
 
 /* 푸터 */
@@ -1446,16 +1475,12 @@ article.not-found h3{
   display: none;
 }
 @media only screen and (min-width: 1200px) {
+  article.post.single .image-wrapper .single-post-images{
+    min-height: 350px;
+  }
   div.container{
     width: 100%;
     padding: 0;
-  }
-  article.post .col-lg-4{
-    width: 20%;
-  }
-  .filter{
-    width: 65%;
-    margin: 0 auto;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1199px){
