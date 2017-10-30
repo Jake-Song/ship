@@ -9,37 +9,47 @@
 
         <div class="slide">
           <img src="./wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
-          <div class="slide-text">
-            <h3>Slide One</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, fuga itaque commodi. Quidem facere totam perspiciatis voluptatibus harum obcaecati blanditiis itaque in quos libero architecto, ratione tempore necessitatibus alias quam.</p>
+          <div class="slide-text-wrapper">
+            <div class="slide-text">
+              <h3>Slide One</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, fuga itaque commodi. Quidem facere totam perspiciatis voluptatibus harum obcaecati blanditiis itaque in quos libero architecto, ratione tempore necessitatibus alias quam.</p>
+            </div>
           </div>
         </div>
         <div class="slide">
           <img src="./wp-content/themes/ship/img/christopher-gower-291246.jpg" alt="">
-          <div class="slide-text">
-            <h3>Slide Two</h3>
-            <p>Illo fugiat earum dicta aliquam eius, iure deserunt neque perspiciatis veniam temporibus unde qui ut voluptates provident dolores nulla, maxime, eveniet quis enim consequatur incidunt cumque cupiditate odio! Cum, praesentium.</p>
+          <div class="slide-text-wrapper">
+            <div class="slide-text">
+              <h3>Slide Two</h3>
+              <p>Illo fugiat earum dicta aliquam eius, iure deserunt neque perspiciatis veniam temporibus unde qui ut voluptates provident dolores nulla, maxime, eveniet quis enim consequatur incidunt cumque cupiditate odio! Cum, praesentium.</p>
+            </div>
           </div>
         </div>
         <div class="slide">
           <img src="./wp-content/themes/ship/img/emile-perron-190221.jpg" alt="">
-          <div class="slide-text">
-            <h3>Slide Three</h3>
-            <p>Magnam architecto quisquam recusandae, molestiae rerum, adipisci. Excepturi quo repellendus numquam, nesciunt harum ipsum eaque assumenda dolore, placeat est provident quasi itaque architecto ducimus fugit eveniet eum voluptate rem dolorum.</p>
+          <div class="slide-text-wrapper">
+            <div class="slide-text">
+              <h3>Slide Three</h3>
+              <p>Magnam architecto quisquam recusandae, molestiae rerum, adipisci. Excepturi quo repellendus numquam, nesciunt harum ipsum eaque assumenda dolore, placeat est provident quasi itaque architecto ducimus fugit eveniet eum voluptate rem dolorum.</p>
+            </div>
           </div>
         </div>
         <div class="slide">
           <img src="./wp-content/themes/ship/img/ian-schneider-59335.jpg" alt="">
-          <div class="slide-text">
-            <h3>Slide Four</h3>
-            <p>Quis voluptatem voluptas alias numquam, soluta ratione dolorem quibusdam culpa voluptates dicta animi enim accusamus libero doloribus laudantium ipsum est nihil ad minus? Est veniam ipsa, optio quaerat aliquam earum.</p>
+          <div class="slide-text-wrapper">
+            <div class="slide-text">
+              <h3>Slide Four</h3>
+              <p>Quis voluptatem voluptas alias numquam, soluta ratione dolorem quibusdam culpa voluptates dicta animi enim accusamus libero doloribus laudantium ipsum est nihil ad minus? Est veniam ipsa, optio quaerat aliquam earum.</p>
+            </div>
           </div>
         </div>
         <div class="slide">
           <img src="./wp-content/themes/ship/img/mark-cruz-230099.jpg" alt="">
-          <div class="slide-text">
-            <h3>Slide Five</h3>
-            <p>Mollitia explicabo obcaecati, voluptate quod, quae debitis delectus! Hic tempore assumenda autem laboriosam aperiam, error deserunt voluptates quos veritatis totam. Excepturi nemo voluptas fugiat incidunt placeat similique aut recusandae asperiores!</p>
+          <div class="slide-text-wrapper">
+            <div class="slide-text">
+              <h3>Slide Five</h3>
+              <p>Mollitia explicabo obcaecati, voluptate quod, quae debitis delectus! Hic tempore assumenda autem laboriosam aperiam, error deserunt voluptates quos veritatis totam. Excepturi nemo voluptas fugiat incidunt placeat similique aut recusandae asperiores!</p>
+            </div>
           </div>
         </div>
 
@@ -81,9 +91,82 @@
 
     <div class="content-box">
 
-      <?php include( locate_template( '/module/ship-category-menu.php', false, false ) ); ?>
+      <div id="ship-tab-lists">
 
-      <div class="ship-category">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs custom" role="tablist">
+              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">추천상품</a></li>
+              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">베스트</a></li>
+              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">최근 등록 매물</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content custom">
+              <div role="tabpanel" class="tab-pane fade in active" id="home">추천상품</div>
+              <div role="tabpanel" class="tab-pane fade in " id="profile">베스트</div>
+              <div role="tabpanel" class="tab-pane fade in " id="messages">
+
+                  <div class="recent-ship">
+
+                      <h3>최근 등록 매물</h3>
+
+                      <?php
+                        $args = array(
+                          'post_type' => 'ship',
+                          'posts_per_page' => 6,
+                        );
+                        $query = new WP_Query( $args );
+                       ?>
+
+                      <div class="recent-ship row">
+                        <?php
+                          if( $query->have_posts() ) :
+                            while( $query->have_posts() ) : $query->the_post();
+
+                            $ship_maker_terms = get_the_terms( $post->ID, 'ship_maker' );
+                            $ship_model_terms = get_the_terms( $post->ID, 'ship_model' );
+                            $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
+                            $test = 0;
+                        ?>
+                              <div class="col-sm-6 col-md-3">
+                                <div class='custom thumbnail'>
+                                  <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail( 'custom' ); ?>
+                                    <div class="caption">
+                                      <?php echo get_the_title() . ' / ' .  $ship_maker_terms[0]->name . ' / ' . $ship_model_terms[0]->name . ' / ' . $ship_location_terms[0]->name; ?>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                         <?php
+                            endwhile;
+
+                            wp_reset_postdata();
+
+                          else :
+                         ?>
+
+                            <p><?php esc_html_e( '매물이 없습니다.' ); ?></p>
+
+                         <?php
+                          endif;
+                         ?>
+
+                      </div>
+
+                  </div>
+
+              </div>
+
+            </div>
+
+      </div>
+
+      <div class="ship-category clearfix">
+
+        <h3>매물 현황</h3>
+
+        <?php include( locate_template( '/module/ship-category-menu.php', false, false ) ); ?>
 
         <?php
 
@@ -117,18 +200,19 @@
                   $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
 
                 ?>
-                <div class="col-sm-6 col-md-3">
+                <div class="col-sm-6 col-md-3"
+                  data-maker="<?php echo esc_attr( ($ship_maker_terms) ? $ship_maker_terms[0]->name : ''); ?>"
+                  data-model="<?php echo esc_attr( ($ship_model_terms) ? $ship_model_terms[0]->name : ''); ?>"
+                  data-location="<?php echo esc_attr( ($ship_location_terms) ? $ship_location_terms[0]->name : ''); ?>"
+                >
 
-                  <div class='recent thumbnail'
-                    data-maker="<?php echo esc_attr( ($ship_maker_terms) ? $ship_maker_terms[0]->name : ''); ?>"
-                    data-model="<?php echo esc_attr( ($ship_model_terms) ? $ship_model_terms[0]->name : ''); ?>"
-                    data-location="<?php echo esc_attr( ($ship_location_terms) ? $ship_location_terms[0]->name : ''); ?>">
-
-                    <?php the_post_thumbnail( 'custom' ); ?>
-                    <div class="caption">
-                      <h3><?php the_title(); ?></h3>
-                      <p><a href="<?php the_permalink(); ?>" class="btn btn-transparent" role="button">Button</a></p>
-                    </div>
+                  <div class='custom thumbnail'>
+                    <a href="<?php the_permalink(); ?>">
+                      <?php the_post_thumbnail( 'custom' ); ?>
+                      <div class="caption">
+                        <?php echo get_the_title() . ' / ' .  $ship_maker_terms[0]->name . ' / ' . $ship_model_terms[0]->name . ' / ' . $ship_location_terms[0]->name; ?>
+                      </div>
+                    </a>
                   </div>
 
                 </div>
@@ -143,6 +227,15 @@
 
         </div>
 
+      </div>
+
+      <div class="info-container">
+        <div class="sea-info ">
+          sea info
+        </div>
+        <div class="fishing-info">
+          fishing info
+        </div>
       </div>
 
       <div class="recent-ship">
@@ -161,13 +254,14 @@
             if( $query->have_posts() ) :
               while( $query->have_posts() ) : $query->the_post();
           ?>
-                <div class="col-sm-6 col-md-4">
-                  <div class="recent thumbnail">
-                    <?php the_post_thumbnail( 'custom' ); ?>
-                    <div class="caption">
-                      <h3><?php the_title(); ?></h3>
-                      <p><a href="<?php the_permalink(); ?>" class="btn btn-transparent" role="button">Button</a></p>
-                    </div>
+                <div class="col-sm-6 col-md-3">
+                  <div class='custom thumbnail'>
+                    <a href="<?php the_permalink(); ?>">
+                      <?php the_post_thumbnail( 'custom' ); ?>
+                      <div class="caption">
+                        <?php echo get_the_title() . ' / ' .  $ship_maker_terms[0]->name . ' / ' . $ship_model_terms[0]->name . ' / ' . $ship_location_terms[0]->name; ?>
+                      </div>
+                    </a>
                   </div>
                 </div>
            <?php

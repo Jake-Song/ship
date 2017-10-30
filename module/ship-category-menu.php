@@ -1,6 +1,5 @@
 <div class="ship-category-navigator">
 
-  <h3>매물 현황</h3>
   <?php
     $terms = get_terms(
       array(

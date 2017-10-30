@@ -5,19 +5,29 @@ jQuery( document ).ready( function($){
       autoControls: true,
       stopAutoOnClick: true,
       pager: true,
+      startText: '',
+      stopText: '',
+      prevText: '',
+      nextText: '',
+      autoStart: false,
       wrapperClass: 'bx-wrapper main'
     });
 
-      $('.notice-slider').bxSlider({
-        mode: 'vertical',
-        controls: false,
-        auto: true,
-        autoControls: true,
-        pager: false,
-        autoHover: true,
-        speed: 1500,
-        wrapperClass: 'bx-wrapper notice'
-      });
+    $('.notice-slider').bxSlider({
+      mode: 'vertical',
+      auto: true,
+      autoStart: false,
+      autoControls: true,
+      pager: false,
+      startText: '',
+      stopText: '',
+      prevText: '',
+      nextText: '',
+      autoHover: true,
+      speed: 1500,
+      wrapperClass: 'bx-wrapper notice'
+    });
+
 
       // Load Contents with ajax
 
@@ -83,26 +93,66 @@ jQuery( document ).ready( function($){
 
       }
 
-  $('ul#filter a').click(function() {
-     $(this).css('outline','none');
-     $('ul#filter .current').removeClass('current');
-     $(this).parent().addClass('current');
+      $('.nav-tabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+      });
 
-     var filterVal = $(this).text().toLowerCase().replace(' ','-');
+      // Image slide for cosmetic single
+      var singleImages = $('.single-post-images .single-image');
+      var currentImage = singleImages[0];
+      var test = 0;
+      function navigate( counter ){
+        $(currentImage).removeClass('current');
 
-     if(filterVal == 'all') {
-       $('ul#portfolio li.not-showing').addClass('showing').removeClass('not-showing').show(1000);
-     } else {
-       $('ul#portfolio li').each(function() {
-         if(!$(this).hasClass(filterVal)) {
-           $(this).addClass('not-showing').removeClass('showing').hide(1000);
-         } else {
-           $(this).addClass('showing').removeClass('not-showing').show(1000);
-         }
-       });
-     }
+        currentImage = singleImages[counter];
 
-     return false;
-   });
+        $(currentImage).addClass('current');
+      }
+
+      var firstBtn = $('.additional-image.order-0');
+      var secondBtn = $('.additional-image.order-1');
+      var thirdBtn = $('.additional-image.order-2');
+      var fourthBtn = $('.additional-image.order-3');
+
+      firstBtn.on( 'click', function(e){
+        e.preventDefault();
+        navigate(0);
+      });
+      secondBtn.on( 'click', function(e){
+        e.preventDefault();
+        navigate(1);
+      });
+      thirdBtn.on( 'click', function(e){
+        e.preventDefault();
+        navigate(2);
+      });
+      fourthBtn.on( 'click', function(e){
+        e.preventDefault();
+        navigate(3);
+      });
+      navigate(0);
+
+  // $('ul#filter a').click(function() {
+  //    $(this).css('outline','none');
+  //    $('ul#filter .current').removeClass('current');
+  //    $(this).parent().addClass('current');
+  //
+  //    var filterVal = $(this).text().toLowerCase().replace(' ','-');
+  //
+  //    if(filterVal == 'all') {
+  //      $('ul#portfolio li.not-showing').addClass('showing').removeClass('not-showing').css('display', 'inline-block');
+  //    } else {
+  //      $('ul#portfolio li').each(function() {
+  //        if(!$(this).hasClass(filterVal)) {
+  //          $(this).addClass('not-showing').removeClass('showing').css('display', 'none');
+  //        } else {
+  //          $(this).addClass('showing').removeClass('not-showing').css('display', 'inline-block');
+  //        }
+  //      });
+  //    }
+  //
+  //    return false;
+  //  });
 
 });

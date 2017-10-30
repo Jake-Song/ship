@@ -107,30 +107,33 @@
 
                     <div class="ship-information">
 
+                      <div class="ship-title">
+                          <h3><?php the_title(); ?></h3>
+                      </div>
+
                       <?php
                         $current_index = 0;
-                        $content = '<ul>';
+                        $content = '
+                          <table class="ship-custom table table-bordered">
+                            <tr colspan="4"><th>선박기본정보</th><th></th><th></th><th></th></tr>
+                        ';
 
                         foreach ($ship_information as $key => $value) :
                           $$key = get_post_meta( get_the_ID(), $key, true );
 
-                          if( $current_index <= count($ship_information) / 2){
+                          if( $current_index % 2 === 0 ){
                             $content .=
-                              "<li class='left'>
-                                $value: {$$key}
-                              </li>";
+                              "<tr><td class='value'>$value</td><td>{$$key}</td>";
                           } else {
                             $content .=
-                              "<li class='right'>
-                                $value: {$$key}
-                              </li>";
+                              "<td class='value'>$value</td><td>{$$key}</td></tr>";
                           }
 
                           $current_index++;
 
                         endforeach;
 
-                        $content .= '</ul>';
+                        $content .= '</table>';
 
                         echo $content;
 

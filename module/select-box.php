@@ -18,6 +18,8 @@
           ));
 
    ?>
+   
+  <div class="select-wrapper">
 
   <select class="<?php echo esc_attr($taxonomy_name->name); ?>">
 
@@ -30,6 +32,8 @@
     <?php endforeach; ?>
 
   </select>
+
+  </div>
 
   <?php $current_index++; ?>
 

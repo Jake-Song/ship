@@ -33,18 +33,23 @@
                     $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
 
                 ?>
-                    <div class="col-sm-6 col-md-3">
+                    <div class="col-sm-6 col-md-3"
+                      data-maker="<?php echo esc_attr( ($ship_maker_terms) ? $ship_maker_terms[0]->name : ''); ?>"
+                      data-model="<?php echo esc_attr( ($ship_model_terms) ? $ship_model_terms[0]->name : ''); ?>"
+                      data-location="<?php echo esc_attr( ($ship_location_terms) ? $ship_location_terms[0]->name : ''); ?>"
+                    >
 
-                      <div class='recent thumbnail'
-                        data-maker="<?php echo esc_attr( ($ship_maker_terms) ? $ship_maker_terms[0]->name : ''); ?>"
-                        data-model="<?php echo esc_attr( ($ship_model_terms) ? $ship_model_terms[0]->name : ''); ?>"
-                        data-location="<?php echo esc_attr( ($ship_location_terms) ? $ship_location_terms[0]->name : ''); ?>">
+                      <div class='custom thumbnail'>
 
-                        <?php the_post_thumbnail( 'custom' ); ?>
-                        <div class="caption">
-                          <h3><?php the_title(); ?></h3>
-                          <p><a href="<?php the_permalink(); ?>" class="btn btn-transparent" role="button">Button</a></p>
+                        <div class='custom thumbnail'>
+                          <a href="<?php the_permalink(); ?>">
+                            <?php the_post_thumbnail( 'custom' ); ?>
+                            <div class="caption">
+                              <?php the_title(); ?>
+                            </div>
+                          </a>
                         </div>
+
                       </div>
 
                     </div>
