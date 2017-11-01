@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
   <div class="banner">
-    <img src="../../wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
+    <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
     <div class="title-box">
       <h2>매물 상세 정보</h2>
     </div>
@@ -10,7 +10,7 @@
   <div class="content-box">
 
     <div class="navigation">
-      <a href="#"><i class="fa fa-external-link" aria-hidden="true"></i>목록보기</a>
+      <a href="<?php echo get_post_type_archive_link( 'ship' ); ?>"><i class="fa fa-external-link" aria-hidden="true"></i>목록보기</a>
       <?php qt_custom_breadcrumbs(); ?>
     </div>
 
@@ -121,7 +121,7 @@
                       <?php
                         $current_index = 0;
                         $content = '
-                          <table class="ship-custom table table-bordered">
+                          <table class="ship-custom table">
                           <caption>선박 기본정보</caption>
                         ';
 
@@ -131,14 +131,14 @@
                           if( $current_index % 2 === 0 ){
                             if( $current_index === count($ship_information) - 1 ){
                               $content .=
-                                "<tr><td class='value'>$value</td><td>{$$key}</td><td></td><td></td></tr>";
+                                "<tr><th>$value</th><td>{$$key}</td><td></td><td></td></tr>";
                             } else {
                               $content .=
-                                "<tr><td class='value'>$value</td><td>{$$key}</td>";
+                                "<tr><th>$value</th><td>{$$key}</td>";
                             }
                           } elseif( $current_index % 2 === 1 ) {
                             $content .=
-                              "<td class='value'>$value</td><td>{$$key}</td></tr>";
+                              "<th>$value</th><td>{$$key}</td></tr>";
                           }
 
                           $current_index++;
@@ -151,8 +151,8 @@
 
                       ?>
                       <div class="button-wrapper">
-                        <button type="button" name="button" id="phone" class="btn btn-common-1">전화 문의하기</button>
-                        <button type="button" name="button" id="mail" class="btn btn-common-2">메일 문의하기</button>
+                        <button type="button" name="button" id="phone" class="btn btn-common-1"><span class="text">전화 문의하기</span></button>
+                        <button type="button" name="button" id="mail" class="btn btn-common-2"><span class="text">메일 문의하기</span></button>
                       </div>
                     </div>
 
@@ -165,7 +165,7 @@
                       <div class="ship-option-basic">
                         <?php
 
-                        $content = '<table class="ship-custom table table-bordered"><caption>기본 사양</caption>';
+                        $content = '<table class="ship-custom basic table"><caption>기본 사양</caption>';
 
                         $current_index = 0;
 
@@ -198,11 +198,11 @@
                         ?>
                       </div>
 
-                      <div class="ship-option-additional">
+                      <div class="ship-option-convenient">
 
                         <?php
 
-                        $content = '<table class="ship-custom table table-bordered"><caption>편의 사양</caption>';
+                        $content = '<table class="ship-custom convenient table"><caption>편의 사양</caption>';
 
                         $current_index = 0;
 
@@ -247,7 +247,7 @@
                       </div>
                     </div>
                     <div class="go-list-button">
-                      <a href="#">목록보기</a>
+                      <a href="<?php echo get_post_type_archive_link( 'ship' ); ?>" class="btn-diagonal-swipe">목록 보기</a>
                     </div>
 
                 </article>

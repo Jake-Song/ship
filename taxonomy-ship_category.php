@@ -10,7 +10,7 @@
      <div class="content-box">
 
        <div class="navigation">
-         <a href="#"><i class="fa fa-external-link" aria-hidden="true"></i>목록보기</a>
+         <a href="<?php echo get_post_type_archive_link( 'ship' ); ?>"><i class="fa fa-external-link" aria-hidden="true"></i>목록보기</a>
          <?php qt_custom_breadcrumbs(); ?>
        </div>
 
@@ -56,6 +56,10 @@
 
                  <?php
                     endwhile;
+
+                  else:
+                    echo '아직 매물이 없습니다.';
+
                   endif;
                  ?>
 

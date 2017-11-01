@@ -17,7 +17,6 @@ jQuery( document ).ready( function($){
       mode: 'vertical',
       auto: true,
       autoStart: false,
-      autoControls: true,
       pager: false,
       startText: '',
       stopText: '',
@@ -28,8 +27,15 @@ jQuery( document ).ready( function($){
       wrapperClass: 'bx-wrapper notice'
     });
 
+    $('.recent-ship.row').each(function(){
+      $(this).bxSlider({
+          maxSlides: 4,
+          moveSlides: 1,
+          slideWidth: 280
+        });
+    });
 
-      // Load Contents with ajax
+    // Load Contents with ajax
 
       var newLocation = '',
       firstLoad = false,
@@ -98,7 +104,7 @@ jQuery( document ).ready( function($){
         $(this).tab('show')
       });
 
-      // Image slide for cosmetic single
+      // Image slide for ship single
       var singleImages = $('.single-post-images .single-image');
       var currentImage = singleImages[0];
       var test = 0;
@@ -133,26 +139,53 @@ jQuery( document ).ready( function($){
       });
       navigate(0);
 
-  // $('ul#filter a').click(function() {
-  //    $(this).css('outline','none');
-  //    $('ul#filter .current').removeClass('current');
-  //    $(this).parent().addClass('current');
-  //
-  //    var filterVal = $(this).text().toLowerCase().replace(' ','-');
-  //
-  //    if(filterVal == 'all') {
-  //      $('ul#portfolio li.not-showing').addClass('showing').removeClass('not-showing').css('display', 'inline-block');
-  //    } else {
-  //      $('ul#portfolio li').each(function() {
-  //        if(!$(this).hasClass(filterVal)) {
-  //          $(this).addClass('not-showing').removeClass('showing').css('display', 'none');
-  //        } else {
-  //          $(this).addClass('showing').removeClass('not-showing').css('display', 'inline-block');
-  //        }
-  //      });
-  //    }
-  //
-  //    return false;
-  //  });
+      // 베스트 선박
+      var bestImgs = $('.image-section img');
+      var bestTexts = $('.text-section .text');
+      var currentBestImg = bestImgs[0];
+      var currentBestText = bestTexts[0];
+      var currentIndex = 0;
+
+      function goTo(index){
+        if( index < 0 || index > bestImgs.length - 1 ){
+          return;
+        }
+
+        $(currentBestImg).removeClass('current');
+        currentBestImg = bestImgs[index];
+        $(currentBestImg).addClass('current');
+
+        $(currentBestText).removeClass('current');
+        currentBestText = bestTexts[index];
+        $(currentBestText).addClass('current');
+
+        currentIndex = index;
+        
+        $('.image-section .overay').addClass('current').on('transitionend', function(){
+          $(this).removeClass('current');
+        });
+        $('.text-section .overay').addClass('current').on('transitionend', function(){
+          $(this).removeClass('current');
+        });
+      }
+      function goToPrev(){
+        // if( currentIndex !== 0){
+        //   currentBestImg = bestImgs[currentIndex];
+        //   $(currentBestImg).removeClass('current');
+        // }
+        goTo(currentIndex - 1);
+
+      }
+      function goToNext(){
+        goTo(currentIndex + 1);
+        //currentBestImg = bestImgs[currentIndex];
+        //$(currentBestImg).addClass('current');
+      }
+      $('body').on('click', '.left-btn', function(){
+        goToPrev();
+      });
+      $('body').on('click', '.right-btn',function(){
+        goToNext();
+      });
 
 });
