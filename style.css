@@ -48,7 +48,7 @@ img{
   box-sizing: border-box;
 }
 .bg{
-  background-color: #656759;
+  background-color: #354D63;
   height: 10px;
   clear: both;
 }
@@ -170,6 +170,7 @@ div.container{
 /* 로고 */
 .site-title{
   display: inline-block;
+  margin-left: 3em;
 }
 /* 헤더 메뉴 */
 .site-header{
@@ -244,7 +245,7 @@ div.container{
 }
 .bx-wrapper.main .bx-controls-direction a:hover,
 .bx-wrapper.main .bx-controls-direction a:active{
-  color: #DD570E;
+  color: #354D63;
 }
 .bx-wrapper.main .bx-prev, .bx-wrapper.main .bx-next{
   background: none;
@@ -293,7 +294,7 @@ div.container{
 }
 .bx-wrapper.main .bx-controls-auto .bx-start.active::before,
 .bx-wrapper.main .bx-controls-auto .bx-stop.active::before{
-  color: #323b67;
+  color: #F7C446;
 }
 .bx-wrapper.main .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager{
   text-align: center;
@@ -303,7 +304,7 @@ div.container{
   background: #fff;
 }
 .bx-wrapper.main .bx-pager.bx-default-pager a.active{
-  background: #323b67;
+  background: #F7C446;
   width: 40px;
 }
 .slide{
@@ -322,30 +323,43 @@ div.container{
   padding: 15px;
 }
 .slide-text{
-  border: 2px solid #8B7969;
+  border: 2px solid #F7C446;
   padding: 15px;
 }
 
 /* 공지사항 */
 .notice-wrapper{
-  background: #8B7969;
+  display: flex;
+  background: #354D63;
   color: white;
-  margin: 0 3em;
-  padding: 0 3em;
+  margin: 0 3em 3em;
+  padding: 0 1em;
+}
+.notice-title{
+  display: inline-block;
+  padding-top: 15px;
+  padding-right: 10px;
+  margin-right: 10px;
+  border-right: 1px solid white;
+  color: #F7C446;
 }
 .bx-wrapper.notice{
+  width: 90%;
   border: 0;
   box-shadow: none;
   background: transparent;
   padding-top: 15px;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
+  padding-bottom: 15px;
+  margin-bottom: 0;
 }
 .bx-wrapper.notice .bx-viewport{
   height: 35px;
 }
 .notice-slide > a{
   color: white;
+}
+.notice-slide > a > p{
+  white-space: nowrap;
 }
 .notice-slide > a:hover,
 .notice-slide > a:focus{
@@ -382,17 +396,17 @@ div.container{
 }
 .bx-wrapper.notice .bx-controls-direction a{
   text-indent: 0;
-  right: -4%;
+  right: -5%;
 }
 .bx-wrapper.notice .bx-prev, .bx-wrapper.notice .bx-next{
   background: none;
 }
 .bx-wrapper.notice .bx-prev{
-  top: 15%;
+  top: 30%;
   left: auto;
 }
 .bx-wrapper.notice .bx-next{
-  top: 70%;
+  top: 60%;
 }
 .bx-wrapper.notice .bx-prev::before, .bx-wrapper.notice .bx-next::before{
   font-family: Fontello;
@@ -410,6 +424,7 @@ div.container{
 .best-ship{
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 5em;
 }
 .image-section, .text-section{
   flex: 1 1 50%;
@@ -431,9 +446,11 @@ div.container{
   position: absolute;
   width: 120%;
   height: 100%;
-  background: #323b67;
+  background: #354D63;
   transform: translate3d(100%,0,0);
   visibility: hidden;
+  font-size: 5rem;
+  color: #656759;
 }
 .image-section > .overay.current{
   transform: translate3d(-100%,0,0);
@@ -464,9 +481,11 @@ div.container{
   height: 120%;
   top: 0;
   left: 0;
-  background-color: #656759;
+  background-color: #F7C446;
   transform: translate3d(0%,-120%,0);
   visibility: hidden;
+  font-size: 5rem;
+  color: #656759;
 }
 .text-section > .overay.current{
   transform: translate3d(0%,100%,0);
@@ -474,12 +493,24 @@ div.container{
   transition: 1s cubic-bezier(0,1.01,1,.06);
   z-index: 2;
 }
+.overay > i{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+}
+.image-section .overay > i{
+  transform: translate(-70%,-50%);
+}
+.text-section .overay > i{
+  transform: translate(-50%,-70%);
+}
 .best-ship > h3{
   flex: 1 1 100%;
   text-align: center;
 }
-.best-ship.table > tbody > tr > td{
-  border-top: 0;
+.best-ship-content{
+  height: 80px;
 }
 .best-btn-wrapper{
   text-align: center;
@@ -496,26 +527,39 @@ div.container{
 }
 
 /* 매물 현황 리스트 */
+.ship-category{
+  margin-bottom: 5em;
+}
 .ship-category > h3{
   text-align: center;
   margin-bottom: 1em;
 }
 .ship-category-navigator{
   text-align: center;
-  margin-bottom: 3em;
+  background-image: url('./img/menu-banner.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  padding: 2em;
 }
-.ship-category-navigator > ul{
+.ship-category-navigator > .category-content-box{
+  padding: 1em;
+  background-color: rgba(255,255,255,.95);
+}
+.ship-category-navigator > .category-content-box > ul{
   list-style: none;
-  background-color: #656759;
   padding: 0;
 }
-.ship-category-navigator > ul > li{
+.ship-category-navigator > .category-content-box > ul > li{
   display: inline-block;
   padding: 0 3em;
 }
-.ship-category-navigator > ul > li > a{
+.ship-category-navigator > .category-content-box> ul > li > a{
   color: white;
   text-align: center;
+}
+.ship-category-item{
+  color: #333;
 }
 .ship-category-item i{
   font-size: 4rem;
@@ -530,9 +574,10 @@ div.container{
 }
 /* 최근 등록 매물 */
 .recent-ship{
-  clear: both;
+  margin-bottom: 5em;
 }
 .recent-ship h3{
+  margin-top: 0;
   margin-bottom: 1em;
   text-align: center;
 }
@@ -576,11 +621,43 @@ div.container{
   color: #DD570E;
 }
 
+/* 해양 수산 정보 */
+.info-container{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 5em;
+}
+.info-container > h3{
+  flex: 1 1 100%;
+}
+.sea-info, .fishing-info{
+  flex: 1 1;
+  height: 200px;
+}
+.sea-info{
+  background-image: url('./img/sub-banner.jpg');
+  background-position: center;
+  background-size: cover;
+}
+.fishing-info{
+  background-image: url('./img/sub-banner2.jpg');
+  background-position: center;
+  background-size: cover;
+}
+.sea-info-content, .fishing-info-content{
+  position: relative;
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* 인포박스 */
 .info-box{
   display: flex;
   position: relative;
-  height: 350px;
+  height: 200px;
 }
 .info-box > .main-box{
   flex: 4;

@@ -11,7 +11,7 @@
    ?>
 
    <div class="notice-title">
-     공지
+     공지 사항
    </div>
 
    <div class="notice-slider">

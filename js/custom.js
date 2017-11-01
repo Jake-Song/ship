@@ -31,7 +31,8 @@ jQuery( document ).ready( function($){
       $(this).bxSlider({
           maxSlides: 4,
           moveSlides: 1,
-          slideWidth: 280
+          slideWidth: 280,
+          wrapperClass: 'bx-wrapper recent'
         });
     });
 
@@ -160,7 +161,8 @@ jQuery( document ).ready( function($){
         $(currentBestText).addClass('current');
 
         currentIndex = index;
-        
+        console.log(currentIndex);
+
         $('.image-section .overay').addClass('current').on('transitionend', function(){
           $(this).removeClass('current');
         });

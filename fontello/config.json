@@ -139,6 +139,24 @@
       "search": [
         "right-arrow"
       ]
+    },
+    {
+      "uid": "6a06892e76b81e023da6ddfb38a26b37",
+      "css": "doc-text",
+      "code": 59405,
+      "src": "typicons"
+    },
+    {
+      "uid": "3bf0956ae356f79d805fb17f4a523f24",
+      "css": "ship",
+      "code": 61978,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "7a9d73c640892d4b917c706ad95d6fec",
+      "css": "anchor",
+      "code": 61757,
+      "src": "fontawesome"
     }
   ]
 }

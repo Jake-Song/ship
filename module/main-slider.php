@@ -1,7 +1,7 @@
 <div class="slider">
 
    <div class="slide">
-     <img src="./wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
+     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/main-banner.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">
          <h3>Slide One</h3>
@@ -10,7 +10,7 @@
      </div>
    </div>
    <div class="slide">
-     <img src="./wp-content/themes/ship/img/christopher-gower-291246.jpg" alt="">
+     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/sub-banner.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">
          <h3>Slide Two</h3>
@@ -19,7 +19,7 @@
      </div>
    </div>
    <div class="slide">
-     <img src="./wp-content/themes/ship/img/emile-perron-190221.jpg" alt="">
+     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/sub-banner2.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">
          <h3>Slide Three</h3>
@@ -28,7 +28,7 @@
      </div>
    </div>
    <div class="slide">
-     <img src="./wp-content/themes/ship/img/ian-schneider-59335.jpg" alt="">
+     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/sub-banner3.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">
          <h3>Slide Four</h3>
@@ -37,7 +37,7 @@
      </div>
    </div>
    <div class="slide">
-     <img src="./wp-content/themes/ship/img/mark-cruz-230099.jpg" alt="">
+     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/sub-banner4.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">
          <h3>Slide Five</h3>
