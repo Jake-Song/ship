@@ -14,8 +14,8 @@
       <?php qt_custom_breadcrumbs(); ?>
     </div>
 
-    <div class="ship-category-menu">
-      <?php include( locate_template( '/module/ship-category-menu.php', false, false ) ); ?>
+    <div class="ship-category-menu-wrapper">
+      <?php include( locate_template( '/module/ship-category-common.php', false, false ) ); ?>
     </div>
 
     <div class="ajax-container">

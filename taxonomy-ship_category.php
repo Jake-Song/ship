@@ -14,13 +14,13 @@
          <?php qt_custom_breadcrumbs(); ?>
        </div>
 
-       <?php include( locate_template( '/module/ship-category-menu.php', false, false ) ); ?>
-
-       <?php include( locate_template( '/module/select-box.php', false, false ) ); ?>
+       <?php include( locate_template( '/module/ship-category-common.php', false, false ) ); ?>
 
        <div class="ajax-container">
 
           <div class="wrapper-for-ajax">
+
+              <?php include( locate_template( '/module/ajax_preloader.php', false, false ) ); ?>
 
               <article class="post tax clearfix">
 

@@ -1,6 +1,7 @@
 jQuery( document ).ready( function($){
 
     $('.slider').bxSlider({
+      mode: 'fade',
       auto: true,
       autoControls: true,
       stopAutoOnClick: true,
@@ -29,9 +30,13 @@ jQuery( document ).ready( function($){
 
     $('.recent-ship.row').each(function(){
       $(this).bxSlider({
-          maxSlides: 4,
+          pager: false,
+          maxSlides: 3,
           moveSlides: 1,
-          slideWidth: 280,
+          slideWidth: 350,
+          prevText: '',
+          nextText: '',
+          slideMargin: 10,
           wrapperClass: 'bx-wrapper recent'
         });
     });
@@ -42,7 +47,7 @@ jQuery( document ).ready( function($){
       firstLoad = false,
       isLoading = false;
 
-      $('.ship-category-navigator').on('click', 'ul li a', function(e){
+      $('.ship-category-menu').on('click', 'ul li a', function(e){
         e.preventDefault();
         var newPage = $(this).attr('href');
         var test = 0;
@@ -100,11 +105,6 @@ jQuery( document ).ready( function($){
 
       }
 
-      $('.nav-tabs a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-      });
-
       // Image slide for ship single
       var singleImages = $('.single-post-images .single-image');
       var currentImage = singleImages[0];
@@ -141,8 +141,8 @@ jQuery( document ).ready( function($){
       navigate(0);
 
       // 베스트 선박
-      var bestImgs = $('.image-section img');
-      var bestTexts = $('.text-section .text');
+      var bestImgs = $('.image-section > img');
+      var bestTexts = $('.text-section > .text');
       var currentBestImg = bestImgs[0];
       var currentBestText = bestTexts[0];
       var currentIndex = 0;
@@ -161,28 +161,22 @@ jQuery( document ).ready( function($){
         $(currentBestText).addClass('current');
 
         currentIndex = index;
-        console.log(currentIndex);
 
         $('.image-section .overay').addClass('current').on('transitionend', function(){
           $(this).removeClass('current');
         });
         $('.text-section .overay').addClass('current').on('transitionend', function(){
           $(this).removeClass('current');
+          $('.current-slide').text( currentIndex + 1);
         });
       }
       function goToPrev(){
-        // if( currentIndex !== 0){
-        //   currentBestImg = bestImgs[currentIndex];
-        //   $(currentBestImg).removeClass('current');
-        // }
         goTo(currentIndex - 1);
-
       }
       function goToNext(){
         goTo(currentIndex + 1);
-        //currentBestImg = bestImgs[currentIndex];
-        //$(currentBestImg).addClass('current');
       }
+
       $('body').on('click', '.left-btn', function(){
         goToPrev();
       });

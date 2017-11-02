@@ -198,6 +198,7 @@ function my_theme_setup(){
     add_theme_support( 'post-thumbnails' );
     add_image_size( 'custom', 700, 400, true );
     add_image_size( 'single', 880, 400, true );
+    add_image_size( 'smallest', 50, 50, true );
 
     // 메뉴 등록하기
     register_nav_menus(array(

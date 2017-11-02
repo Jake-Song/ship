@@ -1,35 +1,28 @@
 <?php get_header(); ?>
 
+    <div class="banner">
+      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
+      <div class="title-box">
+        <h2><?php the_title(); ?></h2>
+      </div>
+    </div>
+
     <div class="content-box">
 
-      <div class="title-box">
-        <h2><?php echo ucfirst( the_title() ); ?></h2>
+      <div class="navigation">
+        <?php qt_custom_breadcrumbs(); ?>
       </div>
-
-    <?php
+      
+      <?php
         if(have_posts()) :
-            while(have_posts()) : the_post(); ?>
+          while(have_posts()) : the_post(); ?>
 
-                <article class="post page about-us">
-                   <h2><?php echo get_the_title( get_top_parent_id() ); ?></h2>
-                   <div class="content-box">
-                        <nav class="site-nav sub-nav">
-                            <ul>
-                            <?php
-                                $args = array(
-                                    'child_of' => get_top_parent_id(),
-                                    'title_li' => '',
-                                );
-                             ?>
-                            <?php wp_list_pages( $args ); ?>
-                            </ul>
-                        </nav>
-                        <?php the_content(); ?>
-                    </div>
-                </article>
-      <?php endwhile;
+            <article class="post page">
+               <?php the_content(); ?>
+            </article>
+    <?php endwhile;
         else :
-            echo 'There is no post here.';
+            echo '포스트가 없습니다.';
         endif;
 
      ?>
