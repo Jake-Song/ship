@@ -1,5 +1,15 @@
 jQuery( document ).ready( function($){
 
+  $(window).scroll(function(){
+    var winTop = $(window).scrollTop();
+
+    if(winTop >= 30){
+      $(".site-header").addClass("sticky-header");
+    } else {
+      $(".site-header").removeClass("sticky-header");
+    }
+  });
+
     $('.slider').bxSlider({
       mode: 'fade',
       auto: true,
@@ -26,19 +36,6 @@ jQuery( document ).ready( function($){
       autoHover: true,
       speed: 1500,
       wrapperClass: 'bx-wrapper notice'
-    });
-
-    $('.recent-ship.row').each(function(){
-      $(this).bxSlider({
-          pager: false,
-          maxSlides: 3,
-          moveSlides: 1,
-          slideWidth: 350,
-          prevText: '',
-          nextText: '',
-          slideMargin: 10,
-          wrapperClass: 'bx-wrapper recent'
-        });
     });
 
     // Load Contents with ajax
@@ -107,14 +104,20 @@ jQuery( document ).ready( function($){
 
       // Image slide for ship single
       var singleImages = $('.single-post-images .single-image');
+      var addImages = $('.additional-image');
       var currentImage = singleImages[0];
-      var test = 0;
+      var currentAddImage = addImages[0];
+
       function navigate( counter ){
         $(currentImage).removeClass('current');
+        $(currentAddImage).removeClass('current');
 
         currentImage = singleImages[counter];
+        currentAddImage = addImages[counter];
 
         $(currentImage).addClass('current');
+        $(currentAddImage).addClass('current');
+
       }
 
       var firstBtn = $('.additional-image.order-0');

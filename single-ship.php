@@ -43,14 +43,14 @@
 
                     </div>
 
-                    <div class="additional-image-wrapper">
+                    <div class="additional-image-wrapper clearfix">
                         <?php
 
                           $single_post_images = get_post_meta( get_the_ID(), 'custom_image_data', true );
                           if( !empty($single_post_images) ) :
                         ?>
 
-                            <div class="additional-image order-0">
+                            <div class="additional-image order-0 current">
                               <?php
                                 if( has_post_thumbnail() ){
                                   the_post_thumbnail( 'full' );

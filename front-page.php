@@ -34,7 +34,7 @@
 
               <?php include( locate_template( '/module/ajax_preloader.php', false, false ) ); ?>
 
-              <article class="post tax clearfix">
+              <article class="post front clearfix">
 
               <?php
                 if( $query->have_posts() ) :
@@ -75,6 +75,9 @@
       </div>
 
       <div id="market">
+        <div id="market-icon">
+            <i class="icon-switch"></i>
+        </div>
         <div id="buy">
           <h3>팝니다</h3>
           <ul>
@@ -99,7 +102,7 @@
                     <span>
                       <?php
                         $ship_date = $query->post->post_date;
-                        echo date('Y년 n월 j일', strtotime($ship_date));
+                        echo date('Y-n-j', strtotime($ship_date));
                       ?>
                     </span>
                   </li>
@@ -115,53 +118,46 @@
         </div>
         <div id="sell">
           <h3>삽니다</h3>
+          <ul>
+            <?php
+              $args = array(
+                'post_type' => 'ship',
+                'post_status' => 'publish',
+                'posts_per_page' => 10,
+              );
+              $query = new WP_Query( $args );
+
+              if( $query->have_posts() ) :
+                while( $query->have_posts() ) : $query->the_post();
+                $test = 0;
+                ?>
+
+                  <li>
+                    <a href="<?php the_permalink(); ?>">
+                      <div class="market-image-wrapper"><?php if( has_post_thumbnail($query->post->ID) ) the_post_thumbnail('smallest'); ?></div>
+                      <span class="market-title-wrapper"><?php the_title(); ?></span>
+                    </a>
+                    <span>
+                      <?php
+                        $ship_date = $query->post->post_date;
+                        echo date('Y-n-j', strtotime($ship_date));
+                      ?>
+                    </span>
+                  </li>
+
+              <?php endwhile;
+
+                wp_reset_postdata();
+
+              endif;
+
+            ?>
+          </ul>
         </div>
 
       </div>
 
-      <div class="recent-ship">
-        <h3>최근 등록 매물</h3>
-
-        <?php
-          $args = array(
-            'post_type' => 'ship',
-            'posts_per_page' => 6,
-          );
-          $query = new WP_Query( $args );
-         ?>
-
-        <div class="recent-ship row">
-          <?php
-            if( $query->have_posts() ) :
-              while( $query->have_posts() ) : $query->the_post();
-          ?>
-                <div class="col-sm-6 col-md-3">
-                  <div class='custom thumbnail'>
-                    <a href="<?php the_permalink(); ?>">
-                      <?php the_post_thumbnail( 'custom' ); ?>
-                    </a>
-                  </div>
-                  <h4 class="thumbnail-caption"><?php echo get_the_title(); ?></h4>
-                </div>
-           <?php
-              endwhile;
-
-              wp_reset_postdata();
-
-            else :
-           ?>
-
-              <p><?php esc_html_e( '매물이 없습니다.' ); ?></p>
-
-           <?php
-            endif;
-           ?>
-
-        </div>
-
-    </div>
-
-    <div class="best-ship">
+  <div class="best-ship">
 
       <div class="image-section">
 
@@ -316,21 +312,23 @@
 
     </div>
 
-      <div class="info-container">
-        <h3>해양 & 수산정보</h3>
-        <div class="sea-info">
-          <div class="sea-info-content">
-            <i class="icon-anchor"></i>해양 정보
-          </div>
-        </div>
-        <div class="fishing-info">
-          <div class="fishing-info-content">
-            <i class="icon-doc-text"></i>수산 정보
-          </div>
-        </div>
-      </div>
+    <div id="partners">
 
-    <?php include( locate_template( '/module/notice-slider.php', false, false ) ); ?>
+      <div id="partners-content">
+        <h3>협력사</h3>
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+      </div>
+    </div>
+
+   <?php include( locate_template( '/module/notice-slider.php', false, false ) ); ?>
 
     <div class="info-box">
       <div class="main-box">
@@ -341,8 +339,20 @@
         </div>
       </div>
       <div class="sub-box-wrapper">
-        <div class="sub-box">sub</div>
-        <div class="sub-box">sub</div>
+        <div class="sub-box">
+          <h3>질문과 답변</h3>
+          <?php echo do_shortcode('[mb_latest name="qanda" title="qanda" list_size="5" style=""]'); ?>
+        </div>
+        <div class="sub-box">
+          <div id="sub-box-content">
+            <div id="sub-box-icon">
+              <i class="icon-anchor"></i>
+            </div>
+            <div id="sub-box-text">
+              지점 안내
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>

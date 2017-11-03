@@ -233,6 +233,21 @@ div.container{
   position: relative;
 }
 
+/* Sticky Header */
+.site-header{
+  transition: 1s;
+  background: #fff;
+}
+.site-header.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1;
+  transition: 1s;
+}
+
+
 /*********************/
 /*     전면페이지     */
 /*********************/
@@ -566,6 +581,9 @@ div.container{
   color: #354D63;
 }
 /* 매물 현황 리스트 */
+.ship-category{
+  margin-bottom: 3em;
+}
 .ship-category > h3{
   text-align: center;
   margin-bottom: 1em;
@@ -641,151 +659,66 @@ div.container{
 /* 삽니다 & 팝니다 */
 #market{
   display: flex;
+  position: relative;
+  margin-bottom: 5em;
+}
+#market-icon{
+  position: absolute;
+  top: -2%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  color: #F7C446;
+}
+#buy{
+  border-right: 2px solid #999;
 }
 #sell, #buy{
   flex: 1 1 auto;
-  border: 1px solid #ddd;
-  padding: 2em;
 }
 #sell > h3, #buy > h3{
-  border-bottom: 2px solid #354D63;
-  padding-bottom: .5em;
-  padding-left: .5em;
-  width: 50%;
-  margin-bottom: 1em;
+  border-bottom: 2px solid #999;
+  margin: 0 0 1em 0;
+  color: white;
+  padding: .5em;
+  text-align: center;
 }
-#buy > ul{
+#sell > h3{
+  background: #478AB2;
+}
+#buy > h3{
+  background: #354D63;
+}
+#buy > ul, #sell > ul{
   list-style: none;
-  padding-left: .5em;
+  margin-bottom: 0;
+  padding: 1em 1em 0 1em;
 }
-#buy > ul > li{
-  padding: .5em 0;
+#buy > ul > li, #sell > ul > li{
   font-size: 1.2rem;
   position: relative;
   border-bottom: 1px solid #ddd;
+  height: 45px;
+  padding: .2em;
 }
-#buy > ul > li > span{
+#buy > ul > li > span, #sell > ul > li > span{
   position: absolute;
-  right: 0;
+  top: .5em;
+  right: .5em;
+  vertical-align: middle;
 }
-#buy > ul > li > a > .market-image-wrapper{
+#buy > ul > li > a > .market-image-wrapper, #sell > ul > li > a > .market-image-wrapper{
   display: inline-block;
   margin-right: 1.5em;
 }
-/* 해양 & 수산 정보*/
-.info-container > h3{
-  text-align: center;
-}
-
-/* 최근 등록 매물 */
-.recent-ship{
-  margin-top: 3em;
-  margin-bottom: 3em;
+#buy > ul > li:nth-child(2n), #sell > ul > li:nth-child(2n){
   background: #f7f7f7;
-  padding-bottom: 3em;
 }
-.recent-ship h3{
-  margin-top: 0;
-  margin-bottom: 2em;
-  text-align: center;
-  padding-top: 3em;
+.market-image-wrapper > img{
+  height: 37.5px;
 }
-.recent-ship.row{
-  margin: 0;
-  margin-bottom: 5em;
-}
-.recent-ship.row .col-md-4{
-  padding: 0;
-}
-.bx-wrapper.recent{
-  margin: 0 auto;
-  margin-bottom: 2em;
-  box-shadow: none;
-  border: 0;
-}
-.bx-wrapper.recent .bx-controls-direction a{
-  margin-top: -40px;
-}
-.bx-wrapper.recent .bx-prev{
-  left: -50px;
-}
-.bx-wrapper.recent .bx-next{
-  right: -50px;
-}
-.bx-wrapper.recent .bx-controls-direction a{
-  text-indent: 0;
-  font-size: 1.5rem;
-  color: #333;
-  transition: .2s;
-}
-.bx-wrapper.recent .bx-controls-direction a.bx-prev:hover{
-  transform: translate(-10%,0);
-}
-.bx-wrapper.recent .bx-controls-direction a.bx-next:hover{
-  transform: translate(10%,0);
-}
-.bx-wrapper.recent .bx-prev, .bx-wrapper.recent .bx-next{
-  background: none;
-}
-.bx-wrapper.recent .bx-prev::before{
-  content: '\f177';
-  font-family: Fontello;
-}
-.bx-wrapper.recent .bx-next::before{
-  content: '\f178';
-  font-family: Fontello;
-}
-.custom.thumbnail{
-  position: relative;
-  margin-bottom: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  transition: none;
-}
-.bx-wrapper.recent .custom.thumbnail > a{
-  display: block;
-  box-shadow: 10px 10px 10px #999;
-}
-.custom.thumbnail img{
-  width: 100%;
-}
-.thumbnail-caption{
-  text-align: center;
-  margin-top: 1em;
-}
-
-/* 해양 수산 정보 */
-.info-container{
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 5em;
-}
-.info-container > h3{
-  flex: 1 1 100%;
-  margin-bottom: 1em;
-}
-.sea-info, .fishing-info{
-  flex: 1 1;
-  height: 200px;
-}
-.sea-info{
-  background-image: url('./img/sub-banner.jpg');
-  background-position: center;
-  background-size: cover;
-}
-.fishing-info{
-  background-image: url('./img/sub-banner2.jpg');
-  background-position: center;
-  background-size: cover;
-}
-.sea-info-content, .fishing-info-content{
-  position: relative;
-  font-size: 2rem;
-  color: white;
-  text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
+.market-title-wrapper{
+  vertical-align: middle;
 }
 
 /* 인포박스 */
@@ -830,6 +763,52 @@ div.container{
 .info-box > .sub-box-wrapper .sub-box:nth-of-type(2){
   flex-basis: 50%;
   background: #f7f7f7;
+}
+.sub-box-wrapper > .sub-box{
+  position: relative;
+}
+.sub-box-wrapper > .sub-box > h3{
+  width: 40%;
+  margin: 0 auto;
+  border-bottom: 2px solid #ddd;
+  text-align: center;
+  padding-bottom: .5em;
+}
+#sub-box-content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+#sub-box-icon{
+  text-align: center;
+  font-size: 3rem;
+}
+#sub-box-text{
+  font-size: 2rem;
+}
+.mb-latest-title{
+  display: none;
+}
+
+/* 협력사 */
+#partners{
+  margin-bottom: 5em;
+}
+#partners-content{
+  height: 170px;
+  border: 1px solid #000;
+  text-align: center;
+  padding-top: 1em;
+  background: #656759;
+}
+#partners-content > h3{
+  text-align: center;
+  color: white;
+}
+#partners-content > img{
+  width: 80px;
+  margin-right: 2em;
 }
 
 /* Ship 포스트 타입 페이지 */
@@ -895,20 +874,25 @@ article.post.single .text-wrapper{
   -ms-flex-preferred-size: 60%;
       flex-basis: 60%;
 }
+.additional-image-wrapper{
+  display: flex;
+}
 .additional-image{
   margin-top: 25px;
-  margin-right: 5px;
   width: 24.15%;
   float: left;
   cursor: pointer;
   max-height: 127.767px;
   overflow-y: hidden;
-  transition: padding .2s;
+  padding: 4px;
+  flex: 1 1 auto;
 }
-.additional-image:hover{
-  background: #abaed8;
-  padding: .3em;
-  transition: padding .2s;
+.additional-image.current{
+  box-shadow: inset 0px 0px 0px 4px #F7C446;
+}
+.additional-image:hover, .additional-image:active,
+.additional-image:focus{
+  box-shadow: inset 0px 0px 0px 4px #F7C446;
 }
 .ship-information{
   flex-basis: 40%;
@@ -1027,7 +1011,56 @@ article.post.single .text-wrapper{
   color: #333;
 }
 
-/* 싱글 포스트 */
+/* 회사 소개 */
+#about-us{
+  background: url('./img/sub-banner.jpg');
+  background-size: cover;
+  padding: 2em;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 5em;
+}
+#about-us-content-wrapper{
+  background: #fff;
+  padding: 1em;
+}
+#about-us-content{
+  border: 2px solid #F7C446;
+  padding: 2em;
+}
+#about-us-content > h3{
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+/* 오시는 길 */
+.map-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.map-text{
+  flex: 1 1 50%;
+  padding-left: 1em;
+  border-right: 1px solid #999;
+}
+.map-text > h3{
+  border-bottom: 2px solid #999;
+  display: inline-block;
+  padding-bottom: .5em;
+  margin-bottom: 1em;
+}
+#head-office, #branch-office{
+  flex: 1 1 50%;
+  display: flex;
+}
+#head-office{
+  margin-bottom: 3em;
+}
+.map{
+  flex: 1 1 50%;
+  padding-left: 1em;
+}
 
 
 /* 페이지 */
@@ -1040,15 +1073,6 @@ article.page h2{
 article.post.tax .post-modified{
   top: 15px;
 }
-
-/* 브랜드 페이지 */
-article.post.brand h2{
-  margin-top: 0;
-}
-
-/* 그리드 크기 조정 */
-article.post.new .thumbnail,
-article.post.favorite .thumbnail,
 
 /* 모달 */
 .modal {
@@ -1196,9 +1220,6 @@ div.post-image{
   float: left;
   margin-top: 20px;
   margin-right: 20px;
-}
-article.post{
-  padding-bottom: 20px;
 }
 .social-wrapper{
   display: -webkit-box;

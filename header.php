@@ -32,35 +32,36 @@
 
                 <nav class="navbar navbar-default">
 
-                      <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-menu" aria-expanded="false">
-                          <span class="sr-only">Toggle navigation</span>
-                          <div class="hamburger-menu">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                          </div>
-                        </button>
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-menu" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <div class="hamburger-menu">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
                       </div>
+                    </button>
+                  </div>
 
-                            <?php
-                              $args = array(
-                                'theme_location' => 'primary',
-                                'depth' => 3,
-                                'container' => 'div',
-                                'container_class'   => 'collapse navbar-collapse',
-                                'container_id'      => 'primary-menu',
-                                'menu_class'        => 'nav navbar-nav',
-                                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-                                'walker'            => new WP_Bootstrap_Navwalker(),
-                              );
-                             ?>
+                        <?php
+                          $args = array(
+                            'theme_location' => 'primary',
+                            'depth' => 3,
+                            'container' => 'div',
+                            'container_class'   => 'collapse navbar-collapse',
+                            'container_id'      => 'primary-menu',
+                            'menu_class'        => 'nav navbar-nav',
+                            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                            'walker'            => new WP_Bootstrap_Navwalker(),
+                          );
+                         ?>
 
-                            <?php wp_nav_menu( $args ); ?>
+                        <?php wp_nav_menu( $args ); ?>
 
-                  <div class="mobile-close">X</div>
+              <div class="mobile-close">X</div>
 
               </nav>
+
             <div class="bg"></div>
 
           </header>
