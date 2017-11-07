@@ -1,6 +1,6 @@
-<div class="slider">
+<div id="main-slider">
 
-   <div class="slide">
+   <div class="main-slide">
      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/main-banner.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">
@@ -9,7 +9,7 @@
        </div>
      </div>
    </div>
-   <div class="slide">
+   <div class="main-slide">
      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/sub-banner.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">
@@ -18,7 +18,7 @@
        </div>
      </div>
    </div>
-   <div class="slide">
+   <div class="main-slide">
      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/sub-banner2.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">
@@ -27,7 +27,7 @@
        </div>
      </div>
    </div>
-   <div class="slide">
+   <div class="main-slide">
      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/sub-banner3.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">
@@ -36,7 +36,7 @@
        </div>
      </div>
    </div>
-   <div class="slide">
+   <div class="main-slide">
      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/sub-banner4.jpg" alt="">
      <div class="slide-text-wrapper">
        <div class="slide-text">

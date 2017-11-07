@@ -14,14 +14,14 @@
      공지 사항
    </div>
 
-   <div class="notice-slider">
+   <div id="notice-slider">
 
      <?php
        if( $query->have_posts() ) :
          while( $query->have_posts() ) : $query->the_post();
      ?>
            <div class="notice-slide">
-             <a href="<?php the_permalink(); ?>"><?php the_excerpt(); ?></a>
+             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
            </div>
       <?php
          endwhile;

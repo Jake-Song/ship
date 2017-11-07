@@ -175,6 +175,18 @@
       "css": "switch",
       "code": 59406,
       "src": "entypo"
+    },
+    {
+      "uid": "9x8p16w516pn1b19chr85japkedporm7",
+      "css": "th",
+      "code": 59407,
+      "src": "typicons"
+    },
+    {
+      "uid": "4fc965c0a4abf27512ac06752c56b3b5",
+      "css": "upload",
+      "code": 59408,
+      "src": "elusive"
     }
   ]
 }

@@ -1,5 +1,59 @@
 jQuery( document ).ready( function($){
 
+  var offset = 250;
+
+  var duration = 600;
+
+  jQuery(window).scroll(function() {
+
+  if ($(this).scrollTop() > offset) {
+
+    $('#back-top').fadeIn(duration);
+
+  } else {
+
+    $('#back-top').fadeOut(duration);
+
+  }
+
+  });
+
+
+
+  $('#back-top').click(function(event) {
+
+    event.preventDefault();
+
+  $('html, body').animate({scrollTop: 0}, duration);
+
+    return false;
+
+  });
+
+  $('.ship-category-menu > ul > li > a').each( function(){
+    var href = $(this).attr('href');
+    var location = window.location.href.replace(/\/$/, "");
+
+    if( href == location ){
+      $(this).addClass('active');
+    } else {
+      $(this).removeClass('active');
+    }
+  } );
+
+  $(document).on('ajaxComplete', function(e){
+    $('.ship-category-menu > ul > li > a').each( function(){
+      var href = $(this).attr('href');
+      var location = window.location.href.replace(/\/$/, "");
+
+      if( href == location ){
+        $(this).addClass('active');
+      } else {
+        $(this).removeClass('active');
+      }
+    } );
+  });
+
   $(window).scroll(function(){
     var winTop = $(window).scrollTop();
 
@@ -10,7 +64,7 @@ jQuery( document ).ready( function($){
     }
   });
 
-    $('.slider').bxSlider({
+    $('#main-slider').bxSlider({
       mode: 'fade',
       auto: true,
       autoControls: true,
@@ -24,7 +78,7 @@ jQuery( document ).ready( function($){
       wrapperClass: 'bx-wrapper main'
     });
 
-    $('.notice-slider').bxSlider({
+    $('#notice-slider').bxSlider({
       mode: 'vertical',
       auto: true,
       autoStart: false,
@@ -36,6 +90,17 @@ jQuery( document ).ready( function($){
       autoHover: true,
       speed: 1500,
       wrapperClass: 'bx-wrapper notice'
+    });
+    var test = 0;
+    $('#partners-slider').bxSlider({
+      auto: false,
+      speed: 1500,
+      slideWidth: 150,
+      maxSlides: 7,
+      moveSlides: 1,
+      pager: false,
+      //controls: false,
+      wrapperClass: 'bx-wrapper partners'
     });
 
     // Load Contents with ajax

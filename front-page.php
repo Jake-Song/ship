@@ -50,12 +50,19 @@
                 >
 
                   <div class='custom thumbnail'>
-                    <a href="<?php the_permalink(); ?>">
-                      <?php the_post_thumbnail( 'custom' ); ?>
+
+                      <div class="thumbnail-image-section">
+                        <?php the_post_thumbnail( 'custom' ); ?>
+                        <div class="overlay">
+                          <h2><?php the_title(); ?></h2>
+                          <p><a href="<?php the_permalink(); ?>">상세 보기<i class="icon-right"></i></a></p>
+                        </div>
+                      </div>
+
                       <div class="caption">
                         <?php echo get_the_title() . ' / ' .  $ship_maker_terms[0]->name . ' / ' . $ship_model_terms[0]->name . ' / ' . $ship_location_terms[0]->name; ?>
                       </div>
-                    </a>
+
                   </div>
 
                 </div>
@@ -79,7 +86,7 @@
             <i class="icon-switch"></i>
         </div>
         <div id="buy">
-          <h3>팝니다</h3>
+          <h3>삽니다</h3>
           <ul>
             <?php
               $args = array(
@@ -91,12 +98,20 @@
 
               if( $query->have_posts() ) :
                 while( $query->have_posts() ) : $query->the_post();
-                $test = 0;
+
+                  $ship_location_terms = get_the_terms( $query->post->ID, 'ship_location' );
+                  $test = 0;
                 ?>
 
                   <li>
                     <a href="<?php the_permalink(); ?>">
                       <div class="market-image-wrapper"><?php if( has_post_thumbnail($query->post->ID) ) the_post_thumbnail('smallest'); ?></div>
+                      <span class="market-location-wrapper">
+                        <?php
+                          if( $ship_location_terms )
+                            echo '[' . $ship_location_terms[0]->name . ']';
+                        ?>
+                      </span>
                       <span class="market-title-wrapper"><?php the_title(); ?></span>
                     </a>
                     <span>
@@ -117,7 +132,7 @@
           </ul>
         </div>
         <div id="sell">
-          <h3>삽니다</h3>
+          <h3>팝니다</h3>
           <ul>
             <?php
               $args = array(
@@ -130,11 +145,18 @@
               if( $query->have_posts() ) :
                 while( $query->have_posts() ) : $query->the_post();
                 $test = 0;
+                $ship_location_terms = get_the_terms( $query->post->ID, 'ship_location' );
                 ?>
 
                   <li>
                     <a href="<?php the_permalink(); ?>">
                       <div class="market-image-wrapper"><?php if( has_post_thumbnail($query->post->ID) ) the_post_thumbnail('smallest'); ?></div>
+                      <span class="market-location-wrapper">
+                        <?php
+                          if( $ship_location_terms )
+                            echo '[' . $ship_location_terms[0]->name . ']';
+                        ?>
+                      </span>
                       <span class="market-title-wrapper"><?php the_title(); ?></span>
                     </a>
                     <span>
@@ -313,22 +335,45 @@
     </div>
 
     <div id="partners">
-
+      <h3>협력사</h3>
       <div id="partners-content">
-        <h3>협력사</h3>
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+
+        <div id="partners-slider">
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+
+        </div>
       </div>
     </div>
 
    <?php include( locate_template( '/module/notice-slider.php', false, false ) ); ?>
+
+    <div id="sea-info"></div>
 
     <div class="info-box">
       <div class="main-box">
