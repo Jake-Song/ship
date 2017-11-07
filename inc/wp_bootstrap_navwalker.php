@@ -79,7 +79,7 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 				$class_names = $value;
 				$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 				$classes[] = 'menu-item-' . $item->ID;
-				
+
 				$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 				if ( $args->has_children ) {
 					$class_names .= ' dropdown';
@@ -132,10 +132,10 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 						$item_output .= '<a' . $attributes . '><i class="fa ' . esc_attr( $item->attr_title ) . '" aria-hidden="true"></i>&nbsp;';
 					}
 				} else {
-					$item_output .= '<a' . $attributes . '>';
+					$item_output .= '<a' . $attributes . '><span data-hover="' . $item->title . '">';
 				}
 				$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-				$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
+				$item_output .= ( $args->has_children && 0 === $depth ) ? ' </span><span class="caret"></span></a>' : '</span></a>';
 				$item_output .= $args->after;
 				$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 			} // End if().

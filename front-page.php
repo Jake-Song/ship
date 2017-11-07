@@ -82,11 +82,11 @@
       </div>
 
       <div id="market">
-        <div id="market-icon">
-            <i class="icon-switch"></i>
-        </div>
+
         <div id="buy">
+          <span class="bk"></span>
           <h3>삽니다</h3>
+          <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
           <ul>
             <?php
               $args = array(
@@ -131,8 +131,11 @@
             ?>
           </ul>
         </div>
+
         <div id="sell">
+          <span class="bk"></span>
           <h3>팝니다</h3>
+          <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
           <ul>
             <?php
               $args = array(
@@ -180,7 +183,7 @@
       </div>
 
   <div class="best-ship">
-
+    
       <div class="image-section">
 
       <?php
@@ -262,7 +265,7 @@
               endif;
 
               ?>
-              <h4>베스트 선박</h4>
+              <h4>프리미엄 선박</h4>
               <h2><?php the_title(); ?></h2>
 
               <div class="best-ship-info">
@@ -371,9 +374,24 @@
       </div>
     </div>
 
-   <?php include( locate_template( '/module/notice-slider.php', false, false ) ); ?>
+   <?php //include( locate_template( '/module/notice-slider.php', false, false ) ); ?>
 
-    <div id="sea-info"></div>
+   <div id="notice-box">
+     <div class="notice-content">
+       <h3>공지</h3>
+       <span>공지 사항입니다.</span>
+       <div class="notice-icon">
+         <i class="icon-plus-squared-alt"></i>
+       </div>
+     </div>
+     <div class="notice-content">
+       <h3>해양/수산 소식</h3>
+       <span>해양/수산 소식입니다.</span>
+       <div class="notice-icon">
+         <i class="icon-plus-squared-alt"></i>
+       </div>
+     </div>
+   </div>
 
     <div class="info-box">
       <div class="main-box">

@@ -1,5 +1,12 @@
 <footer class="site-footer">
-
+  <nav class="site-nav">
+        <?php
+            $args = array(
+              'theme_location' => 'footer'
+            );
+        ?>
+        <?php wp_nav_menu( $args ); ?>
+  </nav>
   <div class="footer-content-box">
     <div class="company-info">
       (주)한국선박거래소 | 대표자: OOO | 본사: 인천시 OOO | 지사: 부산시 OOO | 연락처: (051) 000 - 0000

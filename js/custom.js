@@ -66,6 +66,7 @@ jQuery( document ).ready( function($){
 
     $('#main-slider').bxSlider({
       mode: 'fade',
+      speed: 1000,
       auto: true,
       autoControls: true,
       stopAutoOnClick: true,
@@ -91,7 +92,7 @@ jQuery( document ).ready( function($){
       speed: 1500,
       wrapperClass: 'bx-wrapper notice'
     });
-    var test = 0;
+
     $('#partners-slider').bxSlider({
       auto: false,
       speed: 1500,

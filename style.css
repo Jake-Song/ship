@@ -53,9 +53,15 @@ img{
   clear: both;
 }
 
+/* Ajax 컨테이너 */
+.ajax-container{
+  padding: 3em 0;
+  background: #f7f7f7;
+}
 /* 썸네일 */
 .custom.thumbnail{
   border: 0;
+  padding: 0;
 }
 .thumbnail-image-section{
   width: 100%;
@@ -173,11 +179,6 @@ img{
 #back-top > i{
   display: block;
   font-size: 1.5rem;
-}
-
-/* 드랍다운 메뉴 */
-.site-header .navbar-default .navbar-nav > li > a.dropdown-toggle:hover ~ .dropdown-menu{
-  display: block;
 }
 
 /* Bread crumb */
@@ -341,8 +342,35 @@ div.container{
 }
 .site-header .navbar-default .navbar-nav > li > a{
   font-size: 1.2rem;
-  color: #333;
-  padding: 0 40px;
+  color: #354D63;
+  padding: 0 4px;
+  margin-right: 3em;
+  height: 1.2em;
+  text-shadow: 0 0 1px rgba(255,255,255,0.3);
+  position: relative;
+  overflow: hidden;
+}
+.site-header .navbar-default .navbar-nav > li > a > span[data-hover]{
+  position: relative;
+  display: inline-block;
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+.site-header .navbar-default .navbar-nav > li:hover > a > span[data-hover]{
+  -webkit-transform: translate3d(0,-100%, 0);
+  -moz-transform: translate3d(0,-100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+.site-header .navbar-default .navbar-nav > li > a > span::before{
+  position: absolute;
+  top: 100%;
+  content: attr(data-hover);
+  color: #354D63;
+  font-weight: 700;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
 }
 .site-header .navbar-default.top-menu .navbar-nav > li > a{
   padding: 0 10px;
@@ -357,9 +385,8 @@ div.container{
 }
 .site-header nav ul li .dropdown-menu{
   width: 240px;
-  margin-top: 20px;
   background: transparent;
-  border: 1px solid #ffbc00;
+  border: 1px solid #478AB2;
   border-radius: 0;
   display: block;
   padding: 0;
@@ -374,20 +401,28 @@ div.container{
   -webkit-transition: opacity 0.5s, visibility 0s;
   transition: opacity 0.5s, visibility 0s;
 }
+.site-header nav ul li .dropdown-menu > li{
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
 .dropdown-toggle .caret{
   display: none;
 }
 .site-header nav ul li .dropdown-menu li a{
   color: #333;
-  background: #fff;
   white-space: normal;
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+  transition: transform .2s;
+  display: inline-block;
 }
 .site-header nav ul li .dropdown-menu li:hover{
-  background: #F7C446;
+
 }
 .site-header nav ul li .dropdown-menu li:hover a{
-  color: #333;
-  background: #F7C446;
+  background: #fff;
+  color: #478AB2;
+  transform: translate3d(5%,0,0);
 }
 
 /* Sticky Header */
@@ -401,7 +436,8 @@ div.container{
 }
 .site-header .site-title{
   transition: .4s;
-  transform: translateX(0%);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 .site-header.sticky-header {
   position: fixed;
@@ -411,7 +447,7 @@ div.container{
   z-index: 3;
 }
 .site-header.sticky-header .site-title{
-  transform: translateX(20%);
+  transform: translate3d(20%, 0, 0);
 }
 
 /*********************/
@@ -714,6 +750,7 @@ div.container{
 .best-ship > h3{
   flex: 1 1 100%;
   text-align: center;
+  margin-bottom: 1em;
 }
 .best-ship-content{
   height: 50px;
@@ -744,6 +781,7 @@ div.container{
 .count > .total-slide{
   color: #354D63;
 }
+
 /* 매물 현황 리스트 */
 .ship-category{
   margin-bottom: 3em;
@@ -797,12 +835,12 @@ div.container{
 }
 .ship-category-menu{
   text-align: center;
-  margin-bottom: 3em;
 }
 .ship-category-menu > ul{
   list-style: none;
   background-color: #354D63;
   padding: 0;
+  margin-bottom: 0;
 }
 .ship-category-menu > ul > li{
   display: inline-block;
@@ -831,40 +869,47 @@ div.container{
 /* 삽니다 & 팝니다 */
 #market{
   display: flex;
+  flex-wrap: wrap;
   position: relative;
   margin-bottom: 5em;
 }
-#market-icon{
+#market > h3{
+  flex: 1 1 100%;
+  text-align: center;
+  margin-bottom: 1em;
+}
+.market-icon{
   position: absolute;
-  top: -2%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 3rem;
-  color: #F7C446;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
 }
 #buy{
-  border-right: 2px solid #999;
+  margin-right: 2em;
+}
+#sell{
+  margin-left: 2em;
 }
 #sell, #buy{
-  flex: 1 1 auto;
+  flex: 1 1;
+  position: relative;
 }
 #sell > h3, #buy > h3{
-  border-bottom: 2px solid #999;
+  border-bottom: 2px solid #656759;
   margin: 0 0 1em 0;
-  color: white;
+  color: #333;
   padding: .5em;
-  text-align: center;
 }
 #sell > h3{
-  background: #478AB2;
+
 }
 #buy > h3{
-  background: #354D63;
+
 }
 #buy > ul, #sell > ul{
   list-style: none;
   margin-bottom: 0;
-  padding: 1em 1em 0 1em;
+  padding: 1.5em 1.5em 0 1.5em;
 }
 #buy > ul > li, #sell > ul > li{
   font-size: 1.2rem;
@@ -892,12 +937,39 @@ div.container{
 .market-title-wrapper, .market-location-wrapper{
   vertical-align: middle;
 }
+#market-center-image{
+  flex: 1 1;
+}
 
+/* 공지 및 해양/수산 소식 */
+#notice-box{
+  display: flex;
+  margin: 3em 0;
+  border-bottom: 1px solid #999;
+}
+#notice-box > .notice-content{
+  flex: 1 1;
+  padding-left: 2em;
+  border-right: 1px solid #999;
+  position: relative;
+}
+#notice-box > .notice-content:last-of-type{
+  border-right: 0;
+}
+#notice-box > .notice-content > h3{
+  display: inline-block;
+  margin-right: 1em;
+}
+#notice-box > .notice-content > .notice-icon{
+  position: absolute;
+  right: 5%;
+  top: 35%;
+  font-size: 1.5rem;
+}
 /* 인포박스 */
 .info-box{
   display: flex;
   position: relative;
-  height: 200px;
 }
 .info-box > .main-box{
   flex: 4;
@@ -931,10 +1003,12 @@ div.container{
 }
 .info-box > .sub-box-wrapper .sub-box:nth-of-type(1){
   flex-basis: 50%;
+  border: 1px solid #999;
+  padding: 1em;
 }
 .info-box > .sub-box-wrapper .sub-box:nth-of-type(2){
   flex-basis: 50%;
-  background: #f7f7f7;
+  background: #656759;
 }
 .sub-box-wrapper > .sub-box{
   position: relative;
@@ -951,6 +1025,7 @@ div.container{
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+  color: white;
 }
 #sub-box-icon{
   text-align: center;
@@ -965,19 +1040,17 @@ div.container{
 
 /* 협력사 */
 #partners{
-  margin-bottom: 3em;
+  background: #f7f7f7;
+  padding: 1em 0;
 }
 #partners > h3{
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 0;
 }
 #partners-content{
   position: relative;
-  height: 170px;
-  border: 1px solid #000;
+  height: 130px;
   text-align: center;
-  padding-top: 1em;
-  background: #656759;
 }
 #partners-content > h3{
   text-align: center;
@@ -989,7 +1062,7 @@ div.container{
 }
 .bx-wrapper.partners{
   position: absolute;
-  top: 20%;
+  top: 0%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -1168,15 +1241,36 @@ article.post.single .text-wrapper{
   width: 100%;
   background-color: #3e4d51;
 }
+.site-footer > .site-nav{
+  text-align: center;
+  padding: .5em 0;
+}
+.site-footer > .site-nav ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.site-footer > .site-nav ul > li{
+  display: inline-block;
+  padding-right: 1em;
+  margin-right: 1em;
+  border-right: 1px solid #ddd;
+}
+.site-footer > .site-nav ul > li > a{
+  color: white;
+}
+.site-footer > .site-nav ul > li:last-of-type{
+  border-right: 0;
+}
 .footer-content-box{
-  margin: 1em auto;
+  margin: 0 auto;
   position: relative;
   text-align: center;
   font-size: .8rem;
   color: white;
 }
 .company-info{
-  padding: 2em 0;
+  padding: 1em 0;
   border-bottom: 1px solid white;
 }
 .copyright{

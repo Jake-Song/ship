@@ -204,7 +204,7 @@ function my_theme_setup(){
     register_nav_menus(array(
       //'top' => __( 'Top Menu' ),
       'primary' => __( 'Primary Menu' ),
-      //'footer' => __( 'Footer Menu' ),
+      'footer' => __( 'Footer Menu' ),
     ));
 
     add_theme_support( 'html5', array( 'search-form' ) );
