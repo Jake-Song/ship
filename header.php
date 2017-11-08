@@ -21,6 +21,7 @@
                       </a>
 
                   <?php  } else { ?>
+                      <img src="<?php echo site_url('/') . 'wp-content/themes/ship/img/home.svg'; ?>" alt="">
                       <a href="<?php echo home_url(); ?>">
 
                         <h2>한국선박거래소</h2>
@@ -62,8 +63,6 @@
 
               </nav>
 
-            <div class="bg"></div>
-
-           <button id="back-top" title="맨 위로"><i class="icon-upload"></i>맨 위로</button>
+              <button id="back-top" title="맨 위로"><i class="icon-upload"></i>맨 위로</button>
 
           </header>

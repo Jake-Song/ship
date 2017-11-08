@@ -183,7 +183,7 @@
       </div>
 
   <div class="best-ship">
-    
+
       <div class="image-section">
 
       <?php
@@ -337,43 +337,6 @@
 
     </div>
 
-    <div id="partners">
-      <h3>협력사</h3>
-      <div id="partners-content">
-
-        <div id="partners-slider">
-          <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-          </div>
-          <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-          </div>
-          <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-          </div>
-          <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-          </div>
-          <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-          </div>
-          <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-          </div>
-          <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-          </div>
-          <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-          </div>
-          <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
-          </div>
-
-        </div>
-      </div>
-    </div>
-
    <?php //include( locate_template( '/module/notice-slider.php', false, false ) ); ?>
 
    <div id="notice-box">
@@ -418,6 +381,44 @@
         </div>
       </div>
 
+    </div>
+
+    <div id="partners">
+
+      <div id="partners-content">
+
+        <div id="partners-slider">
+
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+          <div class="partners-slide">
+            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+          </div>
+
+        </div>
+      </div>
     </div>
 
   </div>
