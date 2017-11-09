@@ -10,6 +10,11 @@ function cosmetic_enqueue_scripts(){
     wp_enqueue_style( 'social-css', get_template_directory_uri() . '/js/jsSocials/jssocials-theme-plain.css' );
     wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css' );
 
+    wp_enqueue_script( 'restFul', get_template_directory_uri() . '/js/restFul.js', null, '1.0.0', true );
+    wp_localize_script( 'restFul', 'magicalData', array(
+      'nonce' => wp_create_nonce('wp_rest')
+    ) );
+
     //wp_enqueue_script( 'jquery-3', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), '3.1.1' );
     wp_enqueue_style( 'bx-css', 'https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css' );
     wp_enqueue_script( 'bx-js', 'https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js', array('jquery') );
@@ -391,6 +396,65 @@ function ship_register_post_type(){
 }
 add_action( 'init', 'ship_register_post_type' );
 
+// 삽니다 포스트 타입 등록하기
+
+function ship_selling_post_type(){
+
+  $name = '삽니다';
+  $slug = 'ship_selling';
+
+  $labels = array(
+    'name' 			          => $name,
+		'name_name' 	    => $name,
+		'add_new' 		        => '새로 추가하기',
+		'add_new_item'  	    => $name . ' 추가하기',
+		'edit'		            => '편집하기',
+  	'edit_item'	          => $name . ' 편집하기',
+  	'new_item'	          => '새 ' . $name,
+		'view' 			          => $name . ' 목록보기',
+		'view_item' 		      => $name . ' 목록보기',
+		'search_term'   	    => $name . ' 검색하기',
+	  'parent' 		          => $name . ' 부모 페이지',
+		'not_found' 		      => $name . ' 이 없습니다.',
+		'not_found_in_trash' 	=> $name . ' 이 휴지통에 없습니다.'
+  );
+
+  $args = array(
+    'labels'              => $labels,
+    'public'              => true,
+    'publicly_queryable'  => true,
+    'exclude_from_search' => false,
+    'show_in_nav_menus'   => true,
+    'show_ui'             => true,
+    'show_in_menu'        => true,
+    'show_in_admin_bar'   => true,
+    'show_in_rest'        => true,
+    'menu_position'       => 10,
+    'menu_icon'           => 'dashicons-businessman',
+    'can_export'          => true,
+    'delete_with_user'    => false,
+    'hierarchical'        => false,
+    'has_archive'         => true,
+    'query_var'           => true,
+    'capability_type'     => 'post',
+    'map_meta_cap'        => true,
+    // 'capabilities' => array(),
+    'rewrite'             => array(
+    	'slug' => $slug,
+    	'with_front' => true,
+    	'pages' => true,
+    	'feeds' => true,
+    ),
+    'supports'            => array(
+    	'title',
+    	'editor',
+    	'thumbnail'
+    )
+  );
+  register_post_type( 'ship_selling', $args );
+}
+add_action( 'init', 'ship_selling_post_type' );
+
 // 선박매물 카테고리 등록하기
 function ship_register_taxonomy(){
   $names = [
@@ -426,6 +490,7 @@ function ship_register_taxonomy(){
         'labels' => $labels,
         'show_ui' => true,
         'show_admin_column' => true,
+        'show_in_rest' => true,
         'update_count_callback' => '_update_post_term_count',
         'query_var' => true,
         'rewrite' => array( 'slug' => $slug, 'hierarchical' => true ),
@@ -595,3 +660,28 @@ function wpdocs_custom_excerpt_length( $length ) {
     return 10;
 }
 add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+
+/* 조회수 카운터 */
+function getPostViews($postID){
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0";
+    }
+    return $count;
+}
+
+function setPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}

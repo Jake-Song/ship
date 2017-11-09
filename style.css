@@ -9,6 +9,21 @@ Version: 1.0.0
 /* 폰트 */
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+.admin-quick-add {
+	background-color: #DDD;
+	padding: 15px;
+	margin-bottom: 15px;
+  display: none;
+}
+
+.admin-quick-add input,
+.admin-quick-add textarea {
+	width: 100%;
+	border: none;
+	padding: 10px;
+	margin: 0 0 10px 0;
+	box-sizing: border-box;
+}
 
 /* Clearfix */
 .clearfix::before, .clearfix::after{
@@ -64,6 +79,9 @@ img{
 .custom.thumbnail{
   border: 0;
   padding: 0;
+}
+.custom.thumbnail > .caption{
+  font-size: 1.2rem;
 }
 .thumbnail-image-section{
   width: 100%;
@@ -933,7 +951,7 @@ div.container{
 }
 .ship-category-menu > ul > li{
   display: inline-block;
-  padding: 0 3em;
+  padding: 0 2em 1em 2em;
 }
 .ship-category-menu > ul > li > a{
   color: white;
@@ -951,6 +969,7 @@ div.container{
   font-size: 5rem;
 }
 .ship-category-menu .ship-category-name{
+  font-size: 1.2rem;
   position: relative;
   bottom: 5px;
 }
@@ -981,7 +1000,7 @@ div.container{
 #buy{
   margin-right: 2em;
 }
-#sell{
+#sell, #buy{
   margin-left: 2em;
 }
 #sell, #buy{
@@ -996,36 +1015,64 @@ div.container{
   color: #333;
   padding: .5em;
 }
-#sell > h3{
-
+.bbs-table{
+  padding: 1em;
 }
-#buy > h3{
-
-}
-#buy > ul, #sell > ul{
+#buy > .bbs-table > ul, #sell > .bbs-table > ul{
   list-style: none;
   margin-bottom: 0;
   padding: 1.5em 1.5em 0 1.5em;
 }
-#buy > ul > li, #sell > ul > li{
+#buy > .bbs-table > ul > li, #sell > .bbs-table > ul > li{
   font-size: 1.2rem;
   position: relative;
   border-bottom: 1px solid #ddd;
   height: 45px;
   padding: .2em;
 }
-#buy > ul > li > span, #sell > ul > li > span{
+#buy > .bbs-table > ul > li > span.date, #sell > .bbs-table > ul > li > span.date,
+#buy > .bbs-table > ul > li > span.view, #sell > .bbs-table > ul > li > span.view{
   position: absolute;
   top: .5em;
-  right: .5em;
+  right: 3em;
   vertical-align: middle;
 }
-#buy > ul > li > a > .market-image-wrapper, #sell > ul > li > a > .market-image-wrapper{
+#buy > .bbs-table > ul > li > span.author, #sell > .bbs-table > ul > li > span.author{
+  position: absolute;
+  right: 15.6em;
+}
+#buy > .bbs-table > ul > li > span.date, #sell > .bbs-table > ul > li > span.date{
+  right: 7em;
+}
+#buy > .bbs-table > ul > li > a > .market-image-wrapper, #sell > .bbs-table > ul > li > a > .market-image-wrapper{
   display: inline-block;
   margin-right: 1.5em;
 }
-#buy > ul > li:nth-child(2n), #sell > ul > li:nth-child(2n){
+#buy > .bbs-table > ul > li:nth-child(2n), #sell > .bbs-table > ul > li:nth-child(2n){
   background: #f7f7f7;
+}
+#buy > .bbs-table > ul.header, #sell > .bbs-table > ul.header{
+  list-style: none;
+}
+#buy > .bbs-table > ul.header > li, #sell > .bbs-table > ul.header > li{
+  display: inline-block;
+  margin-left: -3px;
+  text-align: center;
+}
+#buy > .bbs-table > ul.header > li:nth-child(2n), #sell > .bbs-table > ul.header > li:nth-child(2n){
+  background: #fff;
+}
+.bbs-title{
+  width: 70%;
+}
+.bbs-user{
+  width: 10%;
+}
+.bbs-date{
+  width: 10%;
+}
+.bbs-view{
+  width: 10%;
 }
 .market-image-wrapper > img{
   height: 37.5px;

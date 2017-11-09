@@ -1,5 +1,14 @@
 jQuery( document ).ready( function($){
 
+  // Rest API Handling
+  var addBuyContentBtn = $('#addBuyContent');
+  if( addBuyContentBtn ){
+    addBuyContentBtn.on('click', function(){
+      $('.admin-quick-add').toggle();
+    });
+  }
+
+
   var offset = 250;
 
   var duration = 600;
