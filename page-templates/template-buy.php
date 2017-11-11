@@ -22,28 +22,29 @@
     <div id="market">
 
       <div id="buy">
-        <span class="bk"></span>
+
         <h3>삽니다</h3>
         <button type="button" id="addBuyContent" name="button">글 작성하기</button>
         <?php if(current_user_can('administrator')) : ?>
 
-          <div class="admin-quick-add">
-            <h3>Quick Add Post</h3>
-            <input type="text" name="title" placeholder="Title">
-            <textarea name="content" placeholder="Content"></textarea>
-            <button id="quick-add-button">Create Post</button>
+          <div class="add-post-box">
+            <h3>글 작성하기</h3>
+            <input type="text" name="title" placeholder="제목">
+            <textarea name="content" placeholder="내용"></textarea>
+            <button id="add-post-button">추가</button>
           </div>
 
         <?php endif; ?>
         <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
         <div class="bbs-table">
           <ul class="header">
+            <li class="bbs-checkbox"><input type="checkbox" name="all-checked" value="all-checked"></li>
             <li class="bbs-title">제목</li>
             <li class="bbs-user">작성자</li>
             <li class="bbs-date">날짜</li>
             <li class="bbs-view">조회수</li>
           </ul>
-          <ul>
+          <ul class="list">
             <?php
               $args = array(
                 'post_type' => 'ship_selling',
@@ -59,11 +60,9 @@
 
                   $ship_location_terms = get_the_terms( $query->post->ID, 'ship_location' );
 
-
-                  $test = 0;
                 ?>
 
-                  <li>
+                  <li id="item-<?php echo $query->post->ID; ?>">
                     <input type="checkbox" name="buy-check" value="<?php echo $query->post->ID; ?>">
                     <a href="<?php the_permalink(); ?>">
                       <div class="market-image-wrapper"><?php if( has_post_thumbnail($query->post->ID) ) the_post_thumbnail('smallest'); ?></div>
@@ -85,6 +84,12 @@
                     <span class="view">
                       <?php echo getPostViews($query->post->ID); ?>
                     </span>
+                    <div class="read-post-box">
+                      <h3>글 보기</h3>
+                      <input type="text" name="title" placeholder="제목">
+                      <textarea name="content" placeholder="내용"></textarea>
+                      <button id="update-post-button">수정</button>
+                    </div>
                   </li>
 
               <?php
@@ -101,6 +106,7 @@
 
         <?php if(current_user_can('administrator')) : ?>
           <button type="button" id="delete" name="delete">삭제</button>
+          <button type="button" id="update" name="update">수정</button>
         <?php endif; ?>
 
       </div>

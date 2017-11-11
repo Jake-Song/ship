@@ -4,7 +4,7 @@ jQuery( document ).ready( function($){
   var addBuyContentBtn = $('#addBuyContent');
   if( addBuyContentBtn ){
     addBuyContentBtn.on('click', function(){
-      $('.admin-quick-add').toggle();
+      $('.add-post-box').toggle();
     });
   }
 
