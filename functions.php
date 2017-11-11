@@ -12,7 +12,8 @@ function cosmetic_enqueue_scripts(){
 
     wp_enqueue_script( 'rest-api', get_template_directory_uri() . '/js/rest-api.js', null, '1.0.0', true );
     wp_localize_script( 'rest-api', 'apiData', array(
-      'nonce' => wp_create_nonce('wp_rest')
+      'nonce' => wp_create_nonce('wp_rest'),
+      'siteUrl' => site_url('/')
     ) );
 
     //wp_enqueue_script( 'jquery-3', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), '3.1.1' );

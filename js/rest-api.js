@@ -40,7 +40,7 @@ jQuery( document ).ready( function($){
       }
 
       $.ajax({
-        url: "http://localhost/wordpress12/wp-json/wp/v2/ship_selling",
+        url: apiData.siteUrl + "wp-json/wp/v2/ship_selling",
         type: 'POST',
         dataType: 'json',
         data: ourPostData,
@@ -69,7 +69,7 @@ jQuery( document ).ready( function($){
       for( var i = 0; i < items.length; i++ ){
 
           $.ajax({
-            url: 'http://localhost/wordpress12/wp-json/wp/v2/ship_selling/' + $(items[i]).val(),
+            url: apiData.siteUrl + 'wp-json/wp/v2/ship_selling/' + $(items[i]).val(),
             type: 'DELETE',
             dataType: 'json',
             beforeSend: function( xhr ){
@@ -90,9 +90,9 @@ jQuery( document ).ready( function($){
   // Read Post
   $("body").on('click', 'ul.list > li > a', function(e){
     e.preventDefault();
-    console.log(this);
+    var that = this;
     $.ajax({
-      url: 'http://localhost/wordpress12/wp-json/wp/v2/ship_selling/' + $(this).siblings("input[name='buy-check']").val(),
+      url: apiData.siteUrl + 'wp-json/wp/v2/ship_selling/' + $(this).siblings("input[name='buy-check']").val(),
       type: 'GET',
       dataType: 'json',
       beforeSend: function( xhr ){
@@ -101,6 +101,7 @@ jQuery( document ).ready( function($){
       success: function(data){
           console.log(data);
           createHTML(data);
+          closeBtn.call(that, data);
       },
       error: function(){
         console.log('error occured during ajax');
@@ -116,23 +117,35 @@ jQuery( document ).ready( function($){
     postContent = postData.content.rendered;
 
     $("#item-" + postData.id + " .read-post-box > input").val( postTitle );
-    $("#item-" + postData.id + " .read-post-box > textarea").html( postContent );
+    $("#item-" + postData.id + " .read-post-box > textarea").html( strip_html_tags(postContent) );
+    $("#item-" + postData.id + " .read-post-box").css("display", "block");
+  }
 
-    $("#item-" + postData.id + " .read-post-box").toggle();
+  function closeBtn(postData){
+    $(this).siblings(".read-post-box").find(".close-post-button").on('click', function(){
+      $("#item-" + postData.id + " .read-post-box").css("display", "none");
+    });
+  }
 
+  function strip_html_tags(str){
+     if ((str===null) || (str===''))
+         return false;
+    else
+     str = str.toString();
+    return str.replace(/<[^>]*>/g, '');
   }
 
   // Update Post
-  var updateBtn = $("#update-post-button");
+  var updateBtn = $(".update-post-button");
   if( updateBtn ){
     updateBtn.on('click', function(){
       var ourPostData = {
-        "title": $(".read-post-box [name='title']").val(),
-        "content": $(".read-post-box [name='content']").val(),
+        "title": $(this).parent().parent().find(".read-post-box [name='title']").val(),
+        "content": $(this).parent().parent().find(".read-post-box [name='content']").val(),
         "status": "publish"
       }
       $.ajax({
-        url: "http://localhost/wordpress12/wp-json/wp/v2/ship_selling/" + $(this).parent().siblings("input[name='buy-check']").val(),
+        url: apiData.siteUrl + "wp-json/wp/v2/ship_selling/" + $(this).parent().siblings("input[name='buy-check']").val(),
         type: 'POST',
         dataType: 'json',
         data: ourPostData,
@@ -141,9 +154,8 @@ jQuery( document ).ready( function($){
         },
         success: function(data){
           console.log(data);
-          $(".read-post-box [name='title']").val();
-          $(".read-post-box [name='content']").val();
-          $(".read-post-box").css("display", "none");
+          createHTML(data);
+          window.location.reload();
         },
         error: function(){
           alert('Error - try again');

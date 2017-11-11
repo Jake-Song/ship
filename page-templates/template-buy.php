@@ -46,10 +46,14 @@
           </ul>
           <ul class="list">
             <?php
+
+              $current_page = get_query_var("paged");
+
               $args = array(
                 'post_type' => 'ship_selling',
                 'post_status' => 'publish',
                 'posts_per_page' => 10,
+                'paged' => $current_page
               );
               $query = new WP_Query( $args );
 
@@ -88,7 +92,8 @@
                       <h3>글 보기</h3>
                       <input type="text" name="title" placeholder="제목">
                       <textarea name="content" placeholder="내용"></textarea>
-                      <button id="update-post-button">수정</button>
+                      <button class="update-post-button">수정</button>
+                      <button class="close-post-button">닫기</button>
                     </div>
                   </li>
 
@@ -98,6 +103,12 @@
 
                 wp_reset_postdata();
 
+                echo paginate_links(
+                  array(
+                    'total' => $query->max_num_pages
+                  )
+                );
+
               endif;
 
             ?>
@@ -106,7 +117,6 @@
 
         <?php if(current_user_can('administrator')) : ?>
           <button type="button" id="delete" name="delete">삭제</button>
-          <button type="button" id="update" name="update">수정</button>
         <?php endif; ?>
 
       </div>

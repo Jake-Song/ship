@@ -34,10 +34,14 @@
           </ul>
           <ul>
             <?php
+
+              $current_page = get_query_var("paged");
+
               $args = array(
                 'post_type' => 'ship',
                 'post_status' => 'publish',
                 'posts_per_page' => 10,
+                'paged' => $current_page
               );
               $query = new WP_Query( $args );
 
@@ -75,6 +79,12 @@
               <?php endwhile;
 
                 wp_reset_postdata();
+
+                echo paginate_links(
+                  array(
+                    'total' => $query->max_num_pages
+                  )
+                );
 
               endif;
 
