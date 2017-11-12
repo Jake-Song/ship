@@ -1,5 +1,17 @@
 jQuery( document ).ready( function($){
 
+  // Mobile menu
+  $('.navbar-toggle').on('click', function(e){
+    e.stopImmediatePropagation();
+    $('.navbar.navbar-default').toggleClass('show-menu');
+
+    $('.mobile-close').on('click', function(e){
+      $('.navbar.navbar-default').removeClass('show-menu');
+      $(this).unbind();
+    });
+
+  });
+
   // Rest API Handling
   var addBuyContentBtn = $('#addBuyContent');
   if( addBuyContentBtn ){
@@ -8,9 +20,8 @@ jQuery( document ).ready( function($){
     });
   }
 
-
+  // Back to the top
   var offset = 250;
-
   var duration = 600;
 
   jQuery(window).scroll(function() {
@@ -27,8 +38,6 @@ jQuery( document ).ready( function($){
 
   });
 
-
-
   $('#back-top').click(function(event) {
 
     event.preventDefault();
@@ -39,6 +48,7 @@ jQuery( document ).ready( function($){
 
   });
 
+  // Current Menu Color Changing
   $('.ship-category-menu > ul > li > a').each( function(){
     var href = $(this).attr('href');
     var location = window.location.href.replace(/\/$/, "");

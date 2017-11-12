@@ -10,7 +10,7 @@
   <div class="content-box">
 
     <div class="navigation">
-      <a href="<?php echo get_post_type_archive_link( 'ship' ); ?>"><i class="fa fa-external-link" aria-hidden="true"></i>목록보기</a>
+      <a href="<?php echo get_post_type_archive_link( 'ship' ); ?>"><i class="icon-th"></i>목록보기</a>
       <?php qt_custom_breadcrumbs(); ?>
     </div>
 
@@ -32,29 +32,8 @@
               $ship_model_terms = get_the_terms( $post->ID, 'ship_model' );
               $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
 
-          ?>
-              <div class="col-sm-6 col-md-3"
-                data-maker="<?php echo esc_attr( ($ship_maker_terms) ? $ship_maker_terms[0]->name : ''); ?>"
-                data-model="<?php echo esc_attr( ($ship_model_terms) ? $ship_model_terms[0]->name : ''); ?>"
-                data-location="<?php echo esc_attr( ($ship_location_terms) ? $ship_location_terms[0]->name : ''); ?>"
-              >
+              include( locate_template( '/module/thumbnail.php', false, false ) ); 
 
-                <div class='custom thumbnail'>
-
-                  <div class='custom thumbnail'>
-                    <a href="<?php the_permalink(); ?>">
-                      <?php the_post_thumbnail( 'custom' ); ?>
-                      <div class="caption">
-                        <?php the_title(); ?>
-                      </div>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-
-           <?php
               endwhile;
 
               wp_reset_postdata();

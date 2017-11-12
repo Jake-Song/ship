@@ -5,7 +5,7 @@
      <div class="slide-text-wrapper">
        <div class="slide-text">
          <h3>Slide One</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, fuga itaque commodi. Quidem facere totam perspiciatis voluptatibus harum obcaecati blanditiis itaque in quos libero architecto, ratione tempore necessitatibus alias quam.</p>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
        </div>
      </div>
    </div>

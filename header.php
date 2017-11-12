@@ -18,6 +18,7 @@
                   ?>
                       <a href="<?php echo home_url(); ?>">
                         <?php echo wp_get_attachment_image( $logo_id, array( '270', '45' ) ); ?>
+                        <h2>한국선박거래소</h2>
                       </a>
 
                   <?php  } else { ?>

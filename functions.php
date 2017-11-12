@@ -47,9 +47,9 @@ function themeslug_customize_register( $wp_customize ) {
      'label'       => __( '로고', 'cosmetic' ),
      'description' => __( '화면 상단의 로고 이미지로 사용됩니다. 권장크기는 270 x 45 입니다.' ),
      'flex_width'  => true, // Allow any width, making the specified value recommended. False by default.
-     'flex_height' => false, // Require the resulting image to be exactly as tall as the height attribute (default).
-     'width'       => 270,
-     'height'      => 45,
+     'flex_height' => true, // Require the resulting image to be exactly as tall as the height attribute (default).
+     // 'width'       => 270,
+     // 'height'      => 45,
    ) ) );
 
   // 푸터 소셜 편집
