@@ -4,10 +4,12 @@ jQuery( document ).ready( function($){
   $('.navbar-toggle').on('click', function(e){
     e.stopImmediatePropagation();
     $('.navbar.navbar-default').toggleClass('show-menu');
+    $(this).hide();
+    var that = this;
 
     $('.mobile-close').on('click', function(e){
       $('.navbar.navbar-default').removeClass('show-menu');
-      $(this).unbind();
+      $(that).show();
     });
 
   });

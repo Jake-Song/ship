@@ -36,7 +36,7 @@
 
                   <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-menu" aria-expanded="false">
-                      <span class="sr-only">Toggle navigation</span>
+                      <span class="sr-only">전체 메뉴보기</span>
                       <div class="hamburger-menu">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -60,7 +60,7 @@
 
                         <?php wp_nav_menu( $args ); ?>
 
-              <div class="mobile-close">X</div>
+              <div class="mobile-close">&times;</div>
 
               </nav>
 
