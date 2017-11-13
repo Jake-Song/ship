@@ -1,9 +1,9 @@
 
 .icon-fishing-ship:before { content: '\e800'; } /* '' */
 .icon-etc-ship:before { content: '\e801'; } /* '' */
-.icon-yacht:before { content: '\e802'; } /* '' */
-.icon-boat:before { content: '\e803'; } /* '' */
-.icon-certificate:before { content: '\e804'; } /* '' */
+.icon-yacht-boat:before { content: '\e802'; } /* '' */
+.icon-fishing-boat:before { content: '\e803'; } /* '' */
+.icon-certification:before { content: '\e804'; } /* '' */
 .icon-ship-part:before { content: '\e805'; } /* '' */
 .icon-left-open-big:before { content: '\e806'; } /* '' */
 .icon-right-open-big:before { content: '\e807'; } /* '' */

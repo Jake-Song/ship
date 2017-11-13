@@ -6,8 +6,6 @@ function cosmetic_enqueue_scripts(){
     wp_enqueue_style( 'fontello', get_template_directory_uri() . '/fontello/css/fontello.css' );
     wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), true );
     wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array('jquery') );
-    wp_enqueue_script( 'social', get_template_directory_uri() . '/js/jsSocials/jssocials.min.js', array('jquery') );
-    wp_enqueue_style( 'social-css', get_template_directory_uri() . '/js/jsSocials/jssocials-theme-plain.css' );
 
     wp_enqueue_script( 'rest-api', get_template_directory_uri() . '/js/rest-api.js', null, '1.0.0', true );
     wp_localize_script( 'rest-api', 'apiData', array(
@@ -50,125 +48,6 @@ function themeslug_customize_register( $wp_customize ) {
      // 'width'       => 270,
      // 'height'      => 45,
    ) ) );
-
-  // 푸터 소셜 편집
-  $wp_customize->add_section( 'footer', array(
-    'title' => __( '푸터 소셜아이콘', 'cosmetic' ),
-    'description' => __( '푸터 소셜아이콘 편집', 'cosmetic' ),
-    'priority' => 160,
-    'capability' => 'edit_theme_options',
-  ) );
-  $wp_customize->add_setting(
-     'cosmetic_footer_social_url_1', //give it an ID
-     array(
-       'type' => 'theme_mod',
-       'default' => '', // Give it a default
-
-     )
-   );
-   $wp_customize->add_setting(
-      'cosmetic_footer_social_url_2', //give it an ID
-      array(
-        'type' => 'theme_mod',
-        'default' => '', // Give it a default
-
-      )
-    );
-  $wp_customize->add_setting(
-     'cosmetic_footer_social_url_3', //give it an ID
-     array(
-       'type' => 'theme_mod',
-       'default' => '', // Give it a default
-
-     )
-   );
-   $wp_customize->add_setting(
-      'cosmetic_footer_social_icon_1', //give it an ID
-      array(
-        'type' => 'theme_mod',
-        'default' => '', // Give it a default
-
-      )
-    );
-    $wp_customize->add_setting(
-       'cosmetic_footer_social_icon_2', //give it an ID
-       array(
-         'type' => 'theme_mod',
-         'default' => '', // Give it a default
-
-       )
-     );
-     $wp_customize->add_setting(
-        'cosmetic_footer_social_icon_3', //give it an ID
-        array(
-          'type' => 'theme_mod',
-          'default' => '', // Give it a default
-
-        )
-      );
-
-    $wp_customize->get_setting( 'cosmetic_footer_social_icon_1' )->transport = 'postMessage';
-    $wp_customize->get_setting( 'cosmetic_footer_social_icon_2' )->transport = 'postMessage';
-    $wp_customize->get_setting( 'cosmetic_footer_social_icon_3' )->transport = 'postMessage';
-    $wp_customize->get_setting( 'cosmetic_footer_social_url_1' )->transport = 'postMessage';
-    $wp_customize->get_setting( 'cosmetic_footer_social_url_2' )->transport = 'postMessage';
-    $wp_customize->get_setting( 'cosmetic_footer_social_url_3' )->transport = 'postMessage';
-
-
-    $wp_customize->add_control( 'footer_social_icon_1',
-        array(
-          'label' => __( '푸터 소셜 아이콘 #1', 'cosmetic' ), //set the label to appear in the Customizer
-          'section' => 'footer', //select the section for it to appear under
-          'settings' => 'cosmetic_footer_social_icon_1', //pick the setting it applies to
-          'type' => 'text',
-          'priority' => 31,
-        )
-     );
-   $wp_customize->add_control( 'footer_social_url_1',
-       array(
-         'label' => __( '푸터 소셜 URL #1', 'cosmetic' ), //set the label to appear in the Customizer
-         'section' => 'footer', //select the section for it to appear under
-         'settings' => 'cosmetic_footer_social_url_1', //pick the setting it applies to
-         'type' => 'text',
-         'priority' => 32,
-       )
-    );
-    $wp_customize->add_control( 'footer_social_icon_2',
-        array(
-          'label' => __( '푸터 소셜 아이콘 #2', 'cosmetic' ), //set the label to appear in the Customizer
-          'section' => 'footer', //select the section for it to appear under
-          'settings' => 'cosmetic_footer_social_icon_2', //pick the setting it applies to
-          'type' => 'text',
-          'priority' => 33,
-        )
-     );
-    $wp_customize->add_control( 'footer_social_url_2',
-        array(
-          'label' => __( '푸터 소셜 URL #2', 'cosmetic' ), //set the label to appear in the Customizer
-          'section' => 'footer', //select the section for it to appear under
-          'settings' => 'cosmetic_footer_social_url_2', //pick the setting it applies to
-          'type' => 'text',
-          'priority' => 34,
-        )
-     );
-     $wp_customize->add_control( 'footer_social_icon_3',
-         array(
-           'label' => __( '푸터 소셜 아이콘 #3', 'cosmetic' ), //set the label to appear in the Customizer
-           'section' => 'footer', //select the section for it to appear under
-           'settings' => 'cosmetic_footer_social_icon_3', //pick the setting it applies to
-           'type' => 'text',
-           'priority' => 35,
-         )
-      );
-     $wp_customize->add_control( 'footer_social_url_3',
-         array(
-           'label' => __( '푸터 소셜 URL #3', 'cosmetic' ), //set the label to appear in the Customizer
-           'section' => 'footer', //select the section for it to appear under
-           'settings' => 'cosmetic_footer_social_url_3', //pick the setting it applies to
-           'type' => 'text',
-           'priority' => 36,
-         )
-      );
 }
 add_action( 'customize_register', 'themeslug_customize_register' );
 
@@ -216,44 +95,6 @@ function my_theme_setup(){
 
 }
 add_action( 'after_setup_theme', 'my_theme_setup' );
-
-// 메뉴 아이템 클래스 픽스
-function custom_special_nav_class( $classes, $item ) {
-  $test = 0;
-    global $taxonomy, $post;
-    $test = 0;
-    $front_page_id  = (int) get_option( 'page_on_front' );
-
-    if( isset( $taxonomy ) && $taxonomy === "cosmetic_category" ){
-
-        if ( $front_page_id === (int) $item->object_id ){
-
-             $classes[] = "custom_for_taxonomy";
-
-         } elseif( ( $key = array_search('current_page_parent', $classes )) !== false ) {
-
-             unset($classes[$key]);
-
-         }
-
-    } elseif( isset( $post->post_type ) && $post->post_type === 'cosmetic' ){
-
-        if( $front_page_id === (int) $item->object_id ){
-
-              $classes[] = "custom_for_taxonomy";
-
-        } elseif( ( $key = array_search('current_page_parent', $classes )) !== false ) {
-
-            unset($classes[$key]);
-
-        }
-
-    }
-
-    return $classes;
-
-}
-add_filter( 'nav_menu_css_class' , 'custom_special_nav_class' , 10, 2 );
 
 // 일반 사용자 어드민 바 기능 끄기
 add_action('after_setup_theme', 'remove_admin_bar');
@@ -509,36 +350,6 @@ function get_term_parent_id(){
         return $get_term->parent;
     }
     return $get_term->term_id;
-}
-
-// filter for cosmetic post type edit list
-add_action('restrict_manage_posts','restrict_cosmetic_by_cosmetic_category');
-function restrict_cosmetic_by_cosmetic_category() {
-    $test = 0;
-    global $typenow;
-    global $wp_query;
-    $cosmetic_taxonomies = get_object_taxonomies( 'cosmetic', 'objects' );
-
-    if ($typenow=='cosmetic') {
-        foreach ($cosmetic_taxonomies as $key => $cosmetic_taxonomy) {
-
-          $cosmetic_term_slug = !empty($wp_query->query[$cosmetic_taxonomy->name]) ?
-            $wp_query->query[$cosmetic_taxonomy->name] : false;
-
-          wp_dropdown_categories(array(
-              'show_option_all' =>  __("Show All {$cosmetic_taxonomy->label}"),
-              'taxonomy'        =>  $cosmetic_taxonomy->name,
-              'name'            =>  $cosmetic_taxonomy->name,
-              'orderby'         =>  'name',
-              'selected'        =>  $cosmetic_term_slug,
-              'hierarchical'    =>  true,
-              'depth'           =>  3,
-              'show_count'      =>  true, // Show # items in parenthesis
-              'hide_empty'      =>  true, // Don't show cosmetic_category w/o listings
-              'value_field'     => 'slug',
-          ));
-        }
-    }
 }
 
 // Bread crumb

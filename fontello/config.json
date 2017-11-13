@@ -36,7 +36,7 @@
     },
     {
       "uid": "8e25dab87d95a80c1db46e47902d87b9",
-      "css": "yacht",
+      "css": "yacht-boat",
       "code": 59394,
       "src": "custom_icons",
       "selected": true,
@@ -50,7 +50,7 @@
     },
     {
       "uid": "35fdaa9184059e5d6b0dd93064d4174e",
-      "css": "boat",
+      "css": "fishing-boat",
       "code": 59395,
       "src": "custom_icons",
       "selected": true,
@@ -64,7 +64,7 @@
     },
     {
       "uid": "19bcd417a53663e357a4ed4623e3715a",
-      "css": "certificate",
+      "css": "certification",
       "code": 59396,
       "src": "custom_icons",
       "selected": true,
