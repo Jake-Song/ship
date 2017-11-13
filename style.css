@@ -57,6 +57,7 @@ img{
 /* 썸네일 */
 .custom.thumbnail{
   border: 0;
+  border-radius: 0;
   padding: 0;
 }
 .custom.thumbnail > .caption{
@@ -402,7 +403,7 @@ div.container{
 #primary-menu > ul > li .dropdown-menu{
   width: 240px;
   background: transparent;
-  border: 1px solid #478AB2;
+  border: 0;
   border-radius: 0;
   display: block;
   padding: 0;
@@ -730,32 +731,16 @@ div.container{
 }
 .image-section img{
   position: absolute;
+  opacity: 0;
   visibility: hidden;
-  -webkit-transition: 0s .8s visibility;
-  transition: 0s .8s visibility;
+  -webkit-transition: visibility 0s .8s, opacity .8s;
+  transition: visibility 0s .8s, opacity .8s;
 }
 .image-section img.current{
   visibility: visible;
-  -webkit-transition: 0s .8s visibility;
-  transition: 0s .8s visibility;
-}
-.image-section > .overay{
-  position: absolute;
-  width: 120%;
-  height: 100%;
-  background: #354D63;
-  -webkit-transform: translate3d(100%,0,0);
-          transform: translate3d(100%,0,0);
-  visibility: hidden;
-  font-size: 5rem;
-  color: #656759;
-}
-.image-section > .overay.current{
-  -webkit-transform: translate3d(-100%,0,0);
-          transform: translate3d(-100%,0,0);
-  visibility: visible;
-  -webkit-transition: 1s cubic-bezier(0,1.01,1,.06);
-  transition: 1s cubic-bezier(0,1.01,1,.06);
+  opacity: 1;
+  -webkit-transition: visibility 0s, opacity .8s;
+  transition: visibility 0s, opacity .8s;
 }
 .text-section{
   position: relative;
@@ -766,10 +751,18 @@ div.container{
 }
 .text-section > .text{
   position: absolute;
+  opacity: 0;
   visibility: hidden;
-  -webkit-transition: 0s .8s visibility;
-  transition: 0s .8s visibility;
+  -webkit-transition: visibility 0s .8s, opacity .8s;
+  transition: visibility 0s .8s, opacity .8s;
   padding-left: 2em;
+}
+.text-section .text.current{
+  position: absolute;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: visibility 0s, opacity .8s;
+  transition: visibility 0s, opacity .8s;
 }
 .text-section .text > h4{
   margin-bottom: 0;
@@ -787,48 +780,6 @@ div.container{
 }
 .best-ship-info{
   margin-bottom: 1em;
-}
-.text-section .text.current{
-  position: absolute;
-  visibility: visible;
-  -webkit-transition: 0s .8s visibility;
-  transition: 0s .8s visibility;
-}
-.text-section > .overay{
-  position: absolute;
-  width: 105%;
-  height: 120%;
-  top: 0;
-  left: 0;
-  background-color: #F7C446;
-  -webkit-transform: translate3d(0%,-120%,0);
-          transform: translate3d(0%,-120%,0);
-  visibility: hidden;
-  font-size: 5rem;
-  color: #656759;
-}
-.text-section > .overay.current{
-  -webkit-transform: translate3d(0%,100%,0);
-          transform: translate3d(0%,100%,0);
-  visibility: visible;
-  -webkit-transition: 1s cubic-bezier(0,1.01,1,.06);
-  transition: 1s cubic-bezier(0,1.01,1,.06);
-  z-index: 2;
-}
-.overay > i{
-  position: absolute;
-  -webkit-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
-  top: 50%;
-  left: 50%;
-}
-.image-section .overay > i{
-  -webkit-transform: translate(-70%,-50%);
-          transform: translate(-70%,-50%);
-}
-.text-section .overay > i{
-  -webkit-transform: translate(-50%,-70%);
-          transform: translate(-50%,-70%);
 }
 .best-ship > h3{
   -webkit-box-flex: 1;
@@ -913,125 +864,44 @@ div.container{
   bottom: 5px;
 }
 
-/* 삽니다 & 팝니다 */
-.add-post-box, .read-post-box{
-	background-color: #DDD;
-	padding: 15px;
-	margin-bottom: 15px;
-  display: none;
+/* 최근 매물 */
+.recent-ship{
+  background: #354D63;
+  padding-top: 2em;
 }
-.add-post-box input, .read-post-box input,
-.add-post-box textarea, .read-post-box textarea{
-	width: 100%;
-	border: none;
-	padding: 10px;
-	margin: 0 0 10px 0;
-	box-sizing: border-box;
+.recent-ship > .title > h3{
+  color: white;
 }
-#market{
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  position: relative;
-  margin-bottom: 5em;
+.bx-wrapper.recent-ship{
+  box-shadow: initial;
+  border: 0;
+  background: initial;
+  padding-left: 2em;
+  margin-top: 1em;
+  padding-bottom: 6em;
 }
-#market > h3{
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 100%;
-          flex: 1 1 100%;
-  text-align: center;
-  margin-bottom: 1em;
-}
-#buy{
-  margin-right: 2em;
-}
-#sell, #buy{
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1;
-          flex: 1 1;
-  position: relative;
-    margin-left: 2em;
-}
-.market-icon{
+.bx-wrapper.recent-ship .bx-controls-direction a{
+  text-indent: 0;
+  font-size: 3rem;
+  color: white;
+  background: initial;
   position: absolute;
-  top: 7px;
-  right: 0;
-  font-size: 2rem;
-}
-#sell > h3, #buy > h3{
-  border-bottom: 2px solid #656759;
-  margin: 0 0 1em 0;
-  color: #333;
-  padding: .5em;
-}
-#buy > .bbs-table > ul, #sell > .bbs-table > ul{
-  list-style: none;
-  margin-bottom: 0;
-  padding: 1.5em 1.5em 0 1.5em;
-}
-#buy > .bbs-table > ul > li, #sell > .bbs-table > ul > li{
-  font-size: 1.2rem;
-  position: relative;
-  border-bottom: 1px solid #ddd;
-  padding: .2em;
-}
-#buy > .bbs-table > ul > li > span.date, #sell > .bbs-table > ul > li > span.date,
-#buy > .bbs-table > ul > li > span.view, #sell > .bbs-table > ul > li > span.view{
-  position: absolute;
-  top: .5em;
-  right: 4em;
-  vertical-align: middle;
-}
-#buy > .bbs-table > ul > li > span.author, #sell > .bbs-table > ul > li > span.author{
-  position: absolute;
-  right: 16.3em;
-}
-#buy > .bbs-table > ul > li > span.date, #sell > .bbs-table > ul > li > span.date{
-  right: 7.5em;
-}
-#buy > .bbs-table > ul > li > a > .market-image-wrapper, #sell > .bbs-table > ul > li > a > .market-image-wrapper{
-  display: inline-block;
-  margin-right: 1.5em;
-}
-#buy > .bbs-table > ul > li:nth-child(2n), #sell > .bbs-table > ul > li:nth-child(2n){
-  background: #f7f7f7;
-}
-#buy > .bbs-table > ul.header, #sell > .bbs-table > ul.header{
-  list-style: none;
-}
-#buy > .bbs-table > ul.header > li, #sell > .bbs-table > ul.header > li{
-  display: inline-block;
-  text-align: center;
-}
-#buy > .bbs-table > ul.header > li:nth-child(2n), #sell > .bbs-table > ul.header > li:nth-child(2n){
-  background: #fff;
-}
-.bbs-title{
-  width: 65%;
-}
-.bbs-user{
-  width: 10%;
-}
-.bbs-date{
-  width: 10%;
-}
-.bbs-view{
-  width: 10%;
-}
-.market-image-wrapper > img{
-  height: 37.5px;
-}
-.market-title-wrapper, .market-location-wrapper{
-  vertical-align: middle;
-}
-#market-center-image{
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1;
-          flex: 1 1;
+  top: 35%;
 }
 
+.bx-wrapper.recent-ship .bx-controls-direction a.bx-prev::before{
+  content: '\e811';
+  font-family: Fontello;
+  color: #F7C446;
+}
+.bx-wrapper.recent-ship .bx-controls-direction a.bx-next::before{
+  content: '\e812';
+  font-family: Fontello;
+  color: #F7C446;
+}
+.bx-wrapper.recent-ship img{
+  max-width: initial;
+}
 /* 공지 및 해양/수산 소식 */
 #notice-box{
   display: -webkit-box;
@@ -1308,8 +1178,8 @@ article.post.single .text-wrapper{
 }
 .title > h3{
   display: inline-block;
-  border-bottom: 2px solid #656759;
-  padding-bottom: 0.3em;
+  border-bottom: 2px solid #F7C446;
+  padding-bottom: 0.5em;
 }
 .ship-option-basic{
   -webkit-box-flex: 1;

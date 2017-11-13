@@ -58,111 +58,6 @@
 
       </div>
 
-      <div id="market">
-
-        <div id="buy">
-          <span class="bk"></span>
-          <h3>삽니다</h3>
-          <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
-          <div class="bbs-table">
-            <ul>
-              <?php
-                $args = array(
-                  'post_type' => 'ship',
-                  'post_status' => 'publish',
-                  'posts_per_page' => 10,
-                );
-                $query = new WP_Query( $args );
-
-                if( $query->have_posts() ) :
-                  while( $query->have_posts() ) : $query->the_post();
-
-                    $ship_location_terms = get_the_terms( $query->post->ID, 'ship_location' );
-                    $test = 0;
-                  ?>
-
-                    <li>
-                      <a href="<?php the_permalink(); ?>">
-                        <div class="market-image-wrapper"><?php if( has_post_thumbnail($query->post->ID) ) the_post_thumbnail('smallest'); ?></div>
-                        <span class="market-location-wrapper">
-                          <?php
-                            if( $ship_location_terms )
-                              echo '[' . $ship_location_terms[0]->name . ']';
-                          ?>
-                        </span>
-                        <span class="market-title-wrapper"><?php the_title(); ?></span>
-                      </a>
-                      <span>
-                        <?php
-                          $ship_date = $query->post->post_date;
-                          echo date('Y-n-j', strtotime($ship_date));
-                        ?>
-                      </span>
-                    </li>
-
-                <?php endwhile;
-
-                  wp_reset_postdata();
-
-                endif;
-
-              ?>
-            </ul>
-          </div>
-        </div>
-
-        <div id="sell">
-          <span class="bk"></span>
-          <h3>팝니다</h3>
-          <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
-          <div class="bbs-table">
-            <ul>
-              <?php
-                $args = array(
-                  'post_type' => 'ship',
-                  'post_status' => 'publish',
-                  'posts_per_page' => 10,
-                );
-                $query = new WP_Query( $args );
-
-                if( $query->have_posts() ) :
-                  while( $query->have_posts() ) : $query->the_post();
-                  $test = 0;
-                  $ship_location_terms = get_the_terms( $query->post->ID, 'ship_location' );
-                  ?>
-
-                    <li>
-                      <a href="<?php the_permalink(); ?>">
-                        <div class="market-image-wrapper"><?php if( has_post_thumbnail($query->post->ID) ) the_post_thumbnail('smallest'); ?></div>
-                        <span class="market-location-wrapper">
-                          <?php
-                            if( $ship_location_terms )
-                              echo '[' . $ship_location_terms[0]->name . ']';
-                          ?>
-                        </span>
-                        <span class="market-title-wrapper"><?php the_title(); ?></span>
-                      </a>
-                      <span>
-                        <?php
-                          $ship_date = $query->post->post_date;
-                          echo date('Y-n-j', strtotime($ship_date));
-                        ?>
-                      </span>
-                    </li>
-
-                <?php endwhile;
-
-                  wp_reset_postdata();
-
-                endif;
-
-              ?>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
   <div class="best-ship">
 
       <div class="image-section">
@@ -205,9 +100,7 @@
 
         endif;
        ?>
-       <div class="overay">
-         <i class="icon-ship"></i>
-       </div>
+
      </div>
 
       <div class="text-section">
@@ -310,29 +203,27 @@
 
         ?>
 
-        <div class="overay">
-          <i class="icon-doc-text"></i>
-        </div>
-
       </div>
 
     </div>
 
    <?php //include( locate_template( '/module/notice-slider.php', false, false ) ); ?>
 
+   <?php include( locate_template( '/module/recent-ship.php', false, false ) ); ?>
+
    <div id="notice-box">
      <div class="notice-content">
        <h3>공지</h3>
        <span>공지 사항입니다.</span>
        <div class="notice-icon">
-         <i class="icon-plus-squared-alt"></i>
+         <a href="<?php echo site_url('/') . '공지사항'; ?>"><i class="icon-plus-squared-alt"></i></a>
        </div>
      </div>
      <div class="notice-content">
        <h3>해양/수산 소식</h3>
        <span>해양/수산 소식입니다.</span>
        <div class="notice-icon">
-         <i class="icon-plus-squared-alt"></i>
+         <a href="<?php echo site_url('/') . '해양-수산-소식'; ?>"><i class="icon-plus-squared-alt"></i></a>
        </div>
      </div>
    </div>

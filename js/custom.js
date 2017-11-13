@@ -100,19 +100,20 @@ jQuery( document ).ready( function($){
       wrapperClass: 'bx-wrapper main'
     });
 
-    $('#notice-slider').bxSlider({
-      mode: 'vertical',
-      auto: true,
-      autoStart: false,
+    $('.recent-ship.row').bxSlider({
+      auto: false,
+      speed: 1500,
+      slideWidth: 350,
+      minSlides: 4,
+      maxSlides: 7,
+      moveSlides: 1,
       pager: false,
-      startText: '',
-      stopText: '',
       prevText: '',
       nextText: '',
-      autoHover: true,
-      speed: 1500,
-      wrapperClass: 'bx-wrapper notice'
+      wrapperClass: 'bx-wrapper recent-ship'
     });
+
+    
 
     $('#partners-slider').bxSlider({
       auto: false,
@@ -252,13 +253,8 @@ jQuery( document ).ready( function($){
 
         currentIndex = index;
 
-        $('.image-section .overay').addClass('current').on('transitionend', function(){
-          $(this).removeClass('current');
-        });
-        $('.text-section .overay').addClass('current').on('transitionend', function(){
-          $(this).removeClass('current');
-          $('.current-slide').text( currentIndex + 1);
-        });
+        $('.current-slide').text( currentIndex + 1);
+
       }
       function goToPrev(){
         goTo(currentIndex - 1);

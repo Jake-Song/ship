@@ -27,7 +27,7 @@
                 <?php
                   if( have_posts() ) :
                     while( have_posts() ) : the_post();
-
+                    $test = 0;
                     $ship_maker_terms = get_the_terms( $post->ID, 'ship_maker' );
                     $ship_model_terms = get_the_terms( $post->ID, 'ship_model' );
                     $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );

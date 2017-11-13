@@ -1,7 +1,7 @@
 <div class="recent-ship">
-
-    <h3>최근 등록 매물</h3>
-
+    <div class="title">
+      <h3>최근 등록 매물</h3>
+    </div>
     <?php
       $args = array(
         'post_type' => 'ship',
@@ -15,16 +15,9 @@
         if( $query->have_posts() ) :
           while( $query->have_posts() ) : $query->the_post();
       ?>
-            <div class="col-sm-6 col-md-3">
-              <div class='custom thumbnail'>
-                <a href="<?php the_permalink(); ?>">
-                  <?php the_post_thumbnail( 'custom' ); ?>
-                  <div class="caption">
-                    <?php echo get_the_title(); ?>
-                  </div>
-                </a>
-              </div>
-            </div>
+
+      <?php include( locate_template( '/module/thumbnail.php', false, false ) ); ?>
+
        <?php
           endwhile;
 

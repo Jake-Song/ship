@@ -193,6 +193,18 @@
       "css": "plus-squared-alt",
       "code": 61846,
       "src": "fontawesome"
+    },
+    {
+      "uid": "0db0310883e0bdacfd1bb2d394238e8a",
+      "css": "left-circled",
+      "code": 59409,
+      "src": "entypo"
+    },
+    {
+      "uid": "52725ff4d4042964bd3a60609bf3695b",
+      "css": "right-circled",
+      "code": 59410,
+      "src": "entypo"
     }
   ]
 }

@@ -17,7 +17,7 @@
       </div>
 
       <div class="caption">
-        <?php echo get_the_title() . ' / ' .  $ship_maker_name . ' / ' . $ship_model_name . ' / ' . $ship_location_name; ?>
+        <?php echo get_the_title(); ?>
       </div>
 
   </div>
