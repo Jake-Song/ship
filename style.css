@@ -923,9 +923,18 @@ div.container{
   color: #333;
   padding: .5em;
 }
+table.ship-custom.market > tbody > tr{
+  height: 52px;
+}
+table.ship-custom.market > thead > tr > th{
+  text-align: center;
+}
 table.ship-custom.market > tbody > tr > td{
   font-size: 1.2rem;
   border-top: 0;
+}
+table.ship-custom.market > tbody > tr > td:not(.name){
+  text-align: center;
 }
 table.ship-custom.market > tbody > tr > td.img{
   width: 12%;
@@ -934,12 +943,13 @@ table.ship-custom.market > tbody > tr > td.img > img{
   height: 35px;
 }
 table.ship-custom.market > tbody > tr > td.name{
-  width: 65%;
+  width: 40%;
 }
-#buy > table.ship-custom.market > tbody > tr > td.img{
-  width: 8%;
+table.ship-custom.market > tbody > tr > td.img{
+  width: 12%;
   font-size: 1.5rem;
 }
+
 /* 최근 매물 */
 .recent-ship{
   background: #354D63;
@@ -979,6 +989,7 @@ table.ship-custom.market > tbody > tr > td.name{
 .bx-wrapper.recent-ship img{
   max-width: initial;
 }
+
 /* 공지 및 해양/수산 소식 */
 #notice-box{
   display: -webkit-box;
@@ -1121,6 +1132,11 @@ table.ship-custom.market > tbody > tr > td.name{
           box-shadow: none;
   background: transparent;
   border: 0;
+}
+
+/* Ship 카테고리 페이지 */
+article.tax .ship-custom.table{
+  height: auto;
 }
 
 /* Ship 포스트 타입 페이지 */

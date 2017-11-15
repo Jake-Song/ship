@@ -499,3 +499,12 @@ function setPostViews($postID) {
         update_post_meta($postID, $count_key, $count);
     }
 }
+
+// 선박 카테고리별 쿼리 변경하기
+function ship_modify_main_query( $query ) {
+
+
+
+}
+// Hook my above function to the pre_get_posts action
+add_action( 'pre_get_posts', 'ship_modify_main_query' );

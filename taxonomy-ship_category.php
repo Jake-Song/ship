@@ -24,50 +24,129 @@
 
               <article class="post tax clearfix">
 
-                <div id="sell">
-                  <h3>팝니다</h3>
-                  <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
+                <div id="market">
 
-                  <table class="table ship-custom market">
+                  <div id="buy">
 
-                <?php
-                  if( have_posts() ) :
-                    while( have_posts() ) : the_post();
-                      $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
-                ?>
+                    <h3>삽니다</h3>
+                    <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
 
-                    <tr>
-                      <td class="img">
-                        <?php if( has_post_thumbnail($post->ID) ) the_post_thumbnail('smallest'); ?>
-                      </td>
-                      <td class="name">
-                        <a href="<?php the_permalink(); ?>">
-                          <?php
-                            if( $ship_location_terms )
-                              echo '[' . $ship_location_terms[0]->name . ']' . " " . get_the_title();
-                          ?>
-                        </a>
-                      </td>
-                      <td class="date">
-                        <?php
-                          $ship_date = $post->post_date;
-                          echo date('Y-n-j', strtotime($ship_date));
-                        ?>
-                      </td>
-                    </tr>
-
+                    <table class="table ship-custom market">
+                      <thead>
+                        <tr>
+                          <th>번호</th>
+                          <th>지역</th>
+                          <th>제목</th>
+                          <th>날짜</th>
+                          <th>조회수</th>
+                        </tr>
+                      </thead>
                   <?php
-                    endwhile;
+                  $test = 0;
+                    if( have_posts() ) :
+                      while( have_posts() ) : the_post();
 
-                  else:
-                    echo '매물이 없습니다.';
+                        if($post->post_type === "ship_selling") :
 
-                  endif;
-                 ?>
+                        $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
+                  ?>
 
-                 </table>
+                      <tr>
+                        <td class="img">
+                          <i class="icon-right-circled"></i>
+                        </td>
+                        <td class="name">
+                          <a href="<?php the_permalink(); ?>">
+                            <?php
+                              if( $ship_location_terms )
+                                echo '[' . $ship_location_terms[0]->name . ']' . " " . get_the_title();
+                            ?>
+                          </a>
+                        </td>
+                        <td class="date">
+                          <?php
+                            $ship_date = $post->post_date;
+                            echo date('Y-n-j', strtotime($ship_date));
+                          ?>
+                        </td>
+                      </tr>
 
-               </div>
+                        <?php
+                            endif;
+
+                          endwhile;
+
+                        else:
+                          echo '매물이 없습니다.';
+
+                        endif;
+
+                        rewind_posts();
+                       ?>
+
+                      </table>
+
+                    </div>
+
+                   <div id="sell">
+
+                     <h3>팝니다</h3>
+                     <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
+
+                     <table class="table ship-custom market">
+                       <thead>
+                         <tr>
+                           <th></th>
+                           <th>지역</th>
+                           <th>제목</th>
+                           <th>날짜</th>
+                           <th>조회수</th>
+                         </tr>
+                       </thead>
+                   <?php
+                    $test = 0;
+                     if( have_posts() ) :
+                       while( have_posts() ) : the_post();
+                         if($post->post_type === "ship") :
+                           $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
+                   ?>
+
+                       <tr>
+                         <td class="img">
+                           <?php if( has_post_thumbnail($post->ID) ) the_post_thumbnail('smallest'); ?>
+                         </td>
+                         <td class="name">
+                           <a href="<?php the_permalink(); ?>">
+                             <?php
+                               if( $ship_location_terms )
+                                 echo '[' . $ship_location_terms[0]->name . ']' . " " . get_the_title();
+                             ?>
+                           </a>
+                         </td>
+                         <td class="date">
+                           <?php
+                             $ship_date = $post->post_date;
+                             echo date('Y-n-j', strtotime($ship_date));
+                           ?>
+                         </td>
+                       </tr>
+
+                     <?php
+                        endif;
+
+                       endwhile;
+
+                     else:
+                       echo '매물이 없습니다.';
+
+                     endif;
+                    ?>
+
+                    </table>
+
+                  </div>
+
+                </div>
 
               </article>
 

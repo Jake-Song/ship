@@ -26,21 +26,26 @@
 
         <article class="post archive clearfix">
 
-          <div id="sell">
-            <h3>팝니다</h3>
+          <div id="buy">
+
+            <h3>삽니다</h3>
             <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
 
             <table class="table ship-custom market">
 
           <?php
+          $test = 0;
             if( have_posts() ) :
               while( have_posts() ) : the_post();
+
+                if($post->post_type === "ship_selling") :
+
                 $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
           ?>
 
               <tr>
                 <td class="img">
-                  <?php if( has_post_thumbnail($post->ID) ) the_post_thumbnail('smallest'); ?>
+                  <i class="icon-right-circled"></i>
                 </td>
                 <td class="name">
                   <a href="<?php the_permalink(); ?>">
@@ -59,31 +64,33 @@
                 </td>
               </tr>
 
+                <?php
+                    endif;
+
+                  endwhile;
+
+                else:
+                  echo '매물이 없습니다.';
+
+                endif;
+
+               ?>
+
+              </table>
+
+            </div>
             <?php
-              endwhile;
+              global $wp_query;
 
-            else:
-              echo '매물이 없습니다.';
+              $big = 999999999; // need an unlikely integer
 
-            endif;
-           ?>
-
-           </table>
-
-         </div>
-
-         <?php
-           global $wp_query;
-
-           $big = 999999999; // need an unlikely integer
-
-           echo paginate_links( array(
-             'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-             'format' => '?paged=%#%',
-             'current' => max( 1, get_query_var('paged') ),
-             'total' => $wp_query->max_num_pages
-           ) );
-         ?>
+              echo paginate_links( array(
+              	'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+              	'format' => '?paged=%#%',
+              	'current' => max( 1, get_query_var('paged') ),
+              	'total' => $wp_query->max_num_pages
+              ) );
+            ?>
 
         </article>
 

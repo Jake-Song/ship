@@ -33,7 +33,7 @@
       <?php if( !( $term->parent ) ) : ?>
 
         <li>
-          <a href="<?php echo esc_url( home_url( '/' ) . $term->taxonomy . '/' . $term->slug); ?>">
+          <a href="<?php echo esc_url( home_url( '/' ) . $term->taxonomy . '/' . $term->slug ); ?>">
             <div class="ship-category-item">
                 <i class="icon-<?php echo esc_attr( $term->slug ); ?>"></i>
                 <div class="ship-category-name">
