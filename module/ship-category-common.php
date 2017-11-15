@@ -1,6 +1,7 @@
 <div class="ship-category-menu">
 
   <?php
+    $test = 0;
     $terms = get_terms(
       array(
         'taxonomy' => 'ship_category',
@@ -9,6 +10,25 @@
       ));
   ?>
   <ul>
+
+    <li>
+      <a href="<?php
+                  if( is_front_page() ){
+                    echo esc_url( home_url() );
+                  } elseif( is_archive() && $post->post_type === 'ship' ){
+                    echo site_url() . '/ship';
+                  } elseif( is_archive() && $post->post_type === 'ship_selling' )
+                    echo site_url() . '/ship_selling';
+                ?>">
+        <div class="ship-category-item all-item">
+          <i class="icon-th"></i>
+          <div class="ship-category-name">
+            전체보기
+          </div>
+        </div>
+      </a>
+    </li>
+
     <?php foreach ($terms as $key => $term) : ?>
       <?php if( !( $term->parent ) ) : ?>
 

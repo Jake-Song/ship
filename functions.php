@@ -336,7 +336,7 @@ function ship_register_taxonomy(){
         'query_var' => true,
         'rewrite' => array( 'slug' => $slug, 'hierarchical' => true ),
       );
-      register_taxonomy( $slug, 'ship', $args );
+      register_taxonomy( $slug, array( 'ship', 'ship_selling' ), $args );
 
   endforeach;
 }

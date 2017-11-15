@@ -17,13 +17,6 @@
           $args = array(
             'post_type' => 'ship',
             'post_status' => 'publish',
-            'tax_query' => array(
-                array(
-                  'taxonomy' => 'ship_category',
-                  'field' => 'slug',
-                  'terms' => 'fishing-ship',
-                ),
-            ),
           );
           $query = new WP_Query( $args );
         ?>
@@ -36,27 +29,13 @@
 
               <article class="post front clearfix">
 
-              <?php
-                if( $query->have_posts() ) :
-                  while( $query->have_posts() ) : $query->the_post();
-                  $ship_maker_terms = get_the_terms( $post->ID, 'ship_maker' );
-                  $ship_model_terms = get_the_terms( $post->ID, 'ship_model' );
-                  $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
+                <?php include( locate_template( '/module/buyandsell.php', false, false ) ); ?>
 
-                  include( locate_template( '/module/thumbnail.php', false, false ) );
-
-                  endwhile;
-                  wp_reset_postdata();
-                endif;
-              ?>
-
-            </article>
+              </article>
 
             </div>
-
         </div>
-
-      </div>
+  </div>
 
   <div class="best-ship">
 

@@ -14,6 +14,9 @@
       <?php
         if( $query->have_posts() ) :
           while( $query->have_posts() ) : $query->the_post();
+          $ship_maker_terms = get_the_terms( $post->ID, 'ship_maker' );
+          $ship_model_terms = get_the_terms( $post->ID, 'ship_model' );
+          $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
       ?>
 
       <?php include( locate_template( '/module/thumbnail.php', false, false ) ); ?>

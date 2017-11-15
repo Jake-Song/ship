@@ -48,12 +48,6 @@ img{
           box-sizing: border-box;
 }
 
-/* Ajax 컨테이너 */
-.ajax-container{
-  padding: 3em 0;
-  background: #f7f7f7;
-}
-
 /* 썸네일 */
 .custom.thumbnail{
   border: 0;
@@ -829,6 +823,7 @@ div.container{
 }
 .ship-category-menu{
   text-align: center;
+  margin-bottom: 3em;
 }
 .ship-category-menu > h3{
   text-align: center;
@@ -856,6 +851,11 @@ div.container{
 .ship-category-menu > ul > li > a:focus{
   color: #F7C446;
 }
+.ship-category-menu .ship-category-item.all-item i{
+  font-size: 2.5rem;
+  position: relative;
+  top: -25px;
+}
 .ship-category-menu .ship-category-item i{
   font-size: 5rem;
 }
@@ -865,6 +865,81 @@ div.container{
   bottom: 5px;
 }
 
+/* 삽니다 & 팝니다 */
+
+.add-post-box, .read-post-box{
+	background-color: #DDD;
+	padding: 15px;
+	margin-bottom: 15px;
+  display: none;
+}
+
+.add-post-box input, .read-post-box input,
+.add-post-box textarea, .read-post-box textarea{
+	width: 100%;
+	border: none;
+	padding: 10px;
+	margin: 0 0 10px 0;
+	box-sizing: border-box;
+}
+
+#market{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
+  margin-bottom: 5em;
+}
+#market > h3{
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  text-align: center;
+  margin-bottom: 1em;
+}
+.market-icon{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+}
+#buy{
+  margin-right: 2em;
+}
+#sell, #buy{
+  margin-left: 2em;
+}
+#sell, #buy{
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  position: relative;
+}
+#sell > h3, #buy > h3{
+  border-bottom: 2px solid #656759;
+  margin: 0 0 1em 0;
+  color: #333;
+  padding: .5em;
+}
+table.ship-custom.market > tbody > tr > td{
+  font-size: 1.2rem;
+  border-top: 0;
+}
+table.ship-custom.market > tbody > tr > td.img{
+  width: 12%;
+}
+table.ship-custom.market > tbody > tr > td.img > img{
+  height: 35px;
+}
+table.ship-custom.market > tbody > tr > td.name{
+  width: 65%;
+}
+#buy > table.ship-custom.market > tbody > tr > td.img{
+  width: 8%;
+  font-size: 1.5rem;
+}
 /* 최근 매물 */
 .recent-ship{
   background: #354D63;
@@ -1229,6 +1304,14 @@ article.post.single .text-wrapper{
   border: 2px solid #999;
 }
 
+/* 삽니다 포스트 타입 싱글 페이지 */
+article.single-selling{
+  padding: 1em;
+}
+article.single-selling > .content-wrapper{
+  padding: 1em;
+  border: 2px solid #ddd;
+}
 /* 푸터 */
 .site-footer{
   position: absolute;
@@ -1757,7 +1840,7 @@ article.not-found h3{
   .ship-category-menu > ul > li{
     padding: 0 1em 1em 1em;
   }
-  #buy > .bbs-table > ul, #sell > .bbs-table > ul{
+  #buy > ul, #sell > ul{
     padding: 0;
   }
   .best-nav{
@@ -1811,10 +1894,10 @@ article.not-found h3{
     padding: 0 1em;
     margin: 0;
   }
-  #buy > .bbs-table > ul{
+  #buy > ul{
     margin-bottom: 2em;
   }
-  #buy > .bbs-table > ul, #sell > .bbs-table > ul{
+  #buy > ul, #sell > ul{
     padding: 0;
   }
   .image-section, .text-section{
