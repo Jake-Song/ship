@@ -1,6 +1,6 @@
 <div class="recent-ship">
     <div class="title">
-      <h3>최근 등록 매물</h3>
+      <h3>최근 매물</h3>
     </div>
     <?php
       $args = array(

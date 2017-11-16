@@ -501,10 +501,65 @@ function setPostViews($postID) {
 }
 
 // 선박 카테고리별 쿼리 변경하기
-function ship_modify_main_query( $query ) {
+// add_filter('query_vars', 'ship_selling_queryvars' );
+//
+// function ship_selling_queryvars( $qvars )
+// {
+//   $qvars[] = 'ship_selling';
+//   return $qvars;
+// }
+//
+// add_filter('posts_where', 'ship_selling_where' );
+//
+// function ship_selling_where( $where ){
+//   $test = 0;
+//   global $wp_query;
+//   if( isset( $wp_query->query_vars['ship_selling'] )) {
+//     $where = preg_replace(
+//      "/\(\s*post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+//      "(ship_category LIKE $1)", $where );
+//    }
+//
+//     return $where;
+//   }
+//
+//
+// add_filter('posts_groupby', 'ship_selling_groupby' );
+//
+// function ship_selling_groupby( $groupby ){
+//   global $wpdb;
+//
+//   if( !isset( $wp_query->query_vars['ship_selling'] ) ) {
+//     return $groupby;
+//   }
+//
+//   // we need to group on post ID
+//
+//   $mygroupby = "{$wpdb->posts}.ID";
+//
+//   if( preg_match( "/$mygroupby/", $groupby )) {
+//     // grouping we need is already there
+//     return $groupby;
+//   }
+//
+//   if( !strlen(trim($groupby))) {
+//     // groupby was empty, use ours
+//     return $mygroupby;
+//   }
+//
+//   // wasn't empty, append ours
+//   return $groupby . ", " . $mygroupby;
+// }
 
+// Custom Query
 
+add_action('generate_rewrite_rules', 'ship_selling_add_rewrite_rules');
 
+function ship_selling_add_rewrite_rules( $wp_rewrite ){
+
+  $new_rules = array(
+     '(.+)/category/(.+)' => 'index.php?post_type=' . $wp_rewrite->preg_index(1) . '&ship_category=' . $wp_rewrite->preg_index(2),
+   );
+
+  $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
 }
-// Hook my above function to the pre_get_posts action
-add_action( 'pre_get_posts', 'ship_modify_main_query' );

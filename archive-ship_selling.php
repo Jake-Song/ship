@@ -29,30 +29,41 @@
           <div id="buy">
 
             <h3>삽니다</h3>
-            <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
 
             <table class="table ship-custom market">
-
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>지역</th>
+                  <th>제목</th>
+                  <th>날짜</th>
+                  <th>조회수</th>
+                </tr>
+              </thead>
           <?php
           $test = 0;
             if( have_posts() ) :
-              while( have_posts() ) : the_post();
 
-                if($post->post_type === "ship_selling") :
+              while( have_posts() ) : the_post();
 
                 $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
           ?>
 
               <tr>
-                <td class="img">
-                  <i class="icon-right-circled"></i>
+                <td class="number">
+                 <?php echo $post->ID; ?>
+                </td>
+                <td class="location">
+                  <?php
+                    if( $ship_location_terms ){
+                      echo '[' . $ship_location_terms[0]->name . ']';
+                    }
+                  ?>
                 </td>
                 <td class="name">
                   <a href="<?php the_permalink(); ?>">
                     <?php
-                      if( $ship_location_terms )
-                        echo '[' . $ship_location_terms[0]->name . ']' . " ";
-                        echo get_the_title();
+                      echo get_the_title();
                     ?>
                   </a>
                 </td>
@@ -62,10 +73,14 @@
                     echo date('Y-n-j', strtotime($ship_date));
                   ?>
                 </td>
+                <td class="bbs_count">
+                  <?php
+                    echo getPostViews($post->ID);
+                  ?>
+                </td>
               </tr>
 
                 <?php
-                    endif;
 
                   endwhile;
 
@@ -79,18 +94,20 @@
               </table>
 
             </div>
-            <?php
-              global $wp_query;
+            <div class="custom pagination">
+              <?php
+                global $wp_query;
 
-              $big = 999999999; // need an unlikely integer
+                $big = 999999999; // need an unlikely integer
 
-              echo paginate_links( array(
-              	'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-              	'format' => '?paged=%#%',
-              	'current' => max( 1, get_query_var('paged') ),
-              	'total' => $wp_query->max_num_pages
-              ) );
-            ?>
+                echo paginate_links( array(
+                	'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                	'format' => '?paged=%#%',
+                	'current' => max( 1, get_query_var('paged') ),
+                	'total' => $wp_query->max_num_pages
+                ) );
+              ?>
+            </div>
 
         </article>
 

@@ -2,7 +2,11 @@
 
   <div id="buy">
     <h3>삽니다</h3>
-    <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
+    <span class="market-icon">
+      <a href="<?php echo get_post_type_archive_link( 'ship_selling' ); ?>">
+        <i class="icon-plus-squared-alt"></i>
+      </a>
+    </span>
 
       <table class="table ship-custom market">
         <thead>
@@ -25,16 +29,13 @@
           $query = new WP_Query( $args );
 
           if( $query->have_posts() ) :
-            $bbs_num = count($query->posts);
-            $test = 0;
-
             while( $query->have_posts() ) : $query->the_post();
 
               $ship_location_terms = get_the_terms( $query->post->ID, 'ship_location' );
           ?>
               <tr>
                 <td class="number">
-                 <?php echo $bbs_num; ?>
+                 <?php echo $query->post->ID; ?>
                 </td>
                 <td class="location">
                   <?php
@@ -63,7 +64,8 @@
                 </td>
               </tr>
 
-          <?php $bbs_num--; endwhile;
+          <?php
+            endwhile;
             wp_reset_postdata();
           endif;
         ?>
@@ -73,12 +75,15 @@
 
   <div id="sell">
     <h3>팝니다</h3>
-    <span class="market-icon"><i class="icon-plus-squared-alt"></i></span>
+    <span class="market-icon">
+      <a href="<?php echo get_post_type_archive_link( 'ship' ); ?>"><i class="icon-plus-squared-alt"></i></a>
+    </span>
 
     <table class="table ship-custom market">
       <thead>
         <tr>
-          <th></th>
+          <th>번호</th>
+          <th>이미지</th>
           <th>지역</th>
           <th>제목</th>
           <th>날짜</th>
@@ -97,6 +102,9 @@
             $ship_location_terms = get_the_terms( $query->post->ID, 'ship_location' );
         ?>
             <tr>
+              <td class="number">
+               <?php echo $query->post->ID; ?>
+              </td>
               <td class="img">
                 <?php if( has_post_thumbnail($query->post->ID) ) the_post_thumbnail('smallest'); ?>
               </td>
@@ -120,7 +128,7 @@
                   echo date('Y-n-j', strtotime($ship_date));
                 ?>
               </td>
-              <td class="count">
+              <td class="bbs_count">
                 <?php
                   echo getPostViews($query->post->ID);
                 ?>

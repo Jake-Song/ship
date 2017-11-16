@@ -15,9 +15,9 @@
       <a href="<?php
                   if( is_front_page() ){
                     echo esc_url( home_url() );
-                  } elseif( is_archive() && $post->post_type === 'ship' ){
+                  } elseif( (is_archive() || is_tax()) && $post->post_type === 'ship' ){
                     echo site_url() . '/ship';
-                  } elseif( is_archive() && $post->post_type === 'ship_selling' )
+                  } elseif( (is_archive() || is_tax()) && $post->post_type === 'ship_selling' )
                     echo site_url() . '/ship_selling';
                 ?>">
         <div class="ship-category-item all-item">
@@ -33,7 +33,17 @@
       <?php if( !( $term->parent ) ) : ?>
 
         <li>
-          <a href="<?php echo esc_url( home_url( '/' ) . $term->taxonomy . '/' . $term->slug ); ?>">
+          <?php
+            if( is_front_page() ){
+          ?>
+              <a href="<?php echo esc_url( home_url( '/' ) . $term->taxonomy . '/' . $term->slug ); ?>">
+          <?php
+            } elseif( is_archive() || is_tax() && ( $post->post_type === 'ship' || $post->post_type === 'ship_selling' ) ){
+          ?>
+            <a href="<?php echo esc_url( home_url( '/' ) . $post->post_type . '/' . 'category/' . $term->slug ); ?>">
+
+     <?php  } ?>
+
             <div class="ship-category-item">
                 <i class="icon-<?php echo esc_attr( $term->slug ); ?>"></i>
                 <div class="ship-category-name">

@@ -164,6 +164,35 @@ img{
   padding: 30px 20px;
 }
 
+/* 페이지네이션 */
+.custom.pagination{
+  display: block;
+  text-align: center;
+  margin-top: 3em;
+}
+.custom.pagination > .page-numbers{
+  border: 1px solid #333;
+  padding: .5em 1em;
+  font-weight: bold;
+  transition: .4s;
+}
+.custom.pagination > .page-numbers.next, .custom.pagination > .page-numbers.prev{
+  padding: 0;
+  border: 0;
+}
+.custom.pagination > .page-numbers.next{
+  margin-left: 1em;
+}
+.custom.pagination > .page-numbers.prev{
+  margin-right: 1em;
+}
+.custom.pagination > .page-numbers:hover,
+.custom.pagination > .page-numbers:focus,
+.custom.pagination > .page-numbers:active,
+.custom.pagination > .page-numbers.current{
+  color: #354D63;
+}
+
 /* 맨 위로 버튼 */
 #back-top {
     display: none; /* Hidden by default */
@@ -741,8 +770,10 @@ div.container{
   position: relative;
   border-left: 0;
   padding: 2em;
+  padding-top: 1em;
   overflow: hidden;
   height: 390px;
+  font-size: 1.2rem;
 }
 .text-section > .text{
   position: absolute;
@@ -796,7 +827,7 @@ div.container{
 }
 .best-nav{
   position: absolute;
-  bottom: 0px;
+  bottom: 25px;
   left: 0;
 }
 .best-nav > .left-btn, .best-nav > .right-btn{
@@ -935,9 +966,6 @@ table.ship-custom.market > tbody > tr > td{
 }
 table.ship-custom.market > tbody > tr > td:not(.name){
   text-align: center;
-}
-table.ship-custom.market > tbody > tr > td.img{
-  width: 12%;
 }
 table.ship-custom.market > tbody > tr > td.img > img{
   height: 35px;

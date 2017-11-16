@@ -19,13 +19,12 @@
           while(have_posts()) : the_post();
 
               setPostViews($post->ID); ?>
-              
+
               <article class="post single-selling clearfix">
 
                 <h2><?php the_title(); ?></h2>
 
-                <p class="post-info"><?php the_time('Y년 n월 j일 a g:i'); ?> | 글쓴이
-                  <a href="<?php echo get_author_posts_url( get_the_author_meta('ID') ); ?>"><?php the_author(); ?></a> | 카테고리
+                <p class="post-info"><?php the_time('Y년 n월 j일 a g:i'); ?> | 카테고리
 
                   <?php
                     $ship_categories = get_the_terms( $post->ID, 'ship_category');

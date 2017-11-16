@@ -118,7 +118,7 @@
               endif;
 
               ?>
-              <h4>프리미엄 선박</h4>
+              <h4>프리미엄 매물</h4>
               <h2><?php the_title(); ?></h2>
 
               <div class="best-ship-info">
