@@ -186,23 +186,83 @@
 
     </div>
 
+   <?php include( locate_template( '/module/recent-ship.php', false, false ) ); ?>
+
    <?php //include( locate_template( '/module/notice-slider.php', false, false ) ); ?>
 
-   <?php include( locate_template( '/module/recent-ship.php', false, false ) ); ?>
+   <?php //include( locate_template( '/module/news-slider.php', false, false ) ); ?>
 
    <div id="notice-box">
      <div class="notice-content">
        <h3>공지</h3>
-       <span>공지 사항입니다.</span>
+       <div id="notice-slider">
+
+         <?php
+           $args = array(
+             'post_type' => 'notice',
+             'post_status' => 'publish',
+             'order' => 'ASC'
+           );
+           $query = new WP_Query( $args );
+           if( $query->have_posts() ) :
+             while( $query->have_posts() ) : $query->the_post();
+         ?>
+               <div class="notice-slide">
+                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+               </div>
+          <?php
+             endwhile;
+
+             wp_reset_postdata();
+
+           else :
+          ?>
+
+             <p><?php esc_html_e( '공지사항이 없습니다.' ); ?></p>
+
+          <?php
+           endif;
+          ?>
+
+       </div>
        <div class="notice-icon">
-         <a href="<?php echo site_url('/') . '공지사항'; ?>"><i class="icon-plus-squared-alt"></i></a>
+         <a href="<?php echo get_post_type_archive_link( 'notice' ); ?>"><i class="icon-plus-squared-alt"></i></a>
        </div>
      </div>
-     <div class="notice-content">
+     <div class="news-content">
        <h3>해양/수산 소식</h3>
-       <span>해양/수산 소식입니다.</span>
+       <div id="news-slider">
+
+         <?php
+           $args = array(
+             'post_type' => 'news',
+             'post_status' => 'publish',
+             'order' => 'ASC'
+           );
+           $query = new WP_Query( $args );
+           if( $query->have_posts() ) :
+             while( $query->have_posts() ) : $query->the_post();
+         ?>
+               <div class="news-slide">
+                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+               </div>
+          <?php
+             endwhile;
+
+             wp_reset_postdata();
+
+           else :
+          ?>
+
+             <p><?php esc_html_e( '해양수산소식이 없습니다.' ); ?></p>
+
+          <?php
+           endif;
+          ?>
+
+       </div>
        <div class="notice-icon">
-         <a href="<?php echo site_url('/') . '해양-수산-소식'; ?>"><i class="icon-plus-squared-alt"></i></a>
+         <a href="<?php echo get_post_type_archive_link( 'news' ); ?>"><i class="icon-plus-squared-alt"></i></a>
        </div>
      </div>
    </div>
@@ -222,12 +282,14 @@
         </div>
         <div class="sub-box">
           <div id="sub-box-content">
-            <div id="sub-box-icon">
-              <i class="icon-anchor"></i>
-            </div>
-            <div id="sub-box-text">
-              지점 안내
-            </div>
+            <a href="<?php echo site_url() . '/오시는길'; ?>">
+              <div id="sub-box-icon">
+                <i class="icon-anchor"></i>
+              </div>
+              <div id="sub-box-text">
+                지점 안내
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -241,33 +303,32 @@
         <div id="partners-slider">
 
           <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+            <a href="#" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-1.png" alt=""></a>
           </div>
           <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+            <a href="http://www.sealife.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-2.png" alt=""></a>
           </div>
           <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+            <a href="https://www.kst.or.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-3.png" alt=""></a>
           </div>
           <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+            <a href="https://www.suhyup.co.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-4.png" alt=""></a>
           </div>
           <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+            <a href="http://www.portincheon.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-5.png" alt=""></a>
           </div>
           <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+            <a href="https://www.어선거래.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-6.png" alt=""></a>
           </div>
           <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+            <a href="http://www.kcg.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-7.png" alt=""></a>
           </div>
           <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+            <a href="http://www.mof.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-8.png" alt=""></a>
           </div>
           <div class="partners-slide">
-            <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/amazon-logo.png" alt="">
+            <a href="http://www.nifs.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-9.png" alt=""></a>
           </div>
-
         </div>
       </div>
     </div>

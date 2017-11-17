@@ -179,6 +179,64 @@ function notice_register_post_type(){
 }
 add_action( 'init', 'notice_register_post_type' );
 
+// 해양수산소식 포스트 타입 등록
+function news_register_post_type(){
+
+  $name = '해양수산소식';
+  $slug = 'news';
+
+  $labels = array(
+    'name' 			          => $name,
+		'name_name' 	    => $name,
+		'add_new' 		        => '새로 추가하기',
+		'add_new_item'  	    => $name . ' 추가하기',
+		'edit'		            => '편집하기',
+  	'edit_item'	          => $name . ' 편집하기',
+  	'new_item'	          => '새 ' . $name,
+		'view' 			          => $name . ' 목록보기',
+		'view_item' 		      => $name . ' 목록보기',
+		'search_term'   	    => $name . ' 검색하기',
+	  'parent' 		          => $name . ' 부모 페이지',
+		'not_found' 		      => $name . ' 이 없습니다.',
+		'not_found_in_trash' 	=> $name . ' 이 휴지통에 없습니다.'
+  );
+
+  $args = array(
+    'labels'              => $labels,
+    'public'              => true,
+    'publicly_queryable'  => true,
+    'exclude_from_search' => false,
+    'show_in_nav_menus'   => true,
+    'show_ui'             => true,
+    'show_in_menu'        => true,
+    'show_in_admin_bar'   => true,
+    'show_in_rest'        => true,
+    'menu_position'       => 10,
+    'menu_icon'           => 'dashicons-clipboard',
+    'can_export'          => true,
+    'delete_with_user'    => false,
+    'hierarchical'        => false,
+    'has_archive'         => true,
+    'query_var'           => true,
+    'capability_type'     => 'post',
+    'map_meta_cap'        => true,
+    // 'capabilities' => array(),
+    'rewrite'             => array(
+    	'slug' => $slug,
+    	'with_front' => true,
+    	'pages' => true,
+    	'feeds' => true,
+    ),
+    'supports'            => array(
+    	'title',
+    	'editor',
+    	'thumbnail'
+    )
+  );
+  register_post_type( 'news', $args );
+}
+add_action( 'init', 'news_register_post_type' );
+
 // 선박매물 포스트 타입 등록
 function ship_register_post_type(){
 

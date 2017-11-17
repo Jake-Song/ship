@@ -8,7 +8,9 @@
 
     <?php
       if(have_posts()) :
-          while(have_posts()) : the_post(); ?>
+          while(have_posts()) : the_post();
+            setPostViews($post->ID);
+    ?>
 
               <article class="post clearfix">
                   <div class="single-post-image">

@@ -104,7 +104,7 @@ jQuery( document ).ready( function($){
       auto: false,
       speed: 1500,
       slideWidth: 350,
-      minSlides: 4,
+      minSlides: 1,
       maxSlides: 7,
       moveSlides: 1,
       pager: false,
@@ -113,16 +113,46 @@ jQuery( document ).ready( function($){
       wrapperClass: 'bx-wrapper recent-ship'
     });
 
-    
+    $('#notice-slider').bxSlider({
+      mode: 'vertical',
+      auto: true,
+      autoStart: true,
+      pager: false,
+      startText: '',
+      stopText: '',
+      prevText: '',
+      nextText: '',
+      autoHover: true,
+      speed: 1500,
+      controls: false,
+      wrapperClass: 'bx-wrapper notice'
+    });
+
+    $('#news-slider').bxSlider({
+      mode: 'vertical',
+      auto: true,
+      autoStart: true,
+      pager: false,
+      startText: '',
+      stopText: '',
+      prevText: '',
+      nextText: '',
+      autoHover: true,
+      speed: 1500,
+      controls: false,
+      wrapperClass: 'bx-wrapper notice'
+    });
 
     $('#partners-slider').bxSlider({
       auto: false,
       speed: 1500,
       slideWidth: 150,
-      maxSlides: 7,
+      maxSlides: 6,
       moveSlides: 1,
       pager: false,
-      //controls: false,
+      slideMargin: 30,
+      prevText: '',
+      nextText: '',
       wrapperClass: 'bx-wrapper partners'
     });
 

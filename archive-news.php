@@ -3,7 +3,7 @@
   <div class="banner">
     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/sub-banner.jpg" alt="">
     <div class="title-box">
-      <h2>매물 현황</h2>
+      <h2>해양/수산 소식</h2>
     </div>
   </div>
 
@@ -13,52 +13,23 @@
       <?php qt_custom_breadcrumbs(); ?>
     </div>
 
-    <div class="ship-category-menu-wrapper">
-      <?php include( locate_template( '/module/ship-category-common.php', false, false ) ); ?>
-    </div>
-
-    <div class="ajax-container">
-
-       <div class="wrapper-for-ajax">
-
-        <?php include( locate_template( '/module/ajax_preloader.php', false, false ) ); ?>
-
         <article class="post archive clearfix">
 
-          <div id="sell">
-            <h3>팝니다</h3>
-
           <?php if( have_posts() ) : ?>
-
             <table class="table ship-custom market">
               <thead>
                 <tr>
                   <th>번호</th>
-                  <th>이미지</th>
-                  <th>지역</th>
                   <th>제목</th>
                   <th>날짜</th>
                   <th>조회수</th>
                 </tr>
               </thead>
-          <?php
-              while( have_posts() ) : the_post();
-                $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
-          ?>
+          <?php while( have_posts() ) : the_post(); ?>
 
               <tr>
                 <td class="number">
                   <?php echo $post->ID; ?>
-                </td>
-                <td class="img">
-                  <?php if( has_post_thumbnail($post->ID) ) the_post_thumbnail('smallest'); ?>
-                </td>
-                <td class="location">
-                  <?php
-                    if( $ship_location_terms ){
-                      echo '[' . $ship_location_terms[0]->name . ']';
-                    }
-                  ?>
                 </td>
                 <td class="name">
                   <a href="<?php the_permalink(); ?>">
@@ -70,7 +41,7 @@
                 <td class="date">
                   <?php
                     $ship_date = $post->post_date;
-                    echo date('Y-n-j', strtotime($ship_date));
+                    echo date('Y-n-d', strtotime($ship_date));
                   ?>
                 </td>
                 <td class="bbs_count">
@@ -82,7 +53,8 @@
 
             <?php endwhile; ?>
 
-              </table>
+            </table>
+
             <?php
 
               else:
@@ -92,7 +64,6 @@
               endif;
             ?>
 
-         </div>
          <div class="custom pagination">
            <?php
              global $wp_query;
@@ -109,10 +80,6 @@
          </div>
         </article>
 
-      </div>
-
-  </div>
-
- </div>
+    </div>
 
 <?php get_footer(); ?>
