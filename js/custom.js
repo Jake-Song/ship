@@ -103,9 +103,9 @@ jQuery( document ).ready( function($){
     $('.recent-ship.row').bxSlider({
       auto: false,
       speed: 1500,
-      slideWidth: 350,
+      slideWidth: 290,
       minSlides: 1,
-      maxSlides: 7,
+      maxSlides: 4,
       moveSlides: 1,
       pager: false,
       prevText: '',

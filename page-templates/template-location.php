@@ -47,24 +47,6 @@
 
      </div>
 
-      <article class="post location clearfix">
-
-        <?php
-          if( have_posts() ) :
-            while( have_posts() ) : the_post();
-        ?>
-
-         <?php
-            endwhile;
-
-          else:
-            echo '아직 매물이 없습니다.';
-
-          endif;
-         ?>
-
-      </article>
-
     </div>
 
  <?php get_footer(); ?>
