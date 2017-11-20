@@ -54,7 +54,7 @@
                 <td class="date">
                   <?php
                     $ship_date = $query->post->post_date;
-                    echo date('Y-n-j', strtotime($ship_date));
+                    echo date('n-j', strtotime($ship_date));
                   ?>
                 </td>
                 <td class="bbs_count">
@@ -125,7 +125,7 @@
               <td class="date">
                 <?php
                   $ship_date = $query->post->post_date;
-                  echo date('Y-n-j', strtotime($ship_date));
+                  echo date('n-j', strtotime($ship_date));
                 ?>
               </td>
               <td class="bbs_count">

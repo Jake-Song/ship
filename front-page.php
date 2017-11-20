@@ -268,6 +268,7 @@
    </div>
 
     <div class="info-box">
+
       <div class="main-box">
         <div class="main-box-text">
           <h4>구입 및 대여 서비스</h4>
@@ -275,22 +276,22 @@
           <h2>1588-1588</h2>
         </div>
       </div>
-      <div class="sub-box-wrapper">
-        <div class="sub-box">
-          <h3>질문과 답변</h3>
-          <?php echo do_shortcode('[mb_latest name="qanda" title="qanda" list_size="5" style=""]'); ?>
-        </div>
-        <div class="sub-box">
-          <div id="sub-box-content">
-            <a href="<?php echo site_url() . '/오시는길'; ?>">
-              <div id="sub-box-icon">
-                <i class="icon-anchor"></i>
-              </div>
-              <div id="sub-box-text">
-                지점 안내
-              </div>
-            </a>
-          </div>
+
+      <div class="qna">
+        <h3>질문과 답변</h3>
+        <?php echo do_shortcode('[mb_latest name="qanda" title="qanda" list_size="5" style=""]'); ?>
+      </div>
+      <div class="location">
+        <div id="sub-box-content">
+          <a href="<?php echo site_url() . '/오시는길'; ?>">
+            <div id="sub-box-icon">
+              <i class="icon-anchor"></i>
+            </div>
+            <div id="sub-box-text">
+              <h3>지점 모집</h3>
+              <p>지점 모집합니다. 연락 부탁드립니다.</p>
+            </div>
+          </a>
         </div>
       </div>
 

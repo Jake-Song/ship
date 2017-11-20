@@ -1,9 +1,9 @@
 <?php get_header(); ?>
 
     <div class="banner">
-      <img src="../../wp-content/themes/ship/img/page-banner.jpg" alt="">
+      <img src="<?php echo site_url(); ?>/wp-content/themes/ship/img/page-banner.jpg" alt="">
       <div class="title-box">
-        <h2><?php echo esc_html_e('선박매물'); ?></h2>
+        <h2><?php echo esc_html_e('매물현황'); ?></h2>
       </div>
     </div>
 

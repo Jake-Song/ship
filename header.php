@@ -66,4 +66,8 @@
 
               <button id="back-top" title="맨 위로"><i class="icon-upload"></i>맨 위로</button>
 
+              <div id="buyandsell-wrapper">
+                <a class="ship-sell"href="<?php echo site_url('/'); ?>ship">팝니다</a><a class="ship-buy" href="<?php echo site_url('/'); ?>ship_selling">삽니다</a>
+              </div>
+
           </header>

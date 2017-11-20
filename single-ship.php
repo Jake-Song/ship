@@ -17,7 +17,7 @@
       <?php
         if(have_posts()) :
             while(have_posts()) : the_post();
-        
+
               setPostViews($post->ID);
       ?>
 
@@ -246,7 +246,25 @@
                         <h3>상세 설명</h3>
                       </div>
                       <div class="ship-desc">
-                        <?php the_content(); ?>
+                        <?php
+                          $commit_name = get_post_meta( get_the_ID(), "commit_name", true );
+                          $commit_contact = get_post_meta( get_the_ID(), "commit_contact", true );
+                        ?>
+                          <div class="ship-desc-content">
+                            <?php
+                              the_content();
+                            ?>
+                          </div>
+                          <div class="ship-contact">
+                            <?php
+                              echo "담당자: " . $commit_name . '<br><br>';
+                              echo "연락처: " . $commit_contact;
+                            ?>
+                            <div class="button-wrapper">
+                              <a href="#" id="phone" class="btn btn-common-1"><span class="text">전화 문의하기</span></a>
+                              <a href="#" id="mail" class="btn btn-common-2"><span class="text">메일 문의하기</span></a>
+                            </div>
+                          </div>
                       </div>
                     </div>
                     <div class="go-list-button">
