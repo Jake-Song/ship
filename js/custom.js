@@ -104,7 +104,6 @@ jQuery( document ).ready( function($){
       auto: false,
       speed: 1500,
       slideWidth: 290,
-      minSlides: 1,
       maxSlides: 4,
       moveSlides: 1,
       pager: false,

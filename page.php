@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
     <div class="banner">
-      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
+      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
       <div class="title-box">
         <h2><?php the_title(); ?></h2>
       </div>
@@ -12,7 +12,7 @@
       <div class="navigation">
         <?php qt_custom_breadcrumbs(); ?>
       </div>
-      
+
       <?php
         if(have_posts()) :
           while(have_posts()) : the_post(); ?>

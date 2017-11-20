@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
     <div class="banner">
-      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/bram-naus-200967.jpg" alt="">
+      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
       <div class="title-box">
         <h2>삽니다</h2>
       </div>

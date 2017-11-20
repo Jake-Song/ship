@@ -359,7 +359,7 @@ div.container{
 }
 .site-title > a > img{
   float: left;
-  margin-right: 2em;
+  margin-right: 1em;
 }
 .site-title > a > h2{
   margin: 0;
@@ -2004,7 +2004,7 @@ article.not-found h3{
     padding: 0;
   }
   .content-box{
-    padding: 1em;
+    padding: 0;
     margin-top: 2em;
     margin-bottom: 13em;
   }
@@ -2012,15 +2012,25 @@ article.not-found h3{
     padding: 1em;
     width: 100%;
   }
+  .bx-wrapper.recent-ship .bx-controls-direction a.bx-next{
+    right: 35%;
+  }
+  .bx-wrapper.recent-ship .bx-controls-direction a.bx-prev{
+    left: 35%;
+  }
+  .crumbs{
+    text-align: right;
+  }
+  .title-box{
+    left: 30%;
+  }
 
   /* 공지사항 */
   .post-type-archive-notice table.ship-custom.market > tbody > tr > td.name,
   .post-type-archive-news table.ship-custom.market > tbody > tr > td.name{
     width: 70%;
   }
-  .crumbs{
-    text-align: left;
-  }
+
   .page-template-template-about .content-box{
     padding: 0;
   }
@@ -2144,7 +2154,7 @@ article.not-found h3{
     border-bottom: 1px solid #999;
   }
   #notice-box > .notice-content > h3{
-    display: block;
+    display: inline-block;
   }
   #notice-box > .notice-content, #notice-box > .news-content{
     border-right: 0;
@@ -2155,13 +2165,14 @@ article.not-found h3{
   .info-box{
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    flex-direction: column;
   }
   .info-box > .main-box{
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
     height: 260px;
   }
-  .info-box > .sub-box-wrapper .sub-box:nth-of-type(1){
+  .info-box > .qna{
     -webkit-box-ordinal-group: 0;
         -ms-flex-order: -1;
             order: -1;
@@ -2169,15 +2180,13 @@ article.not-found h3{
         flex-basis: 100%;
     border: 0;
   }
-  .info-box > .sub-box-wrapper .sub-box:nth-of-type(2){
+  .info-box > .location{
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
-        height: 240px;
+        height: 260px;
   }
-  .info-box > .sub-box-wrapper{
-    -webkit-box-ordinal-group: 0;
-        -ms-flex-order: -1;
-            order: -1;
+  .bx-wrapper.notice{
+    vertical-align: text-bottom;
   }
   .bx-wrapper.main{
     height: 150px;
@@ -2241,6 +2250,9 @@ article.not-found h3{
   }
 
   /* 싱글 페이지 */
+  article.post.single .image-wrapper{
+    margin-right: 0;
+  }
   .title-box h2{
     font-size: 2rem;
   }
@@ -2260,6 +2272,9 @@ article.not-found h3{
     height: auto;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+  }
+  .ship-contact > .button-wrapper{
+    width: 100%;
   }
   #phone{
     margin-bottom: 1em;
@@ -2373,7 +2388,7 @@ article.not-found h3{
   }
   #primary-menu{
     position: fixed;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     top: 0;
     left: 0;
