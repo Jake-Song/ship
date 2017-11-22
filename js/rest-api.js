@@ -40,7 +40,7 @@ jQuery( document ).ready( function($){
       }
 
       $.ajax({
-        url: apiData.siteUrl + "wp-json/wp/v2/ship_selling",
+        url: apiData.siteUrl + "wp-json/wp/v2/ship_buying",
         type: 'POST',
         dataType: 'json',
         data: ourPostData,
@@ -69,7 +69,7 @@ jQuery( document ).ready( function($){
       for( var i = 0; i < items.length; i++ ){
 
           $.ajax({
-            url: apiData.siteUrl + 'wp-json/wp/v2/ship_selling/' + $(items[i]).val(),
+            url: apiData.siteUrl + 'wp-json/wp/v2/ship_buying/' + $(items[i]).val(),
             type: 'DELETE',
             dataType: 'json',
             beforeSend: function( xhr ){
@@ -92,7 +92,7 @@ jQuery( document ).ready( function($){
     e.preventDefault();
     var that = this;
     $.ajax({
-      url: apiData.siteUrl + 'wp-json/wp/v2/ship_selling/' + $(this).siblings("input[name='buy-check']").val(),
+      url: apiData.siteUrl + 'wp-json/wp/v2/ship_buying/' + $(this).siblings("input[name='buy-check']").val(),
       type: 'GET',
       dataType: 'json',
       beforeSend: function( xhr ){
@@ -145,7 +145,7 @@ jQuery( document ).ready( function($){
         "status": "publish"
       }
       $.ajax({
-        url: apiData.siteUrl + "wp-json/wp/v2/ship_selling/" + $(this).parent().siblings("input[name='buy-check']").val(),
+        url: apiData.siteUrl + "wp-json/wp/v2/ship_buying/" + $(this).parent().siblings("input[name='buy-check']").val(),
         type: 'POST',
         dataType: 'json',
         data: ourPostData,

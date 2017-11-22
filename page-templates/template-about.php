@@ -7,13 +7,12 @@
 
     <div class="banner">
       <img src="<?php echo site_url('/') ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
-      <div class="title-box">
-        <h2><?php echo esc_html_e('회사소개'); ?></h2>
-      </div>
     </div>
 
      <div class="content-box">
-
+       <div class="title-box">
+         <h2><?php echo esc_html_e('회사소개'); ?></h2>
+       </div>
        <div class="navigation">
          <?php qt_custom_breadcrumbs(); ?>
        </div>

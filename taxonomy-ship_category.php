@@ -30,7 +30,7 @@
 
                     <h3>삽니다</h3>
                     <span class="market-icon">
-                      <a href="<?php echo get_post_type_archive_link( 'ship_selling' ); ?>"><i class="icon-plus-squared-alt"></i></a>
+                      <a href="<?php echo get_post_type_archive_link( 'ship_buying' ); ?>"><i class="icon-plus-squared-alt"></i></a>
                     </span>
 
                     <table class="table ship-custom market">
@@ -48,7 +48,7 @@
                     if( have_posts() ) :
                       while( have_posts() ) : the_post();
 
-                        if($post->post_type === "ship_selling") :
+                        if($post->post_type === "ship_buying") :
 
                         $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
                   ?>
@@ -74,7 +74,7 @@
                         <td class="date">
                           <?php
                             $ship_date = $post->post_date;
-                            echo date('Y-n-j', strtotime($ship_date));
+                            echo date('n-j', strtotime($ship_date));
                           ?>
                         </td>
                         <td class="bbs_count">
@@ -153,7 +153,7 @@
                      <td class="date">
                        <?php
                          $ship_date = $post->post_date;
-                         echo date('Y-n-j', strtotime($ship_date));
+                         echo date('n-j', strtotime($ship_date));
                        ?>
                      </td>
                      <td class="bbs_count">

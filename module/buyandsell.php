@@ -3,7 +3,7 @@
   <div id="buy">
     <h3>삽니다</h3>
     <span class="market-icon">
-      <a href="<?php echo get_post_type_archive_link( 'ship_selling' ); ?>">
+      <a href="<?php echo get_post_type_archive_link( 'ship_buying' ); ?>">
         <i class="icon-plus-squared-alt"></i>
       </a>
     </span>
@@ -21,7 +21,7 @@
         <?php
 
           $args = array(
-            'post_type' => 'ship_selling',
+            'post_type' => 'ship_buying',
             'post_status' => 'publish',
             'posts_per_page' => 10,
           );

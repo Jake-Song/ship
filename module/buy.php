@@ -5,7 +5,7 @@
     <table class="table ship-custom market">
       <?php
         $args = array(
-          'post_type' => 'ship_selling',
+          'post_type' => 'ship_buying',
           'post_status' => 'publish',
           'posts_per_page' => 10,
         );

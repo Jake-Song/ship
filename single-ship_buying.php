@@ -10,7 +10,7 @@
     <div class="content-box">
 
       <div class="navigation">
-        <a href="<?php echo get_post_type_archive_link( 'ship_selling' ); ?>"><i class="icon-th"></i>목록보기</a>
+        <a href="<?php echo get_post_type_archive_link( 'ship_buying' ); ?>"><i class="icon-th"></i>목록보기</a>
         <?php qt_custom_breadcrumbs(); ?>
       </div>
 

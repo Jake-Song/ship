@@ -271,11 +271,7 @@
     <div class="info-box">
 
       <div class="main-box">
-        <div class="main-box-text">
-          <h4>구입 및 대여 서비스</h4>
-          <h2>선박 장비를 대여 받거나 구입하실 분 문의 부탁드립니다.</h2>
-          <h2>1588-1588</h2>
-        </div>
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/contact.jpg" alt="">
       </div>
 
       <div class="qna">
@@ -283,17 +279,7 @@
         <?php echo do_shortcode('[mb_latest name="qanda" title="qanda" list_size="5" style=""]'); ?>
       </div>
       <div class="location">
-        <div id="sub-box-content">
-          <a href="<?php echo site_url() . '/오시는길'; ?>">
-            <div id="sub-box-icon">
-              <i class="icon-anchor"></i>
-            </div>
-            <div id="sub-box-text">
-              <h3>지점 모집</h3>
-              <p>지점 모집합니다. 연락 부탁드립니다.</p>
-            </div>
-          </a>
-        </div>
+        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/branch.jpg" alt="">
       </div>
 
     </div>

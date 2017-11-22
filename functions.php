@@ -7,7 +7,8 @@ function cosmetic_enqueue_scripts(){
     wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
     wp_enqueue_style( 'fontello', get_template_directory_uri() . '/fontello/css/fontello.css' );
     wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), true );
-    wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array('jquery') );
+    wp_enqueue_script( 'enquire', get_template_directory_uri() . '/js/enquire.js' );
+    wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array('jquery', 'enquire') );
 
     wp_enqueue_script( 'rest-api', get_template_directory_uri() . '/js/rest-api.js', null, '1.0.0', true );
     wp_localize_script( 'rest-api', 'apiData', array(
@@ -299,10 +300,10 @@ add_action( 'init', 'ship_register_post_type' );
 
 // 삽니다 포스트 타입 등록하기
 
-function ship_selling_post_type(){
+function ship_buying_post_type(){
 
   $name = '삽니다';
-  $slug = 'ship_selling';
+  $slug = 'ship_buying';
 
   $labels = array(
     'name' 			          => $name,
@@ -352,9 +353,9 @@ function ship_selling_post_type(){
     	'thumbnail'
     )
   );
-  register_post_type( 'ship_selling', $args );
+  register_post_type( 'ship_buying', $args );
 }
-add_action( 'init', 'ship_selling_post_type' );
+add_action( 'init', 'ship_buying_post_type' );
 
 // 선박매물 카테고리 등록하기
 function ship_register_taxonomy(){
@@ -396,7 +397,7 @@ function ship_register_taxonomy(){
         'query_var' => true,
         'rewrite' => array( 'slug' => $slug, 'hierarchical' => true ),
       );
-      register_taxonomy( $slug, array( 'ship', 'ship_selling' ), $args );
+      register_taxonomy( $slug, array( 'ship', 'ship_buying' ), $args );
 
   endforeach;
 }
@@ -561,20 +562,20 @@ function setPostViews($postID) {
 }
 
 // 선박 카테고리별 쿼리 변경하기
-// add_filter('query_vars', 'ship_selling_queryvars' );
+// add_filter('query_vars', 'ship_buying_queryvars' );
 //
-// function ship_selling_queryvars( $qvars )
+// function ship_buying_queryvars( $qvars )
 // {
-//   $qvars[] = 'ship_selling';
+//   $qvars[] = 'ship_buying';
 //   return $qvars;
 // }
 //
-// add_filter('posts_where', 'ship_selling_where' );
+// add_filter('posts_where', 'ship_buying_where' );
 //
-// function ship_selling_where( $where ){
+// function ship_buying_where( $where ){
 //   $test = 0;
 //   global $wp_query;
-//   if( isset( $wp_query->query_vars['ship_selling'] )) {
+//   if( isset( $wp_query->query_vars['ship_buying'] )) {
 //     $where = preg_replace(
 //      "/\(\s*post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
 //      "(ship_category LIKE $1)", $where );
@@ -584,12 +585,12 @@ function setPostViews($postID) {
 //   }
 //
 //
-// add_filter('posts_groupby', 'ship_selling_groupby' );
+// add_filter('posts_groupby', 'ship_buying_groupby' );
 //
-// function ship_selling_groupby( $groupby ){
+// function ship_buying_groupby( $groupby ){
 //   global $wpdb;
 //
-//   if( !isset( $wp_query->query_vars['ship_selling'] ) ) {
+//   if( !isset( $wp_query->query_vars['ship_buying'] ) ) {
 //     return $groupby;
 //   }
 //
@@ -613,9 +614,9 @@ function setPostViews($postID) {
 
 // Custom Query
 
-add_action('generate_rewrite_rules', 'ship_selling_add_rewrite_rules');
+add_action('generate_rewrite_rules', 'ship_buying_add_rewrite_rules');
 
-function ship_selling_add_rewrite_rules( $wp_rewrite ){
+function ship_buying_add_rewrite_rules( $wp_rewrite ){
 
   $new_rules = array(
      '(.+)/category/(.+)' => 'index.php?post_type=' . $wp_rewrite->preg_index(1) . '&ship_category=' . $wp_rewrite->preg_index(2),

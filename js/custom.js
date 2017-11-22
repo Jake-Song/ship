@@ -85,219 +85,278 @@ jQuery( document ).ready( function($){
     }
   });
 
-    $('#main-slider').bxSlider({
-      mode: 'fade',
-      speed: 1000,
-      pause: 4000,
-      auto: true,
-      autoControls: false,
-      stopAutoOnClick: true,
-      pager: false,
-      startText: '',
-      stopText: '',
-      prevText: '',
-      nextText: '',
-      autoStart: true,
-      wrapperClass: 'bx-wrapper main'
-    });
+  // Sliders
+  var main = $('#main-slider').bxSlider({
+    mode: 'fade',
+    speed: 1000,
+    pause: 4000,
+    auto: true,
+    autoControls: false,
+    stopAutoOnClick: true,
+    pager: false,
+    startText: '',
+    stopText: '',
+    prevText: '',
+    nextText: '',
+    autoStart: true,
+    wrapperClass: 'bx-wrapper main'
+  });
 
-    $('.recent-ship.row').bxSlider({
-      auto: false,
-      speed: 1500,
-      slideWidth: 290,
-      maxSlides: 4,
-      moveSlides: 1,
-      pager: false,
-      prevText: '',
-      nextText: '',
-      wrapperClass: 'bx-wrapper recent-ship'
-    });
+  var recent = $('.recent-ship.row').bxSlider({
+    auto: false,
+    speed: 1500,
+    slideWidth: 290,
+    maxSlides: 4,
+    moveSlides: 1,
+    pager: false,
+    prevText: '',
+    nextText: '',
+    wrapperClass: 'bx-wrapper recent-ship'
+  });
 
-    $('#notice-slider').bxSlider({
-      mode: 'vertical',
-      auto: true,
-      autoStart: true,
-      pager: false,
-      startText: '',
-      stopText: '',
-      prevText: '',
-      nextText: '',
-      autoHover: true,
-      speed: 1500,
-      controls: false,
-      wrapperClass: 'bx-wrapper notice'
-    });
+  var notice = $('#notice-slider').bxSlider({
+    mode: 'vertical',
+    auto: true,
+    autoStart: true,
+    pager: false,
+    startText: '',
+    stopText: '',
+    prevText: '',
+    nextText: '',
+    autoHover: true,
+    speed: 1500,
+    controls: false,
+    wrapperClass: 'bx-wrapper notice'
+  });
 
-    $('#news-slider').bxSlider({
-      mode: 'vertical',
-      auto: true,
-      autoStart: true,
-      pager: false,
-      startText: '',
-      stopText: '',
-      prevText: '',
-      nextText: '',
-      autoHover: true,
-      speed: 1500,
-      controls: false,
-      wrapperClass: 'bx-wrapper notice'
-    });
+  var news = $('#news-slider').bxSlider({
+    mode: 'vertical',
+    auto: true,
+    autoStart: true,
+    pager: false,
+    startText: '',
+    stopText: '',
+    prevText: '',
+    nextText: '',
+    autoHover: true,
+    speed: 1500,
+    controls: false,
+    wrapperClass: 'bx-wrapper notice'
+  });
 
-    $('#partners-slider').bxSlider({
-      auto: false,
-      speed: 1500,
-      slideWidth: 150,
-      maxSlides: 6,
-      moveSlides: 1,
-      pager: false,
-      slideMargin: 30,
-      prevText: '',
-      nextText: '',
-      wrapperClass: 'bx-wrapper partners'
-    });
+  var partners = $('#partners-slider').bxSlider({
+    auto: false,
+    speed: 1500,
+    slideWidth: 150,
+    maxSlides: 6,
+    moveSlides: 1,
+    pager: false,
+    slideMargin: 30,
+    prevText: '',
+    nextText: '',
+    wrapperClass: 'bx-wrapper partners'
+  });
 
-    // Load Contents with ajax
+  // Sliders function with matchMedia
 
-      var newLocation = '',
-      firstLoad = false,
-      isLoading = false;
+  enquire.register("screen and (max-width:767px)", {
 
-      $('.ship-category-menu').on('click', 'ul li a', function(e){
-        e.preventDefault();
-        var newPage = $(this).attr('href');
-        var test = 0;
-        if(!isLoading) changePage( newPage, true );
-        firstLoad = true;
+    // OPTIONAL
+    // If supplied, triggered when a media query matches.
+    match : function() {
+      console.log('hello');
+      recent.destroySlider();
+      recent.reloadSlider({
+        auto: false,
+        speed: 1500,
+        slideWidth: 500,
+        maxSlides: 1,
+        moveSlides: 1,
+        slideMargin: 20,
+        pager: false,
+        prevText: '',
+        nextText: '',
+        wrapperClass: 'bx-wrapper recent-ship'
       });
+    },
 
-      $(window).on('popstate', function() {
-        if( firstLoad ) {
-          /*
-          Safari emits a popstate event on page load - check if firstLoad is true before animating
-          if it's false - the page has just been loaded
-          */
-          var newPage = location.href;
+    // OPTIONAL
+    // If supplied, triggered when the media query transitions
+    // *from a matched state to an unmatched state*.
+    unmatch : function() {
+      recent.destroySlider();
+      recent.reloadSlider({
+        auto: false,
+        speed: 1500,
+        slideWidth: 250,
+        maxSlides: 4,
+        moveSlides: 1,
+        pager: false,
+        prevText: '',
+        nextText: '',
+        wrapperClass: 'bx-wrapper recent-ship'
+      });
+    },
 
-          if( !isLoading  &&  newLocation != newPage ) changePage(newPage, false);
+    // OPTIONAL
+    // If supplied, triggered once, when the handler is registered.
+    setup : function() {},
 
+    // OPTIONAL, defaults to false
+    // If set to true, defers execution of the setup function
+    // until the first time the media query is matched
+    deferSetup : true,
+
+    // OPTIONAL
+    // If supplied, triggered when handler is unregistered.
+    // Place cleanup code here
+    destroy : function() {}
+
+});
+
+
+// Load Contents with ajax
+
+  var newLocation = '',
+  firstLoad = false,
+  isLoading = false;
+
+  $('.ship-category-menu').on('click', 'ul li a', function(e){
+    e.preventDefault();
+    var newPage = $(this).attr('href');
+    var test = 0;
+    if(!isLoading) changePage( newPage, true );
+    firstLoad = true;
+  });
+
+  $(window).on('popstate', function() {
+    if( firstLoad ) {
+      /*
+      Safari emits a popstate event on page load - check if firstLoad is true before animating
+      if it's false - the page has just been loaded
+      */
+      var newPage = location.href;
+
+      if( !isLoading  &&  newLocation != newPage ) changePage(newPage, false);
+
+    }
+    firstLoad = true;
+  });
+
+  function changePage( url, bool ) {
+    isLoading = true;
+    loadContent( url, bool);
+    newLocation = url;
+  }
+
+  function loadContent( url, bool ){
+
+    $.ajax({
+      url: url,
+      beforeSend: function(){
+        $('article').hide();
+        $('.ajax-preloader').show();
+      },
+      success: function( response ){
+
+        var content = $(response).find('.wrapper-for-ajax > *');
+        var section = $('<div class="wrapper-for-ajax"></div>');
+
+        section.html(content);
+        $('.ajax-container').html(section);
+        isLoading = false;
+
+        if(url!=window.location && bool){
+          //add the new page to the window.history
+          //if the new page was triggered by a 'popstate' event, don't add it
+          window.history.pushState({path: url},'',url);
         }
-        firstLoad = true;
-      });
-
-      function changePage( url, bool ) {
-        isLoading = true;
-        loadContent( url, bool);
-        newLocation = url;
+      },
+      error: function(error){
+        console.log(error);
       }
+    });
 
-      function loadContent( url, bool ){
+  }
 
-        $.ajax({
-          url: url,
-          beforeSend: function(){
-            $('article').hide();
-            $('.ajax-preloader').show();
-          },
-          success: function( response ){
+  // Image slide for ship single
+  var singleImages = $('.single-post-images .single-image');
+  var addImages = $('.additional-image');
+  var currentImage = singleImages[0];
+  var currentAddImage = addImages[0];
 
-            var content = $(response).find('.wrapper-for-ajax > *');
-            var section = $('<div class="wrapper-for-ajax"></div>');
+  function navigate( counter ){
+    $(currentImage).removeClass('current');
+    $(currentAddImage).removeClass('current');
 
-            section.html(content);
-            $('.ajax-container').html(section);
-            isLoading = false;
+    currentImage = singleImages[counter];
+    currentAddImage = addImages[counter];
 
-            if(url!=window.location && bool){
-              //add the new page to the window.history
-              //if the new page was triggered by a 'popstate' event, don't add it
-              window.history.pushState({path: url},'',url);
-            }
-          },
-          error: function(error){
-            console.log(error);
-          }
-        });
+    $(currentImage).addClass('current');
+    $(currentAddImage).addClass('current');
 
-      }
+  }
 
-      // Image slide for ship single
-      var singleImages = $('.single-post-images .single-image');
-      var addImages = $('.additional-image');
-      var currentImage = singleImages[0];
-      var currentAddImage = addImages[0];
+  var firstBtn = $('.additional-image.order-0');
+  var secondBtn = $('.additional-image.order-1');
+  var thirdBtn = $('.additional-image.order-2');
+  var fourthBtn = $('.additional-image.order-3');
 
-      function navigate( counter ){
-        $(currentImage).removeClass('current');
-        $(currentAddImage).removeClass('current');
+  firstBtn.on( 'click', function(e){
+    e.preventDefault();
+    navigate(0);
+  });
+  secondBtn.on( 'click', function(e){
+    e.preventDefault();
+    navigate(1);
+  });
+  thirdBtn.on( 'click', function(e){
+    e.preventDefault();
+    navigate(2);
+  });
+  fourthBtn.on( 'click', function(e){
+    e.preventDefault();
+    navigate(3);
+  });
+  navigate(0);
 
-        currentImage = singleImages[counter];
-        currentAddImage = addImages[counter];
+  // 베스트 선박
+  var bestImgs = $('.image-section > img');
+  var bestTexts = $('.text-section > .text');
+  var currentBestImg = bestImgs[0];
+  var currentBestText = bestTexts[0];
+  var currentIndex = 0;
 
-        $(currentImage).addClass('current');
-        $(currentAddImage).addClass('current');
+  function goTo(index){
+    if( index < 0 || index > bestImgs.length - 1 ){
+      return;
+    }
 
-      }
+    $(currentBestImg).removeClass('current');
+    currentBestImg = bestImgs[index];
+    $(currentBestImg).addClass('current');
 
-      var firstBtn = $('.additional-image.order-0');
-      var secondBtn = $('.additional-image.order-1');
-      var thirdBtn = $('.additional-image.order-2');
-      var fourthBtn = $('.additional-image.order-3');
+    $(currentBestText).removeClass('current');
+    currentBestText = bestTexts[index];
+    $(currentBestText).addClass('current');
 
-      firstBtn.on( 'click', function(e){
-        e.preventDefault();
-        navigate(0);
-      });
-      secondBtn.on( 'click', function(e){
-        e.preventDefault();
-        navigate(1);
-      });
-      thirdBtn.on( 'click', function(e){
-        e.preventDefault();
-        navigate(2);
-      });
-      fourthBtn.on( 'click', function(e){
-        e.preventDefault();
-        navigate(3);
-      });
-      navigate(0);
+    currentIndex = index;
 
-      // 베스트 선박
-      var bestImgs = $('.image-section > img');
-      var bestTexts = $('.text-section > .text');
-      var currentBestImg = bestImgs[0];
-      var currentBestText = bestTexts[0];
-      var currentIndex = 0;
+    $('.current-slide').text( currentIndex + 1);
 
-      function goTo(index){
-        if( index < 0 || index > bestImgs.length - 1 ){
-          return;
-        }
+  }
+  function goToPrev(){
+    goTo(currentIndex - 1);
+  }
+  function goToNext(){
+    goTo(currentIndex + 1);
+  }
 
-        $(currentBestImg).removeClass('current');
-        currentBestImg = bestImgs[index];
-        $(currentBestImg).addClass('current');
-
-        $(currentBestText).removeClass('current');
-        currentBestText = bestTexts[index];
-        $(currentBestText).addClass('current');
-
-        currentIndex = index;
-
-        $('.current-slide').text( currentIndex + 1);
-
-      }
-      function goToPrev(){
-        goTo(currentIndex - 1);
-      }
-      function goToNext(){
-        goTo(currentIndex + 1);
-      }
-
-      $('body').on('click', '.left-btn', function(){
-        goToPrev();
-      });
-      $('body').on('click', '.right-btn',function(){
-        goToNext();
-      });
+  $('body').on('click', '.left-btn', function(){
+    goToPrev();
+  });
+  $('body').on('click', '.right-btn',function(){
+    goToNext();
+  });
 
 });

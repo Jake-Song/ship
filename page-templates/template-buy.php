@@ -50,7 +50,7 @@
               $current_page = get_query_var("paged");
 
               $args = array(
-                'post_type' => 'ship_selling',
+                'post_type' => 'ship_buying',
                 'post_status' => 'publish',
                 'posts_per_page' => 10,
                 'paged' => $current_page
