@@ -17,7 +17,9 @@
                       $logo_id = get_theme_mod('logo_settings');
                   ?>
                       <a href="<?php echo home_url(); ?>">
+                        <img class="sticky-logo" src="<?php echo site_url('/') ?>wp-content/themes/ship/img/logo-light-transparent.png" alt="">
                         <?php echo wp_get_attachment_image( $logo_id, array( '270', '45' ) ); ?>
+
                         <h2>한국선박거래소</h2>
                       </a>
 

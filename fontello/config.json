@@ -205,6 +205,12 @@
       "css": "right-circled",
       "code": 59410,
       "src": "entypo"
+    },
+    {
+      "uid": "186dec7a13156bbe2550790c158fb85d",
+      "css": "crown",
+      "code": 59460,
+      "src": "fontelico"
     }
   ]
 }

@@ -493,7 +493,7 @@ div.container{
   position: relative;
   top: 0;
   left: 0;
-  padding: .5em 1em;
+  padding: 1em;
   background: #fff;
   -webkit-transition: .4s;
   transition: .4s;
@@ -539,6 +539,16 @@ div.container{
 }
 .site-header.sticky-header #buyandsell-wrapper > a.ship-sell{
   border-right: 1px solid #fff;
+}
+.site-header img.sticky-logo{
+  display: none;
+  width: 39px;
+}
+.site-header.sticky-header img.sticky-logo{
+  display: block;
+}
+.site-header.sticky-header img.attachment-270x45{
+  display: none;
 }
 
 /* bg */
@@ -799,6 +809,10 @@ div.container{
   transition: visibility 0s .8s, opacity .8s;
   padding-left: 2em;
 }
+.text-section > .text > h2 > i{
+  color: #F7C446;
+  font-size: 2rem;
+}
 .text-section .text.current{
   position: absolute;
   opacity: 1;
@@ -955,14 +969,16 @@ div.container{
 }
 #buy{
   margin-right: 2em;
+  flex: 4 4;
+}
+#sell{
+  order: -1;
+  flex: 5 5;
 }
 #sell, #buy{
   margin-left: 2em;
 }
 #sell, #buy{
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1;
-          flex: 1 1;
   position: relative;
 }
 #sell > h3, #buy > h3{
@@ -980,6 +996,19 @@ table.ship-custom.market > thead > tr > th{
 table.ship-custom.market > tbody > tr > td{
   font-size: 1.2rem;
   border-top: 0;
+  padding: 8px 0;
+}
+table.ship-custom.market > tbody > tr > td.number{
+  width: 6%;
+}
+table.ship-custom.market > tbody > tr > td.date{
+  width: 6%;
+}
+table.ship-custom.market > tbody > tr > td.bbs_count{
+  width: 8%;
+}
+table.ship-custom.market > tbody > tr > td.location{
+  width: 7%;
 }
 table.ship-custom.market > tbody > tr > td:not(.name){
   text-align: center;
@@ -991,7 +1020,7 @@ table.ship-custom.market > tbody > tr > td.name{
   width: 39%;
 }
 table.ship-custom.market > tbody > tr > td.img{
-  width: 12%;
+  width: 7.7%;
   font-size: 1.5rem;
 }
 
@@ -1247,15 +1276,15 @@ article.tax .ship-custom.table{
 }
 .title-box{
   position: absolute;
-  top: 50%;
-  left: 15%;
+  top: 30%;
+  left: 10%;
   -webkit-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%);
 }
 .title-box h2{
   margin: 0;
-  font-size: 3rem;
-  color: white;
+  font-size: 2rem;
+  color: #333;
 }
 .navigation{
   position: relative;

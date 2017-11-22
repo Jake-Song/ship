@@ -103,6 +103,7 @@
               'made_location' => '조선지',
               'commit_name' => '담당자이름',
               'commit_contact' => '연락처',
+              'price' => '매매가',
             );
 
             while($featured_query->have_posts()) : $featured_query->the_post();
@@ -118,8 +119,8 @@
               endif;
 
               ?>
-              <h4>프리미엄 매물</h4>
-              <h2><?php the_title(); ?></h2>
+              <h4>추천매물</h4>
+              <h2><i class="icon-crown"></i><?php the_title(); ?></h2>
 
               <div class="best-ship-info">
 

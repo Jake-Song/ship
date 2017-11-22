@@ -88,6 +88,7 @@ jQuery( document ).ready( function($){
     $('#main-slider').bxSlider({
       mode: 'fade',
       speed: 1000,
+      pause: 4000,
       auto: true,
       autoControls: false,
       stopAutoOnClick: true,
@@ -96,7 +97,7 @@ jQuery( document ).ready( function($){
       stopText: '',
       prevText: '',
       nextText: '',
-      autoStart: false,
+      autoStart: true,
       wrapperClass: 'bx-wrapper main'
     });
 

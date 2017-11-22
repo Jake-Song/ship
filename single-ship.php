@@ -2,15 +2,14 @@
 
   <div class="banner">
     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
-    <div class="title-box">
-      <h2>매물 상세 정보</h2>
-    </div>
   </div>
 
   <div class="content-box">
 
     <div class="navigation">
-      <a href="<?php echo get_post_type_archive_link( 'ship' ); ?>"><i class="icon-th"></i>목록보기</a>
+      <div class="title-box">
+        <h2>팝니다 - 상세 정보</h2>
+      </div>
       <?php qt_custom_breadcrumbs(); ?>
     </div>
 
@@ -28,6 +27,9 @@
                     <div class="single-post-images">
 
                       <?php
+                      $post_date = $post->post_date;
+                      $current_time = current_time( 'Y-m-d' );
+                      $test = 0;
                         if( has_post_thumbnail() ){
                             the_post_thumbnail( 'full', array( 'class' => 'single-image current' ) );
                         }
@@ -118,7 +120,11 @@
                     <div class="ship-information">
 
                       <div class="ship-title">
-                          <h3><?php the_title(); ?></h3>
+                          <h3>
+                            <?php
+                              the_title();
+                              ?>
+                          </h3>
                       </div>
 
                       <?php
