@@ -5,11 +5,10 @@
   </div>
 
   <div class="content-box">
-
+    <div class="title-box">
+      <h2>팝니다 - 상세 정보</h2>
+    </div>
     <div class="navigation">
-      <div class="title-box">
-        <h2>팝니다 - 상세 정보</h2>
-      </div>
       <?php qt_custom_breadcrumbs(); ?>
     </div>
 
@@ -94,6 +93,7 @@
                       'made_location' => '조선지',
                       'commit_name' => '담당자이름',
                       'commit_contact' => '연락처',
+                      'price' => '매매가'
                     );
 
                     $ship_option_basic = array(
@@ -146,8 +146,13 @@
                                 "<tr><th>$value</th><td>{$$key}</td>";
                             }
                           } elseif( $current_index % 2 === 1 ) {
-                            $content .=
-                              "<th>$value</th><td>{$$key}</td></tr>";
+                            if( $key === 'price' ){
+                              $content .=
+                                "<th class='price'>$value</th><td class='price'>{$$key}</td></tr>";
+                            } else {
+                              $content .=
+                                "<th>$value</th><td>{$$key}</td></tr>";
+                            }
                           }
 
                           $current_index++;
@@ -252,25 +257,7 @@
                         <h3>상세 설명</h3>
                       </div>
                       <div class="ship-desc">
-                        <?php
-                          $commit_name = get_post_meta( get_the_ID(), "commit_name", true );
-                          $commit_contact = get_post_meta( get_the_ID(), "commit_contact", true );
-                        ?>
-                          <div class="ship-desc-content">
-                            <?php
-                              the_content();
-                            ?>
-                          </div>
-                          <div class="ship-contact">
-                            <?php
-                              echo "담당자: " . $commit_name . '<br><br>';
-                              echo "연락처: " . $commit_contact;
-                            ?>
-                            <div class="button-wrapper">
-                              <a href="#" id="phone" class="btn btn-common-1"><span class="text">전화 문의하기</span></a>
-                              <a href="#" id="mail" class="btn btn-common-2"><span class="text">메일 문의하기</span></a>
-                            </div>
-                          </div>
+                        <?php the_content(); ?>
                       </div>
                     </div>
                     <div class="go-list-button">

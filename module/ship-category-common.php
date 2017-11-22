@@ -13,11 +13,11 @@
 
     <li>
       <a href="<?php
-                  if( is_front_page() ){
+                  if( is_front_page() || is_tax() ){
                     echo esc_url( home_url() );
-                  } elseif( (is_archive() || is_tax()) && $post->post_type === 'ship' ){
+                  } elseif( is_archive() && $post->post_type === 'ship' ){
                     echo site_url() . '/ship';
-                  } elseif( (is_archive() || is_tax()) && $post->post_type === 'ship_buying' )
+                  } elseif( is_archive() && $post->post_type === 'ship_buying' )
                     echo site_url() . '/ship_buying';
                 ?>">
         <div class="ship-category-item all-item">
@@ -34,11 +34,11 @@
 
         <li>
           <?php
-            if( is_front_page() ){
+            if( is_front_page() || is_tax() ){
           ?>
               <a href="<?php echo esc_url( home_url( '/' ) . $term->taxonomy . '/' . $term->slug ); ?>">
           <?php
-            } elseif( is_archive() || is_tax() && ( $post->post_type === 'ship' || $post->post_type === 'ship_buying' ) ){
+            } elseif( is_archive() && ( $post->post_type === 'ship' || $post->post_type === 'ship_buying' ) ){
           ?>
             <a href="<?php echo esc_url( home_url( '/' ) . $post->post_type . '/' . 'category/' . $term->slug ); ?>">
 

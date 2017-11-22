@@ -11,7 +11,7 @@
 
      <div class="content-box">
        <div class="title-box">
-         <h2><?php echo esc_html_e('회사소개'); ?></h2>
+         <h2><?php echo esc_html_e('인사말'); ?></h2>
        </div>
        <div class="navigation">
          <?php qt_custom_breadcrumbs(); ?>

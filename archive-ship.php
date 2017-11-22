@@ -5,11 +5,10 @@
   </div>
 
   <div class="content-box">
-
+    <div class="title-box">
+      <h2>매물 현황</h2>
+    </div>
     <div class="navigation">
-      <div class="title-box">
-        <h2>매물 현황</h2>
-      </div>
       <?php qt_custom_breadcrumbs(); ?>
     </div>
 
