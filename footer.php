@@ -10,8 +10,9 @@
   </nav>
   <div class="footer-content-box">
     <div class="company-info">
-      (주)한국선박거래소 | 대표자: OOO | 본사: 인천시 OOO | 지사: 부산시 OOO | 연락처: (051) 000 - 0000
-      | 사업자 등록 번호: 000 - 00 - 00000
+      <p>(주)인천선박거래소 | 대표자: 진광민 | 사업자 등록 번호: 000 - 00 - 00000</p>
+      <p>본사: 인천광역시 중구 연안부두로 9-1, 202호 | T. (032) 881 - 6527 | F. (032) 891 - 6527</p>
+      <p>HP. 010 - 4076 - 6527 | Email. yunus82@naver.com</p>
     </div>
     <div class="social">
       <a href="<?php echo esc_url( get_theme_mod( 'cosmetic_footer_social_url_1' ) ); ?>" target="_blank">

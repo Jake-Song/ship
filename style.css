@@ -86,68 +86,37 @@ img{
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
 }
-.thumbnail-image-section .overlay h2{
-  opacity: 0;
-  color: #fff;
-  text-align: center;
-  position: relative;
-  font-size: 1.5rem;
-  overflow: hidden;
-  margin: 0;
-  padding: 0.5em 0 1em 0;
-  background-color: transparent;
-  -webkit-transform: translate3d(-20%,0,0);
-          transform: translate3d(-20%,0,0);
-  -webkit-transition: opacity .35s, -webkit-transform .35s;
-  transition: opacity .35s, -webkit-transform .35s;
-  transition: transform .35s, opacity .35s;
-  transition: transform .35s, opacity .35s, -webkit-transform .35s;
-}
-.thumbnail-image-section:hover .overlay h2{
-  opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-}
-.thumbnail-image-section .overlay h2:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: #fff;
-  content: '';
-  -webkit-transition: -webkit-transform 0.35s;
-  transition: -webkit-transform 0.35s;
-  transition: transform 0.35s;
-  transition: transform 0.35s, -webkit-transform 0.35s;
-  -webkit-transform: translate3d(-100%,0,0);
-  transform: translate3d(-100%,0,0);
-}
-.thumbnail-image-section:hover .overlay h2:after{
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
-}
-.thumbnail-image-section a, .thumbnail-image-section p {
+.thumbnail-image-section p {
   color: #FFF;
   opacity: 0;
-  margin-top: 1.5em;
-  filter: alpha(opacity=0);
   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, transform 0.35s;
   transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
   -webkit-transform: translate3d(20%,0,0);
   transform: translate3d(20%,0,0);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+}
+.thumbnail-image-section a{
+  color: white;
+}
+.thumbnail-image-section .overlay p > a{
+  border: 1px solid white;
+  padding: 10px 20px;
+  transition: .4s;
 }
 .thumbnail-image-section a > i{
   margin-left: .5em;
 }
 .thumbnail-image-section:hover a:hover{
   color: #F7C446;
+  border-color: currentColor;
 }
 .thumbnail-image-section:hover a, .thumbnail-image-section:hover p {
   opacity: 1;
-  filter: alpha(opacity=100);
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
 }
@@ -288,6 +257,7 @@ a.btn-diagonal-swipe {
 .btn.btn-common-1, .btn.btn-common-2{
   color: white;
   border-radius: 0;
+  border: 0;
   width: 50%;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
@@ -295,7 +265,7 @@ a.btn-diagonal-swipe {
   position: relative;
 }
 .btn.btn-common-1{
-  background: #354D63;
+  background: #478AB2;
 }
 .btn.btn-common-1::after, .btn.btn-common-2::after{
   content: '\e80c';
@@ -475,8 +445,10 @@ div.container{
 #buyandsell-wrapper{
   position: absolute;
   top: 32%;
-  left: 40%;
+  left: 37%;
   font-size: 1.2rem;
+  padding: 5px;
+  border: 1px solid #C20002
 }
 #buyandsell-wrapper > a{
   -webkit-transition: .4s;
@@ -485,7 +457,10 @@ div.container{
   color: #C20002;
 }
 #buyandsell-wrapper > a.ship-sell{
-  border-right: 1px solid #354D63;
+  border-right: 1px solid #C20002;
+}
+#buyandsell-wrapper a:hover{
+  color: #ff0004;
 }
 
 /* Sticky Header */
@@ -537,8 +512,18 @@ div.container{
 .site-header.sticky-header nav{
   background: #354D63;
 }
+.site-header.sticky-header #buyandsell-wrapper{
+  top: 23%;
+  border-color: #F7C446;
+}
+.site-header.sticky-header #buyandsell-wrapper > a{
+  color: #f7c446;
+}
+.site-header.sticky-header #buyandsell-wrapper > a:hover{
+  color: #ffb600;
+}
 .site-header.sticky-header #buyandsell-wrapper > a.ship-sell{
-  border-right: 1px solid #fff;
+  border-right: 1px solid #F7C446;
 }
 .site-header img.sticky-logo{
   display: none;
@@ -808,6 +793,7 @@ div.container{
   -webkit-transition: visibility 0s .8s, opacity .8s;
   transition: visibility 0s .8s, opacity .8s;
   padding-left: 2em;
+  width: 100%;
 }
 .text-section > .text > h2 > i{
   color: #F7C446;
@@ -1131,7 +1117,7 @@ table.ship-custom.market > tbody > tr > td.img{
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  margin-bottom: 4.5em;
+  margin-bottom: 3em;
 }
 .info-box > .main-box{
   -webkit-box-flex: 4;
@@ -1242,7 +1228,6 @@ article.tax .ship-custom.table{
 }
 .content-box{
   position: relative;
-  margin-bottom: 11em;
   padding: 0 3em;
   margin-top: 4em;
 }
@@ -1406,13 +1391,7 @@ article.single-selling > .content-wrapper{
 }
 /* 푸터 */
 .site-footer{
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  padding: 0 20px;
-  width: 100%;
+  margin-top: 5em;
   background-color: #3e4d51;
 }
 .site-footer > .site-nav{
@@ -1940,9 +1919,6 @@ article.not-found h3{
   .main-box-text{
     width: 90%;
   }
-  .thumbnail-image-section .overlay h2{
-    margin-top: 2.5em;
-  }
   .text-section{
     padding-top: 0;
   }
@@ -1959,25 +1935,93 @@ article.not-found h3{
     right: -5px;
   }
 }
-@media only screen and (max-width: 767px){
 
+/* 404 Not found */
+.error404 article{
+  text-align: center;
+  font-size: 2rem;
+}
+.error404 article p a{
+  color: #C20002;
+}
+.error404 article p > i{
+  color: #C20002;
+  font-size: 3rem;
+}
+@media only screen and (min-width: 768px) and (max-width: 960px){
+  #buyandsell-wrapper{
+    left: 32%;
+  }
+  #primary-menu > ul > li > a{
+    margin-right: 1.5em;
+  }
+  #sell{
+    margin-right: 2em;
+    margin-left: 0;
+  }
+  #buy{
+    margin: 0;
+  }
+  table.ship-custom.market > tbody > tr > td.number,
+  table.ship-custom.market > tbody > tr > td.location{
+    width: 10%;
+  }
+  table.ship-custom.market > tbody > tr > td.bbs_count{
+    width: 13%;
+  }
+  table.ship-custom.market > tbody > tr > td.img{
+    width: 11.7%;
+  }
+  .news-content > .bx-wrapper.notice{
+    width: 59%;
+  }
+  .info-box > .main-box{
+    flex: 6 6;
+  }
+  .info-box > .main-box > img{
+    height: 100%;
+  }
+  .info-box > .location > img{
+    height: 100%;
+  }
+
+  /* 회사소개 */
+  .banner{
+    height: auto;
+  }
+  #about-us{
+    width: 90%;
+  }
+
+  /* 팝니다 페이지 */
+  .ship-custom.table{
+    height: 55%;
+  }
+  .button-wrapper{
+    margin-top: 1em;
+  }
+  .site-footer{
+    margin-top: 2em;
+  }
+}
+@media only screen and (max-width: 767px){
+  div.container{
+    padding: 0;
+  }
   .site-header > .site-title{
     margin-left: 0;
   }
   #buyandsell-wrapper{
     display: none;
   }
-  div.container{
-    padding: 0;
-  }
   .content-box{
     padding: 0;
     margin-top: -1px;
-    margin-bottom: 13em;
   }
   #about-us{
     padding: 1em;
     width: 100%;
+    margin-top: 0;
   }
   .bx-wrapper.recent-ship .bx-controls-direction a.bx-next{
     right: 35%;
@@ -1989,7 +2033,7 @@ article.not-found h3{
     text-align: right;
   }
   .title-box{
-    left: 30%;
+    left: 2%;
   }
   .post-type-archive-notice table.ship-custom.market > tbody > tr > td.name,
   .post-type-archive-news table.ship-custom.market > tbody > tr > td.name{
@@ -2034,7 +2078,7 @@ article.not-found h3{
     padding: .5em 0 1em 0;
   }
   .ship-category-menu > ul > li{
-    padding: 0 0 0em 1em;
+    padding: 0 1em 1em 1em;
   }
   article.post{
     padding: 0;
@@ -2072,7 +2116,7 @@ article.not-found h3{
   }
   table.ship-custom.market > tbody > tr > td.location,
   table.ship-custom.market > tbody > tr > td.img{
-    width: 14%;
+    width: 7%;
   }
   .image-section, .text-section{
     -webkit-box-flex: 1;
@@ -2112,7 +2156,7 @@ article.not-found h3{
   }
   .bx-wrapper.recent-ship{
     margin-bottom: 0;
-    padding-left: 1.8em;
+    padding-left: 1.5em;
   }
   .bx-wrapper.recent-ship .bx-controls-direction a{
     font-size: 2.5rem;
@@ -2161,7 +2205,7 @@ article.not-found h3{
         flex-basis: 100%;
   }
   .info-box > .main-box > img{
-    height: 297.14px;
+    height: auto;
   }
   .info-box > .qna{
     -webkit-box-ordinal-group: 0;
@@ -2180,12 +2224,6 @@ article.not-found h3{
   }
   .bx-wrapper.notice{
     vertical-align: text-bottom;
-  }
-  .bx-wrapper.main{
-    height: 150px;
-  }
-  .bx-wrapper.main .main-slide img{
-    height: 150px;
   }
   .bx-wrapper.main .bx-controls-direction a{
     font-size: 2rem;
@@ -2227,6 +2265,9 @@ article.not-found h3{
   #partners{
     padding-left: 1em;
   }
+  .site-footer{
+    margin-top: 2em;
+  }
 
   /* 오시는 길 */
   #head-office, #branch-office{
@@ -2250,26 +2291,30 @@ article.not-found h3{
   /* 싱글 페이지 */
   article.post.single .image-wrapper{
     margin-right: 0;
+    flex-basis: 100%;
   }
   .title-box h2{
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .banner{
-    height: 100px;
+    height: auto;
   }
   .navigation > a{
     margin-left: 0;
   }
   .crumbs{
-    margin-right: 0;
+    margin-right: 2%;
   }
   .ship-information{
+    flex-basis: 100%;
     margin: 3em 0;
   }
   .button-wrapper{
     height: auto;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    width: 80%;
+    margin: 3em auto;
   }
   #phone{
     margin-bottom: 1em;
@@ -2281,6 +2326,7 @@ article.not-found h3{
   }
   .ship-option-basic{
     margin-bottom: 2em;
+    flex: 1 1 100%;
   }
   article.post .post-modified{
     top: 20px;
@@ -2385,6 +2431,7 @@ article.not-found h3{
     position: fixed;
     width: 100%;
     height: 100vh;
+    overflow-y: auto;
     top: 0;
     left: 0;
     z-index: 1;
@@ -2565,10 +2612,45 @@ article.not-found h3{
   .site-header.sticky-header #primary-menu > ul > li > a > span[data-hover]{
     color: #333;
   }
+  /* 404 Not found */
+  .error404 article{
+    font-size: 1rem;
+  }
+  .error404 article p > i{
+    font-size: 1.5rem;
+  }
 }
 @media only screen and (max-width: 360px){
   .site-header nav ul li{
     clear: both;
+  }
+  .bx-wrapper.main{
+    height: 150px;
+  }
+  .bx-wrapper.main .main-slide img{
+    height: 150px;
+  }
+  .ship-category-menu > ul > li{
+    padding: 0 0 0em 1em;
+  }
+  table.ship-custom.market > tbody > tr > td.location,
+  table.ship-custom.market > tbody > tr > td.img{
+    width: 14%;
+  }
+  .info-box > .main-box > img{
+    height: 297.14px;
+  }
+  .banner{
+    height: 100px;
+  }
+  .crumbs{
+    margin-right: 0;
+  }
+  .button-wrapper{
+    width: 100%;
+  }
+  .ship-option-wrapper .ship-custom.table > tbody > tr > td{
+    padding: 8px;
   }
   .modal-content{
     width: 90%;
@@ -2600,6 +2682,9 @@ article.not-found h3{
   }
   .site-header .navbar-default .navbar-nav > li > a{
     font-size: 1.5rem;
+  }
+  .additional-image-wrapper{
+    height: 100px;
   }
 }
 @media only screen and (max-width: 320px){

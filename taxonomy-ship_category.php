@@ -8,8 +8,7 @@
        <div class="title-box">
          <h2>
            <?php
-            $ship_term = get_term_by( "slug", $ship_category, $taxonomy );
-            echo esc_html_e('매물현황') . ' - ' . $ship_term->name;
+            echo esc_html_e('매물현황');
             $test = 0;
            ?>
          </h2>
@@ -34,7 +33,18 @@
 
                     <h3>삽니다</h3>
                     <span class="market-icon">
-                      <a href="<?php echo get_post_type_archive_link( 'ship_buying' ); ?>"><i class="icon-plus-squared-alt"></i></a>
+                      <a href="
+                        <?php
+                          $ship_term = get_term_by( "slug", $ship_category, $taxonomy );
+                          if( !$ship_term ){
+                            echo get_post_type_archive_link( 'ship_buying' );
+                          } else {
+                            echo site_url('/') . 'ship_buying/category/' . $ship_term->slug;
+                          }
+
+                        ?>">
+                        <i class="icon-plus-squared-alt"></i>
+                      </a>
                     </span>
 
                     <table class="table ship-custom market">
@@ -110,8 +120,20 @@
 
                      <h3>팝니다</h3>
                      <span class="market-icon">
+
                        <?php $test = 0; ?>
-                       <a href="<?php echo get_post_type_archive_link( 'ship' ); ?>"><i class="icon-plus-squared-alt"></i></a>
+                       <a href="
+                         <?php
+                           $ship_term = get_term_by( "slug", $ship_category, $taxonomy );
+                           if( !$ship_term ){
+                             echo get_post_type_archive_link( 'ship_buying' );
+                           } else {
+                             echo site_url('/') . 'ship/category/' . $ship_term->slug;
+                           }
+                          ?>">
+                         <i class="icon-plus-squared-alt"></i>
+                       </a>
+
                      </span>
 
                      <table class="table ship-custom market">

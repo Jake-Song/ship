@@ -11,8 +11,7 @@
       <div class="thumbnail-image-section">
         <?php the_post_thumbnail( 'custom' ); ?>
         <div class="overlay">
-          <h2><?php the_title(); ?></h2>
-          <p><a href="<?php the_permalink(); ?>">상세 보기<i class="icon-right"></i></a></p>
+          <p><a href="<?php the_permalink(); ?>">상세 보기</a></p>
         </div>
       </div>
 

@@ -165,8 +165,11 @@
 
                       ?>
                       <div class="button-wrapper">
-                        <a href="#" id="phone" class="btn btn-common-1"><span class="text">전화 문의하기</span></a>
-                        <a href="#" id="mail" class="btn btn-common-2"><span class="text">메일 문의하기</span></a>
+                        <?php
+                          $test = 0;
+                          $contact = get_post_meta( get_the_ID(), 'commit_contact', true );
+                        ?>
+                        <a href="tel:<?php echo $contact; ?>" id="phone" class="btn btn-common-1"><span class="text">전화 문의하기</span></a>
                       </div>
                     </div>
 

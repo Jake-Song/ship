@@ -40,7 +40,7 @@
             <td class="date">
               <?php
                 $ship_date = $post->post_date;
-                echo date('Y-n-d', strtotime($ship_date));
+                echo date('n-d', strtotime($ship_date));
               ?>
             </td>
             <td class="bbs_count">
