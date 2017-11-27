@@ -1324,7 +1324,9 @@ article.post.single .text-wrapper{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  flex: 1 1 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin: 2em 0;
@@ -1359,8 +1361,8 @@ article.post.single .text-wrapper{
 .go-list-button{
   text-align: center;
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
 }
 .ship-custom.table{
   height: 60%;
