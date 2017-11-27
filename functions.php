@@ -2,7 +2,7 @@
 // 스타일 시트, 스크립트 로드
 function cosmetic_enqueue_scripts(){
     wp_enqueue_style( 'style', get_stylesheet_uri() );
-    //wp_enqueue_style( 'reset', get_template_directory_uri() . '/css/reset.css' );
+    wp_enqueue_style( 'reset', get_template_directory_uri() . '/css/reset.css' );
     //wp_enqueue_style( 'normalize', get_template_directory_uri() . '/css/normalize.css' );
     wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
     wp_enqueue_style( 'fontello', get_template_directory_uri() . '/fontello/css/fontello.css' );

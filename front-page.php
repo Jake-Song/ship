@@ -98,12 +98,12 @@
               'made_date' => '진수년월일',
               'measure' => '주요치수',
               'certificate' => '허가사항',
-              'sale_location' => '판매정박지',
+              'sale_location' => '판매지역',
               'forward_parts' => '추진기관',
               'made_location' => '조선지',
-              'commit_name' => '담당자이름',
-              'commit_contact' => '연락처',
               'price' => '매매가',
+              'commit_name' => '담당자',
+              'commit_contact' => '연락처'
             );
 
             while($featured_query->have_posts()) : $featured_query->the_post();
@@ -140,8 +140,13 @@
                           "<tr><th>$value</th><td>{$$key}</td>";
                       }
                     } elseif( $li_index % 2 === 1 ) {
-                      $content .=
-                        "<th>$value</th><td>{$$key}</td></tr>";
+                      if( $key === 'price' ){
+                        $content .=
+                          "<th class='price'>$value</th><td class='price'>{$$key}</td></tr>";
+                      } else {
+                        $content .=
+                          "<th>$value</th><td>{$$key}</td></tr>";
+                      }
                     }
 
                     $li_index++;

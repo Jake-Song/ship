@@ -106,6 +106,7 @@ img{
 .thumbnail-image-section .overlay p > a{
   border: 1px solid white;
   padding: 10px 20px;
+  -webkit-transition: .4s;
   transition: .4s;
 }
 .thumbnail-image-section a > i{
@@ -955,11 +956,17 @@ div.container{
 }
 #buy{
   margin-right: 2em;
-  flex: 4 4;
+  -webkit-box-flex: 4;
+      -ms-flex: 4 4;
+          flex: 4 4;
 }
 #sell{
-  order: -1;
-  flex: 5 5;
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
+  -webkit-box-flex: 5;
+      -ms-flex: 5 5;
+          flex: 5 5;
 }
 #sell, #buy{
   margin-left: 2em;
@@ -1144,7 +1151,7 @@ table.ship-custom.market > tbody > tr > td.img{
           flex: 3 3;
 }
 .info-box > .location > img{
-  height: 266.18px;
+  height: 100%;
 }
 .info-box > .qna > h3{
   width: 40%;
@@ -1367,7 +1374,8 @@ article.post.single .text-wrapper{
 .ship-custom.table > tbody > tr > td{
   vertical-align: middle;
 }
-.ship-custom.table > tbody > tr > .price{
+.ship-custom.table > tbody > tr > .price,
+.best-ship-table > tbody > tr > .price{
   color: #C20002;
 }
 .ship-custom.table tr:nth-child(even) {
@@ -1976,7 +1984,9 @@ article.not-found h3{
     width: 59%;
   }
   .info-box > .main-box{
-    flex: 6 6;
+    -webkit-box-flex: 4;
+        -ms-flex: 4 4;
+            flex: 4 4;
   }
   .info-box > .main-box > img{
     height: 100%;
@@ -1984,7 +1994,9 @@ article.not-found h3{
   .info-box > .location > img{
     height: 100%;
   }
-
+  .info-box > .qna > h3{
+    width: 45%;
+  }
   /* 회사소개 */
   .banner{
     height: auto;
@@ -2016,7 +2028,7 @@ article.not-found h3{
   }
   .content-box{
     padding: 0;
-    margin-top: -1px;
+    margin-top: 2px;
   }
   #about-us{
     padding: 1em;
@@ -2197,7 +2209,10 @@ article.not-found h3{
   .info-box{
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     margin-bottom: 0;
   }
   .info-box > .main-box{
@@ -2216,6 +2231,7 @@ article.not-found h3{
     border: 0;
   }
   .info-box > .location{
+    margin-top: 2px;
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
   }
@@ -2263,6 +2279,7 @@ article.not-found h3{
     right: 38%;
   }
   #partners{
+    margin-top: 2em;
     padding-left: 1em;
   }
   .site-footer{
@@ -2291,7 +2308,8 @@ article.not-found h3{
   /* 싱글 페이지 */
   article.post.single .image-wrapper{
     margin-right: 0;
-    flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
   }
   .title-box h2{
     font-size: 1.5rem;
@@ -2306,7 +2324,8 @@ article.not-found h3{
     margin-right: 2%;
   }
   .ship-information{
-    flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
     margin: 3em 0;
   }
   .button-wrapper{
@@ -2326,7 +2345,9 @@ article.not-found h3{
   }
   .ship-option-basic{
     margin-bottom: 2em;
-    flex: 1 1 100%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
   }
   article.post .post-modified{
     top: 20px;
