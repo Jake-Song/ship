@@ -1034,8 +1034,8 @@ table.ship-custom.market > tbody > tr > td.img{
           box-shadow: none;
   border: 0;
   background: none;
-  padding-left: 1.5em;
-  margin-top: 1em;
+  margin: 1em auto;
+  padding-left: .7em;
   padding-bottom: 6em;
 }
 .bx-wrapper.recent-ship .bx-controls-direction a{
@@ -1047,10 +1047,10 @@ table.ship-custom.market > tbody > tr > td.img{
   top: 35%;
 }
 .bx-wrapper.recent-ship .bx-controls-direction a.bx-prev{
-  left: 5px;
+  left: -7px;
 }
 .bx-wrapper.recent-ship .bx-controls-direction a.bx-next{
-  right: -7px;
+  right: 0px;
 }
 .bx-wrapper.recent-ship .bx-controls-direction a.bx-prev::before{
   content: '\e811';
@@ -1061,6 +1061,9 @@ table.ship-custom.market > tbody > tr > td.img{
   content: '\e812';
   font-family: Fontello;
   color: #F7C446;
+}
+.bx-wrapper.recent-ship .col-sm-6{
+  padding-left: 25px;
 }
 .bx-wrapper.recent-ship img{
   max-width: none;
@@ -1129,13 +1132,16 @@ table.ship-custom.market > tbody > tr > td.img{
   display: flex;
   position: relative;
   margin-bottom: 3em;
-  height: 266.18px;
   overflow: hidden;
 }
 .info-box > .main-box{
   -webkit-box-flex: 4;
       -ms-flex: 4;
           flex: 4;
+}
+.info-box > .main-box > img, .info-box > .location > img{
+  height: 100%;
+  width: 100%;
 }
 .info-box > .qna{
   -webkit-box-flex: 3;
@@ -1152,9 +1158,6 @@ table.ship-custom.market > tbody > tr > td.img{
   -webkit-box-flex: 3;
       -ms-flex: 3 3;
           flex: 3 3;
-}
-.info-box > .location > img{
-  height: 266.18px;
 }
 .info-box > .qna > h3{
   width: 40%;
@@ -1600,6 +1603,21 @@ article.page h2{
   width: 45%;
 }
 
+/* 질문과 답변 */
+.mb-board div .table > thead > tr > th, .mb-board div .table > tbody > tr > th,
+.mb-board div .table > tbody > tr > td{
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-size: 1.2rem;
+  color: #333;
+}
+.mb-board div .table > thead > tr > th, .mb-board div .table > tbody > tr > th{
+  font-size: 1rem;
+  font-weight: 400;
+}
+#qanda_board.mb-board a, #qanda_board.mb-board button{
+  color: #333 !important;
+}
+
 /* 포스트 */
 article.post{
   padding: 1em;
@@ -1614,7 +1632,6 @@ article.post > h2{
 p.post-info{
   font-size: 1rem;
   color: #333;
-  border-top: 2px solid #ddd;
   border-bottom: 2px solid #ddd;
   padding: .5em 0;
 }
@@ -2222,6 +2239,7 @@ article.not-found h3{
         -ms-flex-direction: column;
             flex-direction: column;
     margin-bottom: 0;
+    height: auto;
   }
   .info-box > .main-box{
     -ms-flex-preferred-size: 100%;
@@ -2714,6 +2732,9 @@ article.not-found h3{
   }
   .additional-image-wrapper{
     height: 100px;
+  }
+  .bx-wrapper.recent-ship .col-sm-6{
+    padding-left: 20px;
   }
 }
 @media only screen and (max-width: 320px){

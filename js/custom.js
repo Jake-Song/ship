@@ -164,41 +164,43 @@ jQuery( document ).ready( function($){
     // OPTIONAL
     // If supplied, triggered when a media query matches.
     match : function() {
-      var test = 0;
-      console.log('hello');
-      recent.reloadSlider({
-        auto: false,
-        speed: 1500,
-        slideWidth: 390,
-        maxSlides: 1,
-        moveSlides: 1,
-        pager: false,
-        prevText: '',
-        nextText: '',
-        wrapperClass: 'bx-wrapper recent-ship'
-      });
+      if( recent )
+        recent.reloadSlider({
+          auto: false,
+          speed: 1500,
+          slideWidth: 500,
+          maxSlides: 1,
+          moveSlides: 1,
+          pager: false,
+          prevText: '',
+          nextText: '',
+          wrapperClass: 'bx-wrapper recent-ship'
+        });
     },
 
     // OPTIONAL
     // If supplied, triggered when the media query transitions
     // *from a matched state to an unmatched state*.
     unmatch : function() {
-      recent.reloadSlider({
-        auto: false,
-        speed: 1500,
-        slideWidth: 250,
-        maxSlides: 4,
-        moveSlides: 1,
-        pager: false,
-        prevText: '',
-        nextText: '',
-        wrapperClass: 'bx-wrapper recent-ship'
-      });
+      if(recent)
+        recent.reloadSlider({
+          auto: false,
+          speed: 1500,
+          slideWidth: 250,
+          maxSlides: 4,
+          moveSlides: 1,
+          pager: false,
+          prevText: '',
+          nextText: '',
+          wrapperClass: 'bx-wrapper recent-ship'
+        });
     },
 
     // OPTIONAL
     // If supplied, triggered once, when the handler is registered.
-    setup : function() {},
+    setup : function() {
+
+    },
 
     // OPTIONAL, defaults to false
     // If set to true, defers execution of the setup function

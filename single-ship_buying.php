@@ -19,9 +19,9 @@
 
               <article class="post single-selling clearfix">
 
-                <h2><?php the_title(); ?></h2>
+                <h4><?php the_title(); ?></h4>
 
-                <p class="post-info"><?php the_time('Y년 n월 j일 a g:i'); ?> | 카테고리
+                <p class="post-info"><?php the_time('Y년 n월 j일'); ?> | 카테고리
 
                   <?php
                     $ship_categories = get_the_terms( $post->ID, 'ship_category');
@@ -39,7 +39,14 @@
                 <div class="content-wrapper">
                   <?php the_content(); ?>
                 </div>
+
+                <div class="go-list-button">
+                  <a href="<?php echo get_post_type_archive_link( 'ship_buying' ); ?>" class="btn-diagonal-swipe">목록 보기</a>
+                </div>
+
             </article>
+
+
 
     <?php endwhile;
       else :

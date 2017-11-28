@@ -22,7 +22,7 @@
            <div class="map-text">
              <h3>인천 선박거래소</h3>
              <p><strong>주소:</strong> 인천광역시 중구 연안부두로 9-1, 202호</p>
-             <p><strong>연락처:</strong> T. 032.881.6527 / F. 032.891.6527 / HP. 010.4076.6527</p>
+             <p><strong>연락처:</strong> T. 032.881.6527 / F. 032.891.6527</p>
              <p><strong>이메일:</strong> yunus82@naver.com</p>
            </div>
            <div class="map">
