@@ -30,6 +30,8 @@
 .icon-left-circled { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe811;&nbsp;'); }
 .icon-right-circled { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe812;&nbsp;'); }
 .icon-exclamation { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe813;&nbsp;'); }
+.icon-check { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe814;&nbsp;'); }
+.icon-check-empty { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe815;&nbsp;'); }
 .icon-crown { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe844;&nbsp;'); }
 .icon-anchor { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf13d;&nbsp;'); }
 .icon-left { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf177;&nbsp;'); }

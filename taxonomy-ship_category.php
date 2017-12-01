@@ -1,9 +1,5 @@
 <?php get_header(); ?>
 
-    <div class="banner">
-      <img src="<?php echo site_url(); ?>/wp-content/themes/ship/img/page-banner.jpg" alt="">
-    </div>
-
      <div class="content-box">
        <div class="title-box">
          <h2>
@@ -60,8 +56,25 @@
                   <?php
 
                     if( have_posts() ) :
+
+                      $posts_per_page = get_option('posts_per_page');
+                      $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
+                      $test = 0;
+                      $ship_category_posts = new WP_Query(array(
+                        'post_type' => 'ship_buying',
+                        'tax_query' => array(
+                          array(
+                              'taxonomy' => 'ship_category',
+                              'field' => 'slug',
+                              'terms' => $ship_category
+                          )
+                        ),
+                      ));
+                      $ship_category_posts_count = $ship_category_posts->found_posts;
+                      $ship_buying_number = $ship_category_posts_count - ($current_page - 1) * $posts_per_page;
+                      $test = 0;
                       while( have_posts() ) : the_post();
-                        $test = 0;
+
                         if($post->post_type === "ship_buying") :
 
                         $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
@@ -69,7 +82,7 @@
 
                       <tr>
                         <td class="number">
-                          <?php echo $post->ID; ?>
+                          <?php echo $ship_buying_number; ?>
                         </td>
                         <td class="location">
                           <?php
@@ -99,6 +112,7 @@
                       </tr>
 
                         <?php
+                            $ship_buying_number--;
 
                             endif;
 
@@ -150,6 +164,23 @@
                    <?php
                     $test = 0;
                      if( have_posts() ) :
+
+                       $posts_per_page = get_option('posts_per_page');
+                       $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
+                       $test = 0;
+                       $ship_category_posts = new WP_Query(array(
+                         'post_type' => 'ship',
+                         'tax_query' => array(
+                           array(
+                               'taxonomy' => 'ship_category',
+                               'field' => 'slug',
+                               'terms' => $ship_category
+                           )
+                         ),
+                       ));
+                       $ship_category_posts_count = $ship_category_posts->found_posts;
+                       $ship_number = $ship_category_posts_count - ($current_page - 1) * $posts_per_page;
+                       $test = 0;
                        while( have_posts() ) : the_post();
                          if($post->post_type === "ship") :
                            $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
@@ -157,7 +188,7 @@
 
                    <tr>
                      <td class="number">
-                       <?php echo $post->ID; ?>
+                       <?php echo $ship_number; ?>
                      </td>
                      <td class="img">
                        <?php if( has_post_thumbnail($post->ID) ) the_post_thumbnail('smallest'); ?>
@@ -190,6 +221,9 @@
                    </tr>
 
                      <?php
+
+                       $ship_number--;
+
                         endif;
 
                        endwhile;

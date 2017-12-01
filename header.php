@@ -10,6 +10,7 @@
     <body <?php body_class(); ?>>
 
         <div class="container">
+
             <header class="site-header">
 
                 <div class="site-title">
@@ -74,3 +75,13 @@
               </div>
 
           </header>
+          <?php if( !is_front_page() ) : ?>
+            <div class="banner">
+              <?php
+                  if( get_theme_mod("page_banner_settings", '') !== '' ){
+                    $page_banner_id = get_theme_mod("page_banner_settings");
+                    echo wp_get_attachment_image( $page_banner_id, 'full' );
+                  }
+              ?>
+            </div>
+          <?php endif; ?>

@@ -1,6 +1,6 @@
 <?php
 // 스타일 시트, 스크립트 로드
-function cosmetic_enqueue_scripts(){
+function ship_enqueue_scripts(){
     wp_enqueue_style( 'style', get_stylesheet_uri() );
     wp_enqueue_style( 'reset', get_template_directory_uri() . '/css/reset.css' );
     //wp_enqueue_style( 'normalize', get_template_directory_uri() . '/css/normalize.css' );
@@ -17,8 +17,10 @@ function cosmetic_enqueue_scripts(){
     ) );
 
     //wp_enqueue_script( 'jquery-3', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), '3.1.1' );
+
     wp_enqueue_style( 'bx-css', 'https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css' );
     wp_enqueue_script( 'bx-js', 'https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js', array('jquery') );
+
 
     wp_localize_script( 'custom', 'ajaxHandler', array(
       'adminAjax' => admin_url( 'admin-ajax.php' ),
@@ -27,7 +29,7 @@ function cosmetic_enqueue_scripts(){
       'securityLogin' => wp_create_nonce( 'login' ),
     ) );
 }
-add_action('wp_enqueue_scripts', 'cosmetic_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'ship_enqueue_scripts');
 
 // 사용자 정의하기
 function themeslug_customize_register( $wp_customize ) {
@@ -38,7 +40,6 @@ function themeslug_customize_register( $wp_customize ) {
      array(
        'type' => 'theme_mod',
        'default' => '', // Give it a default
-
      )
    );
    $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'logo', array(
@@ -51,6 +52,107 @@ function themeslug_customize_register( $wp_customize ) {
      // 'width'       => 270,
      // 'height'      => 45,
    ) ) );
+
+   // 슬라이더
+   $wp_customize->add_section(
+      'main_slider', //give it an ID
+      array(
+       'title' => __( '메인 슬라이더' ),
+       'description' => __( '이미지 권장크기는 1900 x 650 입니다.' ),
+       'priority' => 160,
+       'capability' => 'edit_theme_options',
+      )
+    );
+   for( $i = 1; $i < 5; $i++ ){
+     $wp_customize->add_setting(
+        "main_slider_settings_$i", //give it an ID
+        array(
+          'type' => 'theme_mod',
+          'default' => '', // Give it a default
+        )
+      );
+
+     $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, "main_slider_control_$i", array(
+       'section'     => 'main_slider',
+       'settings'    => "main_slider_settings_$i",
+       'label'       => __( "슬라이더_#$i 이미지", 'ship' ),
+       'flex_width'  => true, // Allow any width, making the specified value recommended. False by default.
+       'flex_height' => true, // Require the resulting image to be exactly as tall as the height attribute (default).
+       'width'       => 1900,
+       'height'      => 650,
+     ) ) );
+   }
+
+   // 하단 배너
+   $wp_customize->add_section(
+      'footer_banner',
+      array(
+       'title' => __( '하단 배너' ),
+       'priority' => 160,
+       'capability' => 'edit_theme_options',
+      )
+    );
+    $wp_customize->add_setting(
+       "footer_banner_contact",
+       array(
+         'type' => 'theme_mod',
+         'default' => '',
+       )
+     );
+     $wp_customize->add_setting(
+        "footer_banner_location",
+        array(
+          'type' => 'theme_mod',
+          'default' => '',
+        )
+      );
+    $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, "footer_banner_contact_control", array(
+      'section'     => 'footer_banner',
+      'settings'    => "footer_banner_contact",
+      'label'       => __( "연락처 배너", 'ship' ),
+      'description' => __( '이미지 권장크기는 920 x 520 입니다.' ),
+      'flex_width'  => true,
+      'flex_height' => true,
+      'width'       => 920,
+      'height'      => 520,
+    ) ) );
+    $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, "footer_banner_location_control", array(
+      'section'     => 'footer_banner',
+      'settings'    => "footer_banner_location",
+      'label'       => __( "지점 배너", 'ship' ),
+      'description' => __( '이미지 권장크기는 700 x 520 입니다.' ),
+      'flex_width'  => true,
+      'flex_height' => true,
+      'width'       => 700,
+      'height'      => 520,
+    ) ) );
+
+    // 페이지 배너
+    $wp_customize->add_section(
+       'page_banner',
+       array(
+        'title' => __( '페이지 배너' ),
+        'priority' => 160,
+        'capability' => 'edit_theme_options',
+       )
+     );
+     $wp_customize->add_setting(
+        "page_banner_settings",
+        array(
+          'type' => 'theme_mod',
+          'default' => '',
+        )
+      );
+      $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, "page_banner_control", array(
+        'section'     => 'page_banner',
+        'settings'    => "page_banner_settings",
+        'label'       => __( "페이지 배너", 'ship' ),
+        'description' => __( '이미지 권장크기는 1900 x 500 입니다.' ),
+        'flex_width'  => true,
+        'flex_height' => true,
+        'width'       => 1900,
+        'height'      => 500,
+      ) ) );
 }
 add_action( 'customize_register', 'themeslug_customize_register' );
 

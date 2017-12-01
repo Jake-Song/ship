@@ -19,6 +19,8 @@
 .icon-left-circled:before { content: '\e811'; } /* '' */
 .icon-right-circled:before { content: '\e812'; } /* '' */
 .icon-exclamation:before { content: '\e813'; } /* '' */
+.icon-check:before { content: '\e814'; } /* '' */
+.icon-check-empty:before { content: '\e815'; } /* '' */
 .icon-crown:before { content: '\e844'; } /* '' */
 .icon-anchor:before { content: '\f13d'; } /* '' */
 .icon-left:before { content: '\f177'; } /* '' */

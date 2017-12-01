@@ -276,7 +276,12 @@
     <div class="info-box">
 
       <div class="main-box">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/contact.jpg" alt="">
+        <?php
+            if( get_theme_mod("footer_banner_contact", '') !== '' ){
+              $footer_banner_contact_id = get_theme_mod("footer_banner_contact");
+              echo wp_get_attachment_image( $footer_banner_contact_id, 'full' );
+            }
+        ?>
       </div>
 
       <div class="qna">
@@ -284,7 +289,12 @@
         <?php echo do_shortcode('[mb_latest name="qanda" title="qanda" list_size="5" style=""]'); ?>
       </div>
       <div class="location">
-        <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/branch.jpg" alt="">
+        <?php
+            if( get_theme_mod("footer_banner_location", '') !== '' ){
+              $footer_banner_location_id = get_theme_mod("footer_banner_location");
+              echo wp_get_attachment_image( $footer_banner_location_id, 'full' );
+            }
+        ?>
       </div>
 
     </div>

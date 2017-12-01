@@ -1,17 +1,17 @@
 <div id="main-slider">
 
+  <?php for( $i = 1; $i < 5; $i++ ) : ?>
+
    <div class="main-slide">
-     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/slide-1.jpg" alt="">
+     <?php
+         if( get_theme_mod("main_slider_settings_$i", '') !== '' ){
+           $main_slider_id = get_theme_mod("main_slider_settings_$i");
+           echo wp_get_attachment_image( $main_slider_id, 'full' );
+         }
+     ?>
     </div>
-   <div class="main-slide">
-     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/slide-4.jpg" alt="">
-    </div>
-   <div class="main-slide">
-     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/slide-2.jpg" alt="">
-    </div>
-   <div class="main-slide">
-     <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/slide-3.jpg" alt="">
-    </div>
+
+  <?php endfor; ?>
 
  </div>
 

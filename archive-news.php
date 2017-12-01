@@ -1,9 +1,5 @@
 <?php get_header(); ?>
 
-  <div class="banner">
-    <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
-  </div>
-
   <div class="content-box">
     <div class="title-box">
       <h2>해양/수산 소식</h2>
@@ -24,11 +20,20 @@
                   <th>조회수</th>
                 </tr>
               </thead>
-          <?php while( have_posts() ) : the_post(); ?>
+
+          <?php
+
+            $posts_per_page = get_option('posts_per_page');
+            $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
+            $number_news = wp_count_posts( 'news' );
+            $number = $number_news->publish - ($current_page - 1) * $posts_per_page;
+
+            while( have_posts() ) : the_post();
+          ?>
 
               <tr>
                 <td class="number">
-                  <?php echo $post->ID; ?>
+                  <?php echo $number; ?>
                 </td>
                 <td class="name">
                   <a href="<?php the_permalink(); ?>">
@@ -50,7 +55,7 @@
                 </td>
               </tr>
 
-            <?php endwhile; ?>
+            <?php $number--; endwhile; ?>
 
             </table>
 

@@ -1,9 +1,5 @@
 <?php get_header(); ?>
 
-  <div class="banner">
-    <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
-  </div>
-
   <div class="content-box">
     <div class="title-box">
       <h2>팝니다 - 상세 정보</h2>
@@ -187,21 +183,21 @@
                         $current_index = 0;
 
                         foreach ($ship_option_basic as $key => $value) {
-
+                            $test = 0;
                             $$key = get_post_meta( get_the_ID(), $key, true );
-                            $key_attr = !empty($$key) ? 'checked' : "";
+                            $key_checked = !empty($$key) ? '<i class="icon-check"></i>' : '<i class="icon-check-empty"></i>';
 
                             if( $current_index % 2 === 0 ){
                               if( $current_index === count($ship_option_basic) - 1 ){
                                 $content .=
-                                  "<tr><td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td><td></td><td></td></tr>";
+                                  "<tr><td class='value'>$value</td><td>$key_checked</td><td></td><td></td></tr>";
                               } else {
                                 $content .=
-                                  "<tr><td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td>";
+                                  "<tr><td class='value'>$value</td><td>$key_checked</td>";
                               }
                             } elseif( $current_index % 2 === 1 ) {
                               $content .=
-                                "<td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td></tr>";
+                                "<td class='value'>$value</td><td>$key_checked</td></tr>";
                             }
 
                             $current_index++;
@@ -226,19 +222,19 @@
                         foreach ($ship_option_addtional as $key => $value) {
 
                             $$key = get_post_meta( get_the_ID(), $key, true );
-                            $key_attr = !empty($$key) ? ' checked' : "";
+                            $key_checked = !empty($$key) ? '<i class="icon-check"></i>' : '<i class="icon-check-empty"></i>';
 
                             if( $current_index % 2 === 0 ){
                               if( $current_index === count($ship_option_addtional) - 1 ){
                                 $content .=
-                                  "<tr><td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td><td></td><td></td></tr>";
+                                  "<tr><td class='value'>$value</td><td>$key_checked</td><td></td><td></td></tr>";
                               } else {
                                 $content .=
-                                  "<tr><td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td>";
+                                  "<tr><td class='value'>$value</td><td>$key_checked</td>";
                               }
                             } elseif( $current_index % 2 === 1 ) {
                               $content .=
-                                "<td class='value'>$value</td><td><input type='checkbox' value='{$value}' {$key_attr} onclick='return false;' /></td></tr>";
+                                "<td class='value'>$value</td><td>$key_checked</td></tr>";
                             }
 
                             $current_index++;

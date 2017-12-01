@@ -1,9 +1,5 @@
 <?php get_header(); ?>
 
-  <div class="banner">
-    <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
-  </div>
-
   <div class="content-box">
     <div class="title-box">
       <h2>매물 현황</h2>
@@ -41,13 +37,35 @@
                 </tr>
               </thead>
           <?php
-              while( have_posts() ) : the_post();
-                $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
+
+            $posts_per_page = get_option('posts_per_page');
+            $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
+
+            if( isset( $ship_category ) ) {
+              $ship_category_posts = new WP_Query(array(
+                'post_type' => 'ship',
+                'tax_query' => array(
+                  array(
+                      'taxonomy' => 'ship_category',
+                      'field' => 'slug',
+                      'terms' => $ship_category
+                  )
+                ),
+              ));
+              $ship_category_posts_count = $ship_category_posts->found_posts;
+              $number = $ship_category_posts_count - ($current_page - 1) * $posts_per_page;
+            } else {
+              $number_ship = wp_count_posts( 'ship' );
+              $number = $number_ship->publish - ($current_page - 1) * $posts_per_page;
+            }
+
+            while( have_posts() ) : the_post();
+              $ship_location_terms = get_the_terms( $post->ID, 'ship_location' );
           ?>
 
               <tr>
                 <td class="number">
-                  <?php echo $post->ID; ?>
+                  <?php echo $number; ?>
                 </td>
                 <td class="img">
                   <?php if( has_post_thumbnail($post->ID) ) the_post_thumbnail('smallest'); ?>
@@ -79,7 +97,7 @@
                 </td>
               </tr>
 
-            <?php endwhile; ?>
+            <?php $number--; endwhile; ?>
 
               </table>
             <?php

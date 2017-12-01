@@ -1,10 +1,5 @@
 <?php get_header(); ?>
 
-    <div class="banner">
-      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
-
-    </div>
-
     <div class="content-box">
       <div class="navigation">
         <a href="<?php echo get_post_type_archive_link( 'ship_buying' ); ?>"><i class="icon-th"></i>목록보기</a>

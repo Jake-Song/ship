@@ -1,10 +1,7 @@
 <?php get_header(); ?>
 
-    <div class="banner">
-      <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
-      <div class="title-box">
-        <h2>공지사항</h2>
-      </div>
+    <div class="title-box">
+      <h2>공지사항</h2>
     </div>
 
     <div class="content-box">

@@ -1,9 +1,5 @@
 <?php get_header(); ?>
 
-  <div class="banner">
-    <img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
-  </div>
-
   <div class="content-box">
     <div class="title-box">
       <h2>매입 의뢰</h2>
@@ -39,8 +35,29 @@
                 </tr>
               </thead>
           <?php
-          $test = 0;
+
             if( have_posts() ) :
+
+              $posts_per_page = get_option('posts_per_page');
+              $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
+
+              if( isset( $ship_category ) ) {
+                $ship_category_posts = new WP_Query(array(
+                  'post_type' => 'ship_buying',
+                  'tax_query' => array(
+                    array(
+                        'taxonomy' => 'ship_category',
+                        'field' => 'slug',
+                        'terms' => $ship_category
+                    )
+                  ),
+                ));
+                $ship_category_posts_count = $ship_category_posts->found_posts;
+                $number = $ship_category_posts_count - ($current_page - 1) * $posts_per_page;
+              } else {
+                $number_ship = wp_count_posts( 'ship_buying' );
+                $number = $number_ship->publish - ($current_page - 1) * $posts_per_page;
+              }
 
               while( have_posts() ) : the_post();
 
@@ -49,7 +66,7 @@
 
               <tr>
                 <td class="number">
-                 <?php echo $post->ID; ?>
+                 <?php echo $number; ?>
                 </td>
                 <td class="location">
                   <?php
@@ -79,7 +96,7 @@
               </tr>
 
                 <?php
-
+                  $number--;
                   endwhile;
 
                 else:

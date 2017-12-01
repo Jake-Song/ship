@@ -1,5 +1,7 @@
 jQuery( document ).ready( function($){
 
+  $('.ship-custom.basic.table td input').prop('checked', true);
+
   // Mobile menu
   $('.navbar-toggle').on('click', function(e){
     e.stopImmediatePropagation();
@@ -86,133 +88,142 @@ jQuery( document ).ready( function($){
   });
 
   // Sliders
-  var main = $('#main-slider').bxSlider({
-    mode: 'fade',
-    speed: 1000,
-    pause: 4000,
-    auto: true,
-    autoControls: false,
-    stopAutoOnClick: true,
-    pager: false,
-    startText: '',
-    stopText: '',
-    prevText: '',
-    nextText: '',
-    autoStart: true,
-    wrapperClass: 'bx-wrapper main'
-  });
-
-  var recent = $('.recent-ship.row').bxSlider({
-    auto: false,
-    speed: 1500,
-    slideWidth: 290,
-    maxSlides: 4,
-    moveSlides: 1,
-    pager: false,
-    prevText: '',
-    nextText: '',
-    wrapperClass: 'bx-wrapper recent-ship'
-  });
-
-  var notice = $('#notice-slider').bxSlider({
-    mode: 'vertical',
-    auto: true,
-    autoStart: true,
-    pager: false,
-    startText: '',
-    stopText: '',
-    prevText: '',
-    nextText: '',
-    autoHover: true,
-    speed: 1500,
-    controls: false,
-    wrapperClass: 'bx-wrapper notice'
-  });
-
-  var news = $('#news-slider').bxSlider({
-    mode: 'vertical',
-    auto: true,
-    autoStart: true,
-    pager: false,
-    startText: '',
-    stopText: '',
-    prevText: '',
-    nextText: '',
-    autoHover: true,
-    speed: 1500,
-    controls: false,
-    wrapperClass: 'bx-wrapper notice'
-  });
-
-  var partners = $('#partners-slider').bxSlider({
-    auto: false,
-    speed: 1500,
-    slideWidth: 150,
-    maxSlides: 6,
-    moveSlides: 1,
-    pager: false,
-    slideMargin: 30,
-    prevText: '',
-    nextText: '',
-    wrapperClass: 'bx-wrapper partners'
-  });
+  if( $('#main-slider') !== 'undefined' ){
+    var test = 0;
+    var main = $('#main-slider').bxSlider({
+      mode: 'fade',
+      speed: 1000,
+      pause: 4000,
+      auto: true,
+      autoControls: false,
+      stopAutoOnClick: true,
+      pager: false,
+      startText: '',
+      stopText: '',
+      prevText: '',
+      nextText: '',
+      autoStart: true,
+      wrapperClass: 'bx-wrapper main'
+    });
+  }
+  if( $('.recent-ship.row') !== 'undefined' ){
+    var recent = $('.recent-ship.row').bxSlider({
+      auto: false,
+      speed: 1500,
+      slideWidth: 290,
+      maxSlides: 4,
+      moveSlides: 1,
+      pager: false,
+      prevText: '',
+      nextText: '',
+      wrapperClass: 'bx-wrapper recent-ship'
+    });
+  }
+  if( $('#notice-slider') !== 'undefined' ){
+    var notice = $('#notice-slider').bxSlider({
+      mode: 'vertical',
+      auto: true,
+      autoStart: true,
+      pager: false,
+      startText: '',
+      stopText: '',
+      prevText: '',
+      nextText: '',
+      autoHover: true,
+      speed: 1500,
+      controls: false,
+      wrapperClass: 'bx-wrapper notice'
+    });
+  }
+  if( $('#news-slider') !== 'undefined' ){
+    var news = $('#news-slider').bxSlider({
+      mode: 'vertical',
+      auto: true,
+      autoStart: true,
+      pager: false,
+      startText: '',
+      stopText: '',
+      prevText: '',
+      nextText: '',
+      autoHover: true,
+      speed: 1500,
+      controls: false,
+      wrapperClass: 'bx-wrapper notice'
+    });
+  }
+  if( $('#partners-slider') !== 'undefined' ){
+    var partners = $('#partners-slider').bxSlider({
+      auto: false,
+      speed: 1500,
+      slideWidth: 150,
+      maxSlides: 6,
+      moveSlides: 1,
+      pager: false,
+      slideMargin: 30,
+      prevText: '',
+      nextText: '',
+      wrapperClass: 'bx-wrapper partners'
+    });
+  }
 
   // Sliders function with matchMedia
+  if( recent ){
+    enquire.register("screen and (max-width:360px)", {
 
-  enquire.register("screen and (max-width:360px)", {
+      // OPTIONAL
+      // If supplied, triggered when a media query matches.
+      match : function() {
+        if( recent )
+          recent.reloadSlider({
+            auto: false,
+            speed: 1500,
+            slideWidth: 500,
+            maxSlides: 1,
+            moveSlides: 1,
+            pager: false,
+            prevText: '',
+            nextText: '',
+            wrapperClass: 'bx-wrapper recent-ship'
+          });
+      },
 
-    // OPTIONAL
-    // If supplied, triggered when a media query matches.
-    match : function() {
-      if( recent )
-        recent.reloadSlider({
-          auto: false,
-          speed: 1500,
-          slideWidth: 500,
-          maxSlides: 1,
-          moveSlides: 1,
-          pager: false,
-          prevText: '',
-          nextText: '',
-          wrapperClass: 'bx-wrapper recent-ship'
-        });
-    },
+      // OPTIONAL
+      // If supplied, triggered when the media query transitions
+      // *from a matched state to an unmatched state*.
+      unmatch : function() {
+        if(recent)
+          recent.reloadSlider({
+            auto: false,
+            speed: 1500,
+            slideWidth: 250,
+            maxSlides: 4,
+            moveSlides: 1,
+            pager: false,
+            prevText: '',
+            nextText: '',
+            wrapperClass: 'bx-wrapper recent-ship'
+          });
+      },
 
-    // OPTIONAL
-    // If supplied, triggered when the media query transitions
-    // *from a matched state to an unmatched state*.
-    unmatch : function() {
-      if(recent)
-        recent.reloadSlider({
-          auto: false,
-          speed: 1500,
-          slideWidth: 250,
-          maxSlides: 4,
-          moveSlides: 1,
-          pager: false,
-          prevText: '',
-          nextText: '',
-          wrapperClass: 'bx-wrapper recent-ship'
-        });
-    },
+      // OPTIONAL
+      // If supplied, triggered once, when the handler is registered.
+      setup : function() {
 
-    // OPTIONAL
-    // If supplied, triggered once, when the handler is registered.
-    setup : function() {
+      },
 
-    },
+      // OPTIONAL, defaults to false
+      // If set to true, defers execution of the setup function
+      // until the first time the media query is matched
+      deferSetup : true,
 
-    // OPTIONAL, defaults to false
-    // If set to true, defers execution of the setup function
-    // until the first time the media query is matched
-    deferSetup : true,
+      // OPTIONAL
+      // If supplied, triggered when handler is unregistered.
+      // Place cleanup code here
+      destroy : function() {}
 
-    // OPTIONAL
-    // If supplied, triggered when handler is unregistered.
-    // Place cleanup code here
-    destroy : function() {}
+  });
+  }
 
-});
 
 
 // Load Contents with ajax

@@ -5,11 +5,8 @@
   get_header();
 ?>
 
-    <div class="banner">
-      <img src="<?php echo site_url('/') ?>wp-content/themes/ship/img/page-banner.jpg" alt="">
-    </div>
-
      <div class="content-box">
+
        <div class="title-box">
          <h2><?php echo esc_html_e('인사말'); ?></h2>
        </div>

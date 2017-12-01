@@ -29,13 +29,22 @@
           $query = new WP_Query( $args );
 
           if( $query->have_posts() ) :
+
+            $posts_per_page = get_option('posts_per_page');
+            $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
+            $number_ship_buying = wp_count_posts( 'ship_buying' );
+            $number = $number_ship_buying->publish - ($current_page - 1) * $posts_per_page;
+
             while( $query->have_posts() ) : $query->the_post();
 
               $ship_location_terms = get_the_terms( $query->post->ID, 'ship_location' );
           ?>
               <tr>
                 <td class="number">
-                 <?php echo $query->post->ID; ?>
+                  <?php
+                    $test = 0;
+                    echo $number;
+                  ?>
                 </td>
                 <td class="location">
                   <?php
@@ -65,6 +74,7 @@
               </tr>
 
           <?php
+              $number--;
             endwhile;
             wp_reset_postdata();
           endif;
@@ -98,12 +108,18 @@
         );
         $query = new WP_Query( $args );
         if( $query->have_posts() ) :
+
+          $posts_per_page = get_option('posts_per_page');
+          $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
+          $number_ship = wp_count_posts( 'ship' );
+          $number = $number_ship->publish - ($current_page - 1) * $posts_per_page;
+
           while( $query->have_posts() ) : $query->the_post();
             $ship_location_terms = get_the_terms( $query->post->ID, 'ship_location' );
         ?>
             <tr>
               <td class="number">
-               <?php echo $query->post->ID; ?>
+               <?php echo $number; ?>
               </td>
               <td class="img">
                 <?php if( has_post_thumbnail($query->post->ID) ) the_post_thumbnail('smallest'); ?>
@@ -135,7 +151,7 @@
               </td>
             </tr>
 
-        <?php endwhile;
+        <?php $number--; endwhile;
           wp_reset_postdata();
         endif;
       ?>
