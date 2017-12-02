@@ -88,7 +88,8 @@ jQuery( document ).ready( function($){
   });
 
   // Sliders
-  if( $('#main-slider') !== 'undefined' ){
+
+  if( $('#main-slider').length !== 0 ){
     var test = 0;
     var main = $('#main-slider').bxSlider({
       mode: 'fade',
@@ -106,7 +107,7 @@ jQuery( document ).ready( function($){
       wrapperClass: 'bx-wrapper main'
     });
   }
-  if( $('.recent-ship.row') !== 'undefined' ){
+  if( $('.recent-ship.row').length !== 0 ){
     var recent = $('.recent-ship.row').bxSlider({
       auto: false,
       speed: 1500,
@@ -119,7 +120,7 @@ jQuery( document ).ready( function($){
       wrapperClass: 'bx-wrapper recent-ship'
     });
   }
-  if( $('#notice-slider') !== 'undefined' ){
+  if( $('#notice-slider').length !== 0 ){
     var notice = $('#notice-slider').bxSlider({
       mode: 'vertical',
       auto: true,
@@ -135,7 +136,7 @@ jQuery( document ).ready( function($){
       wrapperClass: 'bx-wrapper notice'
     });
   }
-  if( $('#news-slider') !== 'undefined' ){
+  if( $('#news-slider').length !== 0 ){
     var news = $('#news-slider').bxSlider({
       mode: 'vertical',
       auto: true,
@@ -151,7 +152,7 @@ jQuery( document ).ready( function($){
       wrapperClass: 'bx-wrapper notice'
     });
   }
-  if( $('#partners-slider') !== 'undefined' ){
+  if( $('#partners-slider').length !== 0 ){
     var partners = $('#partners-slider').bxSlider({
       auto: false,
       speed: 1500,
@@ -167,14 +168,13 @@ jQuery( document ).ready( function($){
   }
 
   // Sliders function with matchMedia
-  if( recent ){
+  if(  $('.recent-ship.row').length !== 0 ){
     enquire.register("screen and (max-width:360px)", {
 
       // OPTIONAL
       // If supplied, triggered when a media query matches.
       match : function() {
-        if( recent )
-          recent.reloadSlider({
+        recent.reloadSlider({
             auto: false,
             speed: 1500,
             slideWidth: 500,
@@ -191,7 +191,6 @@ jQuery( document ).ready( function($){
       // If supplied, triggered when the media query transitions
       // *from a matched state to an unmatched state*.
       unmatch : function() {
-        if(recent)
           recent.reloadSlider({
             auto: false,
             speed: 1500,
@@ -223,8 +222,6 @@ jQuery( document ).ready( function($){
 
   });
   }
-
-
 
 // Load Contents with ajax
 
