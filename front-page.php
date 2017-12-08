@@ -39,8 +39,6 @@
 
   <div class="best-ship">
 
-      <div class="image-section">
-
       <?php
         $featured_args = array(
           'post_type' => 'ship',
@@ -56,7 +54,9 @@
         $featured_query = new WP_Query( $featured_args );
 
         if($featured_query->have_posts()) :
-
+      ?>
+          <div class="image-section">
+      <?php
           $current_index = 0;
 
           while($featured_query->have_posts()) : $featured_query->the_post();
@@ -76,19 +76,17 @@
           endwhile;
 
           wp_reset_postdata();
+          ?>
 
-        endif;
-       ?>
+         </div>
 
-     </div>
+      <?php endif; ?>
 
-      <div class="text-section">
+      <?php if($featured_query->have_posts()) : ?>
 
-        <?php
+            <div class="text-section">
 
-          if($featured_query->have_posts()) :
-
-            $current_index = 0;
+      <?php $current_index = 0;
             $content = '';
 
             $ship_information = array(
@@ -184,11 +182,11 @@
 
             wp_reset_postdata();
 
-          endif;
+          ?>
 
-        ?>
+            </div>
 
-      </div>
+      <?php endif; ?>
 
     </div>
 

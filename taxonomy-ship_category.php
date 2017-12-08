@@ -43,20 +43,19 @@
                       </a>
                     </span>
 
-                    <table class="table ship-custom market">
-                      <thead>
-                        <tr>
-                          <th>번호</th>
-                          <th>지역</th>
-                          <th>제목</th>
-                          <th>날짜</th>
-                          <th>조회수</th>
-                        </tr>
-                      </thead>
+                  <?php if( have_posts() ) : ?>
+
+                      <table class="table ship-custom market">
+                        <thead>
+                          <tr>
+                            <th>번호</th>
+                            <th>지역</th>
+                            <th>제목</th>
+                            <th>날짜</th>
+                            <th>조회수</th>
+                          </tr>
+                        </thead>
                   <?php
-
-                    if( have_posts() ) :
-
                       $posts_per_page = get_option('posts_per_page');
                       $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
                       $test = 0;
@@ -117,16 +116,18 @@
                             endif;
 
                           endwhile;
+                        ?>
 
+                        </table>
+
+                      <?php
                         else:
-                          echo '매물이 없습니다.';
+                          echo '매물이 아직 등록되지 않았습니다.';
 
                         endif;
 
                         rewind_posts();
                        ?>
-
-                      </table>
 
                     </div>
 
@@ -135,7 +136,6 @@
                      <h3>팝니다</h3>
                      <span class="market-icon">
 
-                       <?php $test = 0; ?>
                        <a href="
                          <?php
                            $ship_term = get_term_by( "slug", $ship_category, $taxonomy );
@@ -150,6 +150,8 @@
 
                      </span>
 
+                   <?php if( have_posts() ) : ?>
+
                      <table class="table ship-custom market">
                        <thead>
                          <tr>
@@ -161,10 +163,8 @@
                            <th>조회수</th>
                          </tr>
                        </thead>
-                   <?php
-                    $test = 0;
-                     if( have_posts() ) :
 
+                   <?php
                        $posts_per_page = get_option('posts_per_page');
                        $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
                        $test = 0;
@@ -225,16 +225,18 @@
                        $ship_number--;
 
                         endif;
+                     ?>
 
+                      </table>
+
+                    <?php
                        endwhile;
 
                      else:
-                       echo '매물이 없습니다.';
+                       echo '매물이 아직 등록되지 않았습니다.';
 
                      endif;
                     ?>
-
-                    </table>
 
                   </div>
 

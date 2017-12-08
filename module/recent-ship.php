@@ -10,9 +10,12 @@
       $query = new WP_Query( $args );
      ?>
 
-    <div class="recent-ship row">
-      <?php
-        if( $query->have_posts() ) :
+    <?php
+        if( $query->have_posts() ) : ?>
+
+          <div class="recent-ship row">
+
+    <?php
           while( $query->have_posts() ) : $query->the_post();
           $ship_maker_terms = get_the_terms( $post->ID, 'ship_maker' );
           $ship_model_terms = get_the_terms( $post->ID, 'ship_model' );
@@ -25,16 +28,13 @@
           endwhile;
 
           wp_reset_postdata();
+        ?>
+          </div>
 
-        else :
-       ?>
+      <?php else : ?>
 
-          <p><?php esc_html_e( '매물이 없습니다.' ); ?></p>
+          <p class="not-found-post"><?php esc_html_e( '매물이 아직 등록되지 않았습니다.' ); ?></p>
 
-       <?php
-        endif;
-       ?>
-
-    </div>
+      <?php endif; ?>
 
 </div>

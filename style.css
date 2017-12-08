@@ -1036,6 +1036,12 @@ table.ship-custom.market > tbody > tr > td.img{
 .recent-ship > .title > h3{
   color: white;
 }
+.recent-ship .not-found-post{
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  padding-bottom: 1em;
+}
 .bx-wrapper.recent-ship{
   -webkit-box-shadow: none;
           box-shadow: none;

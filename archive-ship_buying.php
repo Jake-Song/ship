@@ -24,6 +24,8 @@
 
             <h3>삽니다</h3>
 
+          <?php if( have_posts() ) : ?>
+
             <table class="table ship-custom market">
               <thead>
                 <tr>
@@ -34,10 +36,8 @@
                   <th>조회수</th>
                 </tr>
               </thead>
+
           <?php
-
-            if( have_posts() ) :
-
               $posts_per_page = get_option('posts_per_page');
               $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
 
@@ -98,15 +98,17 @@
                 <?php
                   $number--;
                   endwhile;
+                ?>
 
+                </table>
+
+                <?php
                 else:
-                  echo '매물이 없습니다.';
+                  echo '매물이 아직 등록되지 않았습니다.';
 
                 endif;
 
                ?>
-
-              </table>
 
             </div>
             <div class="custom pagination">
