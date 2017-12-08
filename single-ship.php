@@ -36,7 +36,7 @@
                             foreach ($single_post_images as $key => $image) {
                        ?>
                               <img class="single-image" src="<?php echo esc_url($image['url']); ?>" alt="">
-                       <?php
+                       <?php $test = 0;
                             }
                         endif;
                        ?>
@@ -63,7 +63,7 @@
                             ?>
 
                               <div class="additional-image order-<?php echo (int)$key + 1 ?>">
-                                <img src="<?php echo esc_url($image['url']); ?>" alt="">
+                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php if(!empty($image['alt'])) echo esc_attr($image['alt']); ?>">
                               </div>
 
                             <?php } ?>

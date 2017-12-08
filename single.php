@@ -18,7 +18,7 @@
                       <?php if( has_post_thumbnail() ) : ?>
                           <?php the_post_thumbnail( 'single' ); ?>
                       <?php else : ?>
-                          <img class="not-found" src="../wp-content/uploads/2017/07/image-not-found.png" alt="">
+                          <img class="not-found" src="../wp-content/uploads/2017/07/image-not-found.png" alt="원하시는 페이지를 찾을 수 없습니다.">
                       <?php endif; ?>
 
                   </div>

@@ -306,31 +306,31 @@
         <div id="partners-slider">
 
           <div class="partners-slide">
-            <a href="#" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-1.png" alt=""></a>
+            <a href="#" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-1.png" alt="한국어선중개업협회"></a>
           </div>
           <div class="partners-slide">
-            <a href="http://www.sealife.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-2.png" alt=""></a>
+            <a href="http://www.sealife.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-2.png" alt="귀어귀촌종합센터"></a>
           </div>
           <div class="partners-slide">
-            <a href="https://www.kst.or.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-3.png" alt=""></a>
+            <a href="https://www.kst.or.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-3.png" alt="선박안전기술공단"></a>
           </div>
           <div class="partners-slide">
-            <a href="https://www.suhyup.co.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-4.png" alt=""></a>
+            <a href="https://www.suhyup.co.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-4.png" alt="수협"></a>
           </div>
           <div class="partners-slide">
-            <a href="http://www.portincheon.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-5.png" alt=""></a>
+            <a href="http://www.portincheon.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-5.png" alt="인천지방해양수산청"></a>
           </div>
           <div class="partners-slide">
-            <a href="https://www.어선거래.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-6.png" alt=""></a>
+            <a href="https://www.어선거래.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-6.png" alt="어선거래시스템"></a>
           </div>
           <div class="partners-slide">
-            <a href="http://www.kcg.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-7.png" alt=""></a>
+            <a href="http://www.kcg.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-7.png" alt="해양경찰청"></a>
           </div>
           <div class="partners-slide">
-            <a href="http://www.mof.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-8.png" alt=""></a>
+            <a href="http://www.mof.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-8.png" alt="해양수산부"></a>
           </div>
           <div class="partners-slide">
-            <a href="http://www.nifs.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-9.png" alt=""></a>
+            <a href="http://www.nifs.go.kr/" target="_blank"><img src="<?php echo site_url('/'); ?>wp-content/themes/ship/img/partner-logo-9.png" alt="국립수산과학원"></a>
           </div>
         </div>
       </div>
