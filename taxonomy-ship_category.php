@@ -225,12 +225,12 @@
                        $ship_number--;
 
                         endif;
+                       endwhile;
                      ?>
 
                       </table>
 
                     <?php
-                       endwhile;
 
                      else:
                        echo '매물이 아직 등록되지 않았습니다.';

@@ -118,7 +118,8 @@
             <th>조회수</th>
           </tr>
         </thead>
-
+        <tbody>
+          
         <?php
           $posts_per_page = get_option('posts_per_page');
           $current_page = get_query_var('paged', 1) === 0 ? 1 : get_query_var('paged', 1);
@@ -165,6 +166,7 @@
         <?php $number--; endwhile;
           wp_reset_postdata();
         ?>
+          </tbody>
         </table>
       <?php
         else:
