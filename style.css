@@ -1285,6 +1285,7 @@ article.post.single .image-wrapper .single-post-images img.single-image{
   opacity: 0;
   -webkit-transition: opacity .5s;
   transition: opacity .5s;
+  height: 100%;
 }
 article.post.single .text-wrapper{
   -ms-flex-preferred-size: 60%;
