@@ -1394,6 +1394,9 @@ article.post.single .text-wrapper{
   height: 60%;
   margin-bottom: 0;
 }
+article.front .ship-custom.table{
+  height: auto;
+}
 .ship-custom.table > caption{
   text-align: center;
   background: #354D63;
